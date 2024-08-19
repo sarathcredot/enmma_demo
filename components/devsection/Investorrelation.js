@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="container">
         <div className="row">
           <div className="row align-items-center">
-            <div className="col-lg-8">
+            <div dir="ltr"className="col-lg-8">
               <div className="contact__form-wrap">
                 <h2 className="title">Give Us a Message</h2>
                 <p>

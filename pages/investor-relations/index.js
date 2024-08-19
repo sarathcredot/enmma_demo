@@ -1,7 +1,7 @@
 import Layout from "@/components/layout/Layout"
 import Banner1 from "@/components/sections/Banner1"
 import Bannerfooter from "@/components/sections/Bannerfooter"
-import Careerform from "@/components/devsection/Careerform"
+import Investorrelation from "@/components/devsection/Investorrelation"
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -70,13 +70,13 @@ export default function About({ initialData }) {
 
     return (
 
-        <>
 
+
+        <>
             <Layout headerStyle={6} footerStyle={3}>
-            <Banner1 data={getDataBySection('annual-report')} bgColor={"#110B79"} fontColor={"#FFFFFF"}fontColor2={'#FFFFFF'}/>
-            
-            <Careerform/>
-            <Bannerfooter data={getDataBySection('annual-report')}/>
+            <Banner1 data={getDataBySection('investor-banner')} />
+            <Investorrelation/>
+            <Bannerfooter data={getDataBySection('investor-banner')}  />
             </Layout>
         </>
     )

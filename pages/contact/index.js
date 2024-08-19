@@ -2,11 +2,79 @@ import Layout from "@/components/layout/Layout"
 import Banner2 from "@/components/sections/Banner2"
 import Link from "next/link"
 
-export default function Contact() {
+import { useTranslation } from 'next-i18next';
+import { useEffect, useState } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Bannerfooter from "@/components/sections/Bannerfooter";
+
+export const metadata = {
+    title: 'Annual report',
+}
+
+export default function About({ initialData }) {
+    const { t, i18n } = useTranslation('common');
+    const [data, setData] = useState(initialData);
+
+    useEffect(() => {
+        async function loadData() {
+            try {
+                const response = await fetch('http://localhost:4001/api/cms');
+                const data = await response.json();
+                const fetchedData = data.filter(item => item.page === 'annual-report');
+                setData(fetchedData);
+            } catch (error) {
+                console.error('Failed to load data:', error);
+            }
+        }
+    
+        loadData();
+    },  [i18n.language]);
+
+    const localizedData = data.map(item => {
+        const localizedIcondata = {};
+        Object.keys(item).forEach(key => {
+            if (key.startsWith('icondata')) {
+                localizedIcondata[key] = {
+                    ...item[key],
+                    title: item[key][`title_${i18n.language}`] || item[key].title_en,
+                    number: item[key][`number_${i18n.language}`] || item[key].number_en,
+                };
+            }
+        });
+        const localizedPointsEn = {};
+        const localizedPointsAr = {};
+        if (item.points_en) {
+            Object.keys(item.points_en).forEach(pointKey => {
+                localizedPointsEn[pointKey] = item.points_en[pointKey];
+            });
+        }
+        if (item.points_ar) {
+            Object.keys(item.points_ar).forEach(pointKey => {
+                localizedPointsAr[pointKey] = item.points_ar[pointKey];
+            });
+        }
+        return {
+            ...item,
+            title: item[`title_${i18n.language}`] || item.title_en,
+            subtitle: item[`subtitle_${i18n.language}`] || item.subtitle_en,
+            description: item[`description_${i18n.language}`] || item.description_en,
+            sidebarSubtitle: item[`sidebarSubtitle_${i18n.language}`] || item.sidebarSubtitle_en,
+            sidebarNumber: item[`sidebarNumber_${i18n.language}`] || item.sidebarNumber_en,
+            buttonTitle: item[`buttonTitle_${i18n.language}`] || item.buttonTitle_en,
+            localizedIcondata,
+            points: i18n.language === 'ar' ? localizedPointsAr : localizedPointsEn,
+            buttonLink: item.buttonLink || "#"
+        };
+    });
+
+    const getDataBySection = (section) => localizedData.filter(item => item.section === section && item.status);
+
     return (
+
         <>
+
             <Layout headerStyle={6} footerStyle={3} >
-            <Banner2  title={'Contact Us'} paragraph={'Lorem ipsum dolor sit amet consectetur. Mus et rhoncus pretium euismod pellentesque. Consectetur lacus enim eleifend vitae nibh sem.lacus enim eleifend vitae nibh sem it amet consectetur.'} />
+            <Banner2  data={getDataBySection('contact')}/>
                 <div>
                     <section className="contact__area">
                         <div className="container">
@@ -51,7 +119,7 @@ export default function Contact() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-7">
+                                <div  dir="ltr" className="col-lg-7">
                                     <div className="contact__form-wrap">
                                         <h2 className="title">Give Us a Message</h2>
                                         <p>Your email address will not be published. Required fields are marked *</p>
@@ -97,35 +165,22 @@ export default function Contact() {
                     </section>
                     {/* contact-area-end */}
                     {/* call-back-area */}
-                    <section className="request-area request-bg" data-background="/assets/img/bg/request_bg.jpg">
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                <div className="col-lg-8">
-                                    <div className="request-content text-center">
-                                        <h2 className="title">Offering The Best Experience Of Real Estate  Services</h2>
-                                        <div className="content-bottom">
-                                            <Link href="tel:0123456789" className="btn">Contact With Us</Link>
-                                            <div className="content-right">
-                                                <div className="icon">
-                                                    <i className="flaticon-phone-call" />
-                                                </div>
-                                                <div className="content">
-                                                    {/* <span>Toll Free Call</span> */}
-                                                    <Link href="tel:0123456789">+ 88 ( 9600 ) 6002</Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="request-shape">
-                            <img src="/assets/img/images/request_shape01.png" alt="" data-aos="fade-right" data-aos-delay={400} />
-                            <img src="/assets/img/images/request_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
-                        </div>
-                    </section>
+                    <Bannerfooter data={getDataBySection('annual-footer')} />
+
                 </div>
             </Layout>
         </>
     )
+}
+export async function getServerSideProps({ locale }) {
+    const response = await fetch('http://localhost:4001/api/cms');
+    const data = await response.json();
+    const fetchedData = data.filter(item => item.page === 'annual-report');
+
+    return {
+        props: {
+            initialData: fetchedData,
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    };
 }

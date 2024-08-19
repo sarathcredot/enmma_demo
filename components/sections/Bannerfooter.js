@@ -1,23 +1,25 @@
 import Link from 'next/link'
 
-export default function Bannerfooter() {
+export default function Bannerfooter({data}) {
     return (
         <>
-            <section className="request-area request-bg" data-background="/assets/img/bg/request_bg.jpg">
+        {data.map((item) => (
+
+            <section key={item._id} className="request-area request-bg" data-background={`http://localhost:4001/media/${item.bannerImage}`}>
                         <div className="container">
                             <div className="row justify-content-center">
                                 <div className="col-lg-8">
                                     <div className="request-content text-center">
-                                        <h2 className="title">Offering The Best Experience Of Real Estate  Services</h2>
+                                        <h2 className="title">{item.title}</h2>
                                         <div className="content-bottom">
-                                            <Link href="tel:0123456789" className="btn">Contact With Us</Link>
+                                            <Link href="tel:0123456789" className="btn">{item.subtitle}</Link>
                                             <div className="content-right">
                                                 <div className="icon">
                                                     <i className="flaticon-phone-call" />
                                                 </div>
                                                 <div className="content">
                                                     {/* <span>Toll Free Call</span> */}
-                                                    <Link href="tel:0123456789">+ 88 ( 9600 ) 6002</Link>
+                                                    <Link href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -30,6 +32,7 @@ export default function Bannerfooter() {
                             <img src="/assets/img/images/request_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
                         </div>
                     </section>
+                    ))}
         </>
     )
 }

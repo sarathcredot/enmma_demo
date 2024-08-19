@@ -1,16 +1,18 @@
 import Link from "next/link"
 import SVG from "@/components/elements/Allsvg"
 
-export default function Annualreport() {
+export default function Annualreport({data}) {
     return (
-        <div className="container project__area-three ">
+<>
+{data.map((item) => (
+    <div key={item._id} className="container project__area-three ">
                     <div className="row ">
                     <div className="col-xl-7 space-betweeni col-lg-8">
                         <div  className="  mb-50 dev_gover " >
-                            <span className="">Lorem ipsum dolor sit a</span>
-                            <h2 className=" mt-4" style={{ color: '#110B79' }}>lorem ipsum dolor sit amet <br />congue ornare elit</h2>
+                            <span className="">{item.title}</span>
+                            <h2 className=" mt-4" style={{ color: '#110B79' }}>{item.subtitle}</h2>
                         </div>
-                            <div className="dev_customsize mt-4" style={{ color: '#282739' }}>Lorem ipsum dolor sit amet consectetur. Mus et rhoncus pretium euismod pellentesque. Consectetur lacus enim eleifend vitae nibh sem</div>
+                            <div className="dev_customsize mt-4" style={{ color: '#282739' }}>{item.description}</div>
                     </div>
              
  </div>
@@ -66,5 +68,7 @@ export default function Annualreport() {
 
 
         </div>
+))}
+</>
     )
 }

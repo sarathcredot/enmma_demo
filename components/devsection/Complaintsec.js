@@ -4,11 +4,11 @@ import SVG from "@/components/elements/Allsvg"
 export default function Disclosurelist({ item }) {
     return (
         <>
-            <section className="contact__area">
-                <div className="container">
+            <section  className="contact__area">
+                <div  className="container">
                     <div className="row">
                         <div className="row align-items-center mr-5">
-                            <div className="col-lg-8">
+                            <div dir="ltr" className="col-lg-8">
                                 <div className="contact__form-wrap">
                                     <h2 className="title">Give Us a Message</h2>
                                     <p>We value your feedback. You can submit a complaint or offer a suggestion to help us improve our service.</p>

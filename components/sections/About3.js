@@ -10,7 +10,7 @@ export default function About3({ data }) {
                         <div className="row align-items-center justify-content-center">
                             <div className="col-lg-5 col-md-8 mx-4">
                                 <div className="about__img-wrap-three">
-                                    <img src={`http://localhost:4000/${item.bannerImage}`} alt="" />
+                                    <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
                                     <img src="/assets/img/images/h3_about_img02.jpg" alt="" data-parallax="{&quot;x&quot; : 50 }" />
                                     <div className="shape">
                                         <img src="/assets/img/images/h3_about_img_shape.png" alt="" className="alltuchtopdown" />
