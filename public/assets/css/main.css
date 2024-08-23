@@ -1170,7 +1170,6 @@ textarea {
 
 .breadcrumb__shape_dev2 img {
   position: absolute;
-  z-index: ;
 }
 .breadcrumb__shape_dev2 img:nth-child(1) {
   right: 20%;
@@ -1777,7 +1776,7 @@ textarea {
   margin-right: 20px;
 }
 .tgmenu__navbar-wrap > ul > li:last-child {
-  margin-right: 0;
+  margin-inline-end: 0;
 }
 .tgmenu__navbar-wrap > ul > li a {
   font-size: clamp(10px,1.2vw,14px);
@@ -1867,7 +1866,7 @@ textarea {
   font-weight: 700;
   font-family: var(--tg-icon-font-family);
   color: var(--tg-color-dark-blue);
-  margin-left: 8px;
+  margin-inline-start: 8px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -3187,6 +3186,7 @@ textarea {
   z-index: -1;
   mix-blend-mode: luminosity;
   opacity: 0.7;
+  object-fit: cover;
 }
 .slider__content {
   position: relative;
@@ -13874,7 +13874,9 @@ blockquote p {
   background-color: #fff;
   border-radius: 8px;
   padding: 60px 60px 60px 80px;
-  margin: 60px 0px 60px 60px;
+  /* margin: 60px 0px 60px 60px; */
+  margin: 60px;
+  margin-inline-end: 60px;
 }
 .slider_baner_home6 .banner__content-three .title {
   margin-bottom: 10px;
@@ -13916,7 +13918,9 @@ blockquote p {
   z-index: 123;
   transform: translateY(-50%) rotate(-90deg);
 }
-
+:root[dir='rtl'] .text-25-years{
+  inset-inline-start: -185px;
+}
 .text-experience {
   font-size: 16px;
   line-height: 30px;
@@ -15794,4 +15798,8 @@ html[lang="en"] :root,
 html[lang="en-US"] :root {
   direction: ltr;
   text-align: left;
+}
+
+.dir-ltr{
+  direction: ltr;
 }
