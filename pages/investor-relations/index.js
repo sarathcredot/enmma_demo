@@ -5,12 +5,13 @@ import Investorrelation from "@/components/devsection/Investorrelation"
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from "next/head";
 
 export const metadata = {
     title: 'Annual report',
 }
 
-export default function About({ initialData }) {
+export default function About({ initialData,pageTitle,pageDescription, }) {
     const { t, i18n } = useTranslation('common');
     const [data, setData] = useState(initialData);
 
@@ -73,10 +74,14 @@ export default function About({ initialData }) {
 
 
         <>
+           <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+            </Head>
             <Layout headerStyle={6} footerStyle={3}>
-            <Banner1 data={getDataBySection('investor-banner')} />
-            <Investorrelation/>
-            <Bannerfooter data={getDataBySection('investor-banner')}  />
+            <Banner1 data={getDataBySection('annual-banner')} />
+            <Investorrelation data1={getDataBySection('annual-contact')} data={getDataBySection('annual-heading')}/>
+            <Bannerfooter data={getDataBySection('annual-contact')}  />
             </Layout>
         </>
     )
@@ -85,10 +90,25 @@ export async function getServerSideProps({ locale }) {
     const response = await fetch('http://localhost:4001/api/cms');
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'annual-report');
+    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+
+    if (!response.ok || !metadataResponse.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    const metadata = await metadataResponse.json();
+
+    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+
+    const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+    const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
+
 
     return {
         props: {
             initialData: fetchedData,
+            pageTitle,
+            pageDescription,
             ...(await serverSideTranslations(locale, ['common'])),
         },
     };

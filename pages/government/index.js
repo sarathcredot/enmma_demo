@@ -6,8 +6,9 @@ import Bannerfooter from "@/components/sections/Bannerfooter"
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from "next/head";
 
-export default function Government({ initialData }) {
+export default function Government({ initialData, pageTitle,pageDescription, }) {
 
     const { t, i18n } = useTranslation('common');
     const [data, setData] = useState(initialData);
@@ -69,6 +70,10 @@ export default function Government({ initialData }) {
     return (
 
         <>
+           <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+            </Head>
 
             <Layout headerStyle={6} footerStyle={3} >
                 <Banner2 data={getDataBySection('government-banner')} bgColor={"#110B79"} fontColor={"#FFFFFF"} fontColor2={'#FFFFFF'} />
@@ -138,10 +143,25 @@ export async function getServerSideProps({ locale }) {
     const response = await fetch('http://localhost:4001/api/cms');
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'Government');
+    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+
+    if (!response.ok || !metadataResponse.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    const metadata = await metadataResponse.json();
+
+    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+
+    const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+    const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
+
 
     return {
         props: {
             initialData: fetchedData,
+            pageTitle,
+            pageDescription,
             ...(await serverSideTranslations(locale, ['common'])),
         },
     };

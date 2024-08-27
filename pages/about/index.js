@@ -7,8 +7,10 @@ import Link from "next/link"
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from "next/head"
 
-export default function About({ initialData }) {
+export default function About({ initialData, pageTitle,pageDescription, }) {
+ 
     const { t, i18n } = useTranslation('common');
     const [data, setData] = useState(initialData);
 
@@ -60,7 +62,8 @@ export default function About({ initialData }) {
             buttonTitle: item[`buttonTitle_${i18n.language}`] || item.buttonTitle_en,
             localizedIcondata,
             points: i18n.language === 'ar' ? localizedPointsAr : localizedPointsEn,
-            buttonLink: item.buttonLink || "#"
+            buttonLink: item.buttonLink || "#",
+          
         };
     });
 
@@ -69,6 +72,10 @@ export default function About({ initialData }) {
     return (
 
         <>
+           <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+            </Head>
             <Layout headerStyle={6} footerStyle={3} >
                 <Banner2 data={getDataBySection('about-banner')}  />
                 <div>
@@ -177,14 +184,14 @@ export default function About({ initialData }) {
                                     <div className="request-content text-center">
                                         <h2 className="title">{item.title}</h2>
                                         <div className="content-bottom">
-                                            <Link href={`tel:${item.contact_number}`} className="btn">{item.contact_number}</Link>
+                                            <Link  dir="ltr" href={`tel:${item.contact_number}`} className="btn">{item.contact_number}</Link>
                                             <div className="content-right">
                                                 <div className="icon">
                                                     <i className="flaticon-phone-call" />
                                                 </div>
                                                 <div className="content">
                                                     {/* <span>Toll Free Call</span> */}
-                                                    <Link href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
+                                                    <Link  dir="ltr" href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -207,13 +214,28 @@ export default function About({ initialData }) {
 
 export async function getServerSideProps({ locale }) {
     const response = await fetch('http://localhost:4001/api/cms');
+    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+
+    if (!response.ok || !metadataResponse.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    const metadata = await metadataResponse.json();
+
+    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+
+    const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+    const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
+
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'about');
 
     return {
         props: {
             initialData: fetchedData,
+            pageTitle,
+            pageDescription,
             ...(await serverSideTranslations(locale, ['common'])),
-        },
-    };
+    },
+};
 }
