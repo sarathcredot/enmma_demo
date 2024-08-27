@@ -5,12 +5,12 @@ import Careerform from "@/components/devsection/Careerform"
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from "next/head";
+import Sectionfoot from "@/components/layout/DevsectionFoot"
 
-export const metadata = {
-    title: 'Annual report',
-}
 
-export default function About({ initialData }) {
+
+export default function About({ initialData, pageTitle,pageDescription, }) {
     const { t, i18n } = useTranslation('common');
     const [data, setData] = useState(initialData);
 
@@ -70,25 +70,62 @@ export default function About({ initialData }) {
 
     return (
 
-        <>
+        <>   <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+    </Head>
 
             <Layout headerStyle={6} footerStyle={3}>
-            <Banner1 data={getDataBySection('annual-report')} bgColor={"#110B79"} fontColor={"#FFFFFF"}fontColor2={'#FFFFFF'}/>
-            
-            <Careerform/>
-            <Bannerfooter data={getDataBySection('annual-report')}/>
+            <Banner1 data={getDataBySection('annual-banner')} bgColor={"#110B79"} fontColor={"#FFFFFF"}fontColor2={'#FFFFFF'}/>
+            <div  className=" " style={{ backgroundColor: '#110B79' }}>
+            <div className=" container project__area-three" >
+            {getDataBySection('annual-heading').map((item) => (
+
+                <div className="row ">
+                    <div key={item._id} className="col-xl-7 space-betweeni col-lg-8">
+                        <div className="  mb-50 dev_gover ">
+                            <span className="">{item.subtitle}</span>
+                            <h2 className=" mt-4">{item.title}</h2>
+                        </div>
+                        <div className="dev_customsize mt-4">{item.description}</div>
+                    </div>
+               </div>
+            ))}
+            <Careerform  />
+           
+           </div>
+           <div className="dev-bottom container"><Sectionfoot data={getDataBySection('annual-contact')}/></div>  
+
+            </div>
+
+            <Bannerfooter data={getDataBySection('annual-contact')}/>
             </Layout>
         </>
     )
-}
+}   
 export async function getServerSideProps({ locale }) {
     const response = await fetch('http://localhost:4001/api/cms');
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'annual-report');
+    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+
+    if (!response.ok || !metadataResponse.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    const metadata = await metadataResponse.json();
+
+    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+
+    const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+    const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
+
 
     return {
         props: {
             initialData: fetchedData,
+            pageTitle,
+            pageDescription,
             ...(await serverSideTranslations(locale, ['common'])),
         },
     };
