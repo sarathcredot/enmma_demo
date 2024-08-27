@@ -1,6 +1,8 @@
 import Link from "next/link"
+import { useTranslation } from 'next-i18next';
 
 export default function Menu() {
+    const { t } = useTranslation('common');
     return (
         <>
             <ul className="navigation">
@@ -17,25 +19,25 @@ export default function Menu() {
 
                     </ul>
                 </li> */}
-                <li className="menu-item-has-children"><Link href="/about">About</Link>
+                <li className="menu-item-has-children"><Link href="/about">{t('about')}</Link>
                     <ul className="sub-menu">
-                        <li><Link href="/about-sub/#director"  >Board Of Directors</Link></li>
-                        <li><Link href="/about-sub/#management">Management</Link></li>
-                        <li><Link href="/about-sub/#executive">Executive </Link></li>
+                        <li><Link href="/about-sub/#director"  >{t("board_of_directors")}</Link></li>
+                        <li><Link href="/about-sub/#management">{t("management")}</Link></li>
+                        <li><Link href="/about-sub/#executive">{t("executive")}</Link></li>
                         {/* <li><Link href="/>Insurance About</Link></li>
                         <li><Link href="/#about-4">Digital agency About</Link></li> */}
                     </ul>
                 </li>
-                 <li> <Link href="/government">Govt. Bots</Link></li>
-                    <li> <Link href="/services">Services</Link></li>
-                    <li> <Link href="/corporate">Corporate Governance</Link></li>
+                 <li> <Link href="/government">{t("govt_bots")}</Link></li>
+                    <li> <Link href="/services">{t("services")}</Link></li>
+                    <li> <Link href="/corporate">{t("corporate_governance")}</Link></li>
 
-                <li className="menu-item-has-children"><Link href="#">Investor Relations</Link>
+                <li className="menu-item-has-children"><Link href="#">{t("investor_relations")}</Link>
                     <ul className="sub-menu">
-                        <li><Link href="/annual-report">Annual report</Link></li>
-                        <li><Link href="/disclosures">Disclosures</Link></li>
-                        <li><Link href="/investor-relations">Investor Relations</Link></li>
-                        <li><Link href="/financial-statement">Financial Statement</Link></li>
+                        <li><Link href="/annual-report">{t("annual_report")}</Link></li>
+                        <li><Link href="/disclosures">{t("disclosures")}</Link></li>
+                        <li><Link href="/investor-relations">{t("investor_relations")}</Link></li>
+                        <li><Link href="/financial-statement">{t("financial_statement")}</Link></li>
                         {/* <li><Link href="/#-5">Digital agency Service</Link></li>
                         <li><Link href="/#-details">Service Details One</Link></li>
                         <li><Link href="/#-details-2">Service Details Two</Link></li>
@@ -44,12 +46,12 @@ export default function Menu() {
                         <li><Link href="/#-details-5">Service Details Five</Link></li> */}
                     </ul>
                 </li>
-                <li className="menu-item-has-children"><Link href="#">Info. center </Link>
+                <li className="menu-item-has-children"><Link href="#">{t("info_center")}</Link>
                     <ul className="sub-menu">
-                        <li><Link href="/blog">Latest News</Link></li>
-                        <li><Link href="/careers">Careers</Link></li>
-                        <li><Link href="/complaints">Complaints</Link></li>
-                        <li><Link href="mailto:whistleblower@enmaa.com">Report an Incident</Link></li>
+                        <li><Link href="/blog">{t("latest_news")}</Link></li>
+                        <li><Link href="/careers">{t("careers")}</Link></li>
+                        <li><Link href="/complaints">{t("complaints")}</Link></li>
+                        <li><Link href="mailto:whistleblower@enmaa.com">{t("report_incident")}</Link></li>
                         {/* <li><Link href="/#-details">Team Details</Link></li>
                         <li><Link href="/project-details">Project Details</Link></li>
                         <li><Link href="/error">404 Error Page</Link></li>
@@ -64,7 +66,7 @@ export default function Menu() {
                         <li><Link href="/blog-details">Blog Details</Link></li>
                     </ul>
                 </li> */}
-                <li><Link href="/contact">contact</Link></li>
+                <li><Link href="/contact">{t("contact")}</Link></li>
             </ul>
         </>
     )
