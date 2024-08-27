@@ -29,7 +29,7 @@ export default function Request3({data}) {
                                     </div>
                                     <div className="content">
                                         {/* <span>Contact US</span> */}
-                                        <Link href={`tel:${item.phone_number}`}> {item.phone_number}</Link>
+                                        <Link  dir="ltr" href={`tel:${item.phone_number}`}> {item.phone_number}</Link>
                                     </div>
                                 </div>
                             </div>

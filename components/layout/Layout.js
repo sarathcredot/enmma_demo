@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import BackToTop from '../elements/BackToTop'
 import DataBg from "../elements/DataBg"
 import Breadcrumb from './Breadcrumb'
-import PageHead from './PageHead'
+// import PageHead from './PageHead'
 import Footer1 from './footer/Footer1'
 import Footer2 from './footer/Footer2'
 import Footer3 from "./footer/Footer3"
@@ -20,9 +20,9 @@ import Footer7 from "./footer/Footer7"
 import Footer6 from "./footer/Footer6"
 import { appWithTranslation, i18n } from 'next-i18next';
 
-export const metadata = {
-    title: 'Apexa - Business Consulting NextJS Template',
-}
+// export const metadata = {
+//     title: 'Apexa - Business Consulting NextJS Template',
+// }
 
 function Layout({ headerStyle, footerStyle, headTitle,   breadcrumbTitle, children, transparent }) {
 
@@ -56,7 +56,7 @@ function Layout({ headerStyle, footerStyle, headTitle,   breadcrumbTitle, childr
     }, [])
     return (
         <>
-            <PageHead headTitle={headTitle} />
+            {/* <PageHead headTitle={headTitle} /> */}
             <DataBg />
 
             {!headerStyle && <Header1 scroll={scroll} isMobileMenu={isMobileMenu} handleMobileMenu={handleMobileMenu} isSearch={isSearch} handleSearch={handleSearch} isOffcanvus={isOffcanvus} handleOffcanvus={handleOffcanvus} transparent={transparent} />}

@@ -6,12 +6,13 @@ import Complaintsec from "@/components/devsection/Complaintsec"
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from "next/head"
 
 export const metadata = {
     title: 'Annual report',
 }
 
-export default function About({ initialData }) {
+export default function About({ initialData, pageTitle, pageDescription, }) {
     const { t, i18n } = useTranslation('common');
     const [data, setData] = useState(initialData);
 
@@ -26,9 +27,9 @@ export default function About({ initialData }) {
                 console.error('Failed to load data:', error);
             }
         }
-    
+
         loadData();
-    },  [i18n.language]);
+    }, [i18n.language]);
 
     const localizedData = data.map(item => {
         const localizedIcondata = {};
@@ -72,29 +73,32 @@ export default function About({ initialData }) {
     return (
 
         <>
-
+            <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+            </Head>
 
             <Layout headerStyle={6} footerStyle={3} >
-            <Banner1  data={getDataBySection('annual-banner')}/>
-            
-            
-            
-            <div className="container project__area-three ">
-                    <div className="row ">
-                        {getDataBySection('about-info-section').map((item) => (
-                    <div className="col-xl-7 space-betweeni col-lg-8">
-                            
-                            <div  className="  mb-50 dev_gover " >
-                            <span className="">{item.subtitle}</span>
-                            <h2 className=" mt-4" style={{ color: '#110B79' }}>{item.title}</h2>
-                        </div>
-                            <div className="dev_customsize mt-4" style={{ color: '#282739' }}>{item.description}</div>
-                    </div>
-                        ))}
-                    <Complaintsec/>
+                <Banner1 data={getDataBySection('annual-banner')} />
 
-            </div></div>
-            <Bannerfooter data={getDataBySection('annual-footer')} />
+
+
+                <div className="container project__area-three ">
+                    <div className="row ">
+                        {getDataBySection('annual-heading').map((item) => (
+                            <div className="col-xl-7 space-betweeni col-lg-8">
+
+                                <div className="  mb-50 dev_gover " >
+                                    <span className="">{item.subtitle}</span>
+                                    <h2 className=" mt-4" style={{ color: '#110B79' }}>{item.title}</h2>
+                                </div>
+                                <div className="dev_customsize mt-4" style={{ color: '#282739' }}>{item.description}</div>
+                            </div>
+                        ))}
+                        <Complaintsec />
+
+                    </div></div>
+                <Bannerfooter data={getDataBySection('annual-contact')} />
             </Layout>
         </>
     )
@@ -103,10 +107,24 @@ export async function getServerSideProps({ locale }) {
     const response = await fetch('http://localhost:4001/api/cms');
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'annual-report');
+    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+
+    if (!response.ok || !metadataResponse.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    const metadata = await metadataResponse.json();
+
+    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+
+    const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+    const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
 
     return {
         props: {
             initialData: fetchedData,
+            pageTitle,
+            pageDescription,
             ...(await serverSideTranslations(locale, ['common'])),
         },
     };

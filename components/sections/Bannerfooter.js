@@ -19,7 +19,7 @@ export default function Bannerfooter({data}) {
                                                 </div>
                                                 <div className="content">
                                                     {/* <span>Toll Free Call</span> */}
-                                                    <Link href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
+                                                    <Link  dir="ltr" href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
                                                 </div>
                                             </div>
                                         </div>

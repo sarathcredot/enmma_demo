@@ -7,8 +7,9 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Bannerfooter from "@/components/sections/Bannerfooter";
+import Head from "next/head";
 
-export default function About3({ initialData, teamMembersData }) {
+export default function About3({ initialData, teamMembersData,pageDescription,pageTitle }) {
     const { t, i18n } = useTranslation("common");
     const [data, setData] = useState(initialData);
     const [teamMembers, setTeamMembers] = useState(teamMembersData);
@@ -70,6 +71,10 @@ export default function About3({ initialData, teamMembersData }) {
 
     return (
         <>
+           <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+            </Head>
             <Layout headerStyle={6} footerStyle={3}>
                 <Banner2 data={getDataBySection("team-banner")} />
 
@@ -253,15 +258,28 @@ export async function getServerSideProps({ locale }) {
     try {
         // Fetch CMS Data
         const cmsResponse = await fetch("http://localhost:4001/api/cms");
+        if (!cmsResponse.ok) throw new Error('Failed to fetch CMS data');
         const cmsData = await cmsResponse.json();
         const fetchedData = cmsData.filter(item => item.page === "team");
 
+        // Fetch Metadata
+        const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+        if (!metadataResponse.ok) throw new Error('Failed to fetch page metadata');
+        const metadata = await metadataResponse.json();
+        const pageMetadata = metadata.find(page => page.page === 'about') || {};
+
         // Fetch Team Members Data
         const teamResponse = await fetch("http://localhost:4001/api/team/");
+        if (!teamResponse.ok) throw new Error('Failed to fetch team data');
         const teamData = await teamResponse.json();
+
+        const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+        const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
 
         return {
             props: {
+                pageTitle,
+                pageDescription,
                 initialData: fetchedData,
                 teamMembersData: teamData,
                 ...(await serverSideTranslations(locale, ["common"])),
@@ -271,6 +289,8 @@ export async function getServerSideProps({ locale }) {
         console.error("Failed to load data:", error);
         return {
             props: {
+                pageTitle: 'Error',
+                pageDescription: 'Error fetching page data',
                 initialData: [],
                 teamMembersData: [],
                 ...(await serverSideTranslations(locale, ["common"])),

@@ -1,15 +1,15 @@
-import Layout from "@/components/layout/Layout"
-
-import Counter1 from "@/components/sections/Counter1"
-import Project3 from "@/components/sections/Project3"
-import Slider2 from "@/components/sections/Slider2"
-import About3 from "@/components/sections/About3"
-import Services3 from "@/components/sections/Services3"
-import Choose3 from "@/components/sections/Choose3"
-import Marketingexpert1 from "@/components/sections/Marketingexpert1"
-import BlogPost3 from "@/components/sections/BlogPost3"
-import Request3 from "@/components/sections/Request3"
-import Devindex1 from "@/components/devcreate/devindexherobottom"
+import Layout from "@/components/layout/Layout";
+import Counter1 from "@/components/sections/Counter1";
+import Project3 from "@/components/sections/Project3";
+import Slider2 from "@/components/sections/Slider2";
+import About3 from "@/components/sections/About3";
+import Services3 from "@/components/sections/Services3";
+import Choose3 from "@/components/sections/Choose3";
+import Marketingexpert1 from "@/components/sections/Marketingexpert1";
+import BlogPost3 from "@/components/sections/BlogPost3";
+import Request3 from "@/components/sections/Request3";
+import Devindex1 from "@/components/devcreate/devindexherobottom";
+import Head from 'next/head';
 
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -26,6 +26,8 @@ export default function Home({
     solutionSectionData,
     trustedSectionData,
     blogData,
+    pageTitle,
+    pageDescription,
 }) {
     const { t, i18n } = useTranslation('common');
 
@@ -70,18 +72,20 @@ export default function Home({
 
     return (
         <>
-            <Layout headerStyle={6} footerStyle={3} >
+            <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+            </Head>
+            <Layout headerStyle={6} footerStyle={3}>
                 <Slider2 data={localizeData(heroSectionData)} id="herosection"/>
                 <Devindex1 data={localizeData(heroBottomData)} />
-                <div ><Counter1 data={localizeData(counterData)} /></div>
-                
+                <div><Counter1 data={localizeData(counterData)} /></div>
                 <About3 data={localizeData(aboutSectionData)} />
                 <Services3 data={localizeData(serviceData)} />
                 <Choose3 data={localizeData(investorSectionData)} />
                 <Project3 data={localizeData(ownerSectionData)} />
                 <Request3 data={localizeData(parallaxBannerData)} />
                 <Marketingexpert1 data={localizeData(solutionSectionData)} datas={localizeData(trustedSectionData)} />
-        
                 <BlogPost3 data={localizeData(blogData)} />
             </Layout>
         </>
@@ -89,14 +93,20 @@ export default function Home({
 }
 
 export async function getServerSideProps({ locale }) {
-    // Replace fetchData with the native fetch API
     const response = await fetch('http://localhost:4001/api/cms');
-    
-    if (!response.ok) {
+    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+
+    if (!response.ok || !metadataResponse.ok) {
         throw new Error('Failed to fetch data');
     }
-    
+
     const allData = await response.json();
+    const metadata = await metadataResponse.json();
+
+    const pageMetadata = metadata.find(page => page.page === 'home') || {};
+
+    const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
+    const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';
 
     const getDataBySection = (section) => allData.filter(item => item.section === section && item.status);
 
@@ -113,7 +123,9 @@ export async function getServerSideProps({ locale }) {
             solutionSectionData: getDataBySection('solution-section'),
             trustedSectionData: getDataBySection('Trusted-section'),
             blogData: getDataBySection('blog'),
-            ...(await serverSideTranslations(locale, ['common'])),
+                pageTitle,
+                pageDescription,
+                ...(await serverSideTranslations(locale, ['common'])),
         },
     };
 }

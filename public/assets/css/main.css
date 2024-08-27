@@ -1170,6 +1170,7 @@ textarea {
 
 .breadcrumb__shape_dev2 img {
   position: absolute;
+  z-index: 0;
 }
 .breadcrumb__shape_dev2 img:nth-child(1) {
   right: 20%;
