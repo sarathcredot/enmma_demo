@@ -33,7 +33,7 @@ export default function Project3({data}) {
                                                 <Link href={item.buttonLink} className="btn btn-two">{item.buttonTitle}</Link>
                                             </div>
                                             <div className="project__thumb-three shine-animate">
-                                            <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
+                                            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                                             </div>
                                         </div>
                           

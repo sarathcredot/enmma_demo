@@ -19,7 +19,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
     useEffect(() => {
         async function loadData() {
             try {
-                const response = await fetch('http://localhost:4001/api/cms');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
                 const fetchedData = data.filter(item => item.page === 'annual-report');
                 setData(fetchedData);
@@ -91,10 +91,10 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
     )
 }
 export async function getServerSideProps({ locale }) {
-    const response = await fetch('http://localhost:4001/api/cms');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'annual-report');
-    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+    const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {
         throw new Error('Failed to fetch data');

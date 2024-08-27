@@ -22,7 +22,7 @@ export default function Contact({ data1, data }) {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4001/api/investorform/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_BASE_URL}/investorform/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

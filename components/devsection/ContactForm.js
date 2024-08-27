@@ -29,7 +29,7 @@ export default function ComplaintSection() {
     }
 
     try {
-      const response = await fetch('http://localhost:4001/api/contact', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_BASE_URL}/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

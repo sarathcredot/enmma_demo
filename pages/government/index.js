@@ -16,7 +16,7 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
     useEffect(() => {
         async function loadData() {
             try {
-                const response = await fetch('http://localhost:4001/api/cms');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
                 const fetchedData = data.filter(item => item.page === 'Government');
                 setData(fetchedData);
@@ -104,7 +104,7 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
                                         <Link href={item.buttonLink} className="btn ">{item.buttonTitle}</Link>
                                     </div>
                                     <div className="project__thumb-three shine-animate">
-                                        <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
+                                        <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                                     </div>
                                 </div>
                             ))}
@@ -122,7 +122,7 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
                                 <Link href={item.buttonLink} className="btn ">{item.buttonTitle}</Link>
                             </div>
                             <div className="project__thumb-three-2 shine-animate">
-                                <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
+                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                             </div>
 
                             </div>
@@ -140,10 +140,10 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
     )
 }
 export async function getServerSideProps({ locale }) {
-    const response = await fetch('http://localhost:4001/api/cms');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'Government');
-    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+    const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {
         throw new Error('Failed to fetch data');

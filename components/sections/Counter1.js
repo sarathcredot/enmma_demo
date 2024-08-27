@@ -15,7 +15,7 @@ export default function Counter1({data}) {
 
                             <div className="counter-item">
                                 <div className="icon">
-                                <img src={`http://localhost:4001/media/${item.localizedIcondata[iconKey].iconpath}`} alt={item.localizedIcondata[iconKey].title} />                                </div>
+                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.localizedIcondata[iconKey].iconpath}`} alt={item.localizedIcondata[iconKey].title} />                                </div>
                                 <div className="content">
                                     <h2 className="count"><CounterUp count={item.localizedIcondata[iconKey].number_en}/>+</h2>
                                     <p>{item.localizedIcondata[iconKey].title}</p>

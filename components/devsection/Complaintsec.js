@@ -31,7 +31,7 @@ export default function Complaintsection() {
     }
   
     try {
-      const response = await fetch('http://localhost:4001/api/complaints-suggestions', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_BASE_URL}/complaints-suggestions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

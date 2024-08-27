@@ -9,7 +9,7 @@ export default function AnnualReport({ data }) {
     useEffect(() => {
         const fetchReports = async () => {
             try {
-                const response = await axios.get("http://localhost:4001/api/annual-reports/");
+                const response = await axios.get("${process.env.NEXT_PUBLIC_BASE_URL}/annual-reports/");
                 setReports(response.data.annualReports);
             } catch (error) {
                 console.error("Failed to fetch annual reports:", error);
@@ -43,7 +43,7 @@ export default function AnnualReport({ data }) {
                             reports.map((report, index) => (
                             <div key={index}  className="sidebar__widget-dev">
                                 <h4 className="sidebar__widget-title">{report.year}</h4>
-                                <Link href={`http://localhost:4001/media/${report.document}`} passHref>
+                                <Link href={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${report.document}`} passHref>
                                     <button className="btn-two">
                                         <SVG caseValue='case14' /> view report
                                     </button>

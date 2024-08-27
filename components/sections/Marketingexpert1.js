@@ -24,7 +24,7 @@ export default function Marketingexpert1({ data, datas }) {
                         <div className="col-lg-7 mb-30 position-relative">
                             <img src="/assets/img/home6/icon-square.svg" className="shape-top-right" />
                             <div className="box-video">
-                                <img src={`http://localhost:4001/media/${item.bannerImage}`} />
+                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} />
                                 {/* <VideoPopup style={1}/> */}
                             </div>
                         </div>

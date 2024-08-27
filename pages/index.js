@@ -93,8 +93,9 @@ export default function Home({
 }
 
 export async function getServerSideProps({ locale }) {
-    const response = await fetch('http://localhost:4001/api/cms');
-    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+    
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
+    const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {
         throw new Error('Failed to fetch data');

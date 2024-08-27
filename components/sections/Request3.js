@@ -7,7 +7,7 @@ export default function Request3({data}) {
             
        
             <section key={item._id} className="request__area-two">
-                <div className="request__bg-two" data-background={`http://localhost:4001/media/${item.bannerImage}`} />
+                <div className="request__bg-two" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} />
                 <div className="container">
                     <div className="row justify-content-end">
                         <div className="col-xl-5 col-lg-6">

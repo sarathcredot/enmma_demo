@@ -5,7 +5,7 @@ export default function Bannerfooter({data}) {
         <>
         {data.map((item) => (
 
-            <section key={item._id} className="request-area request-bg" data-background={`http://localhost:4001/media/${item.bannerImage}`}>
+            <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
                         <div className="container">
                             <div className="row justify-content-center">
                                 <div className="col-lg-8">

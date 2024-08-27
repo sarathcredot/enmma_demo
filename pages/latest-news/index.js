@@ -18,7 +18,7 @@ export default function About({ initialData }) {
     useEffect(() => {
         async function loadData() {
             try {
-                const response = await fetch('http://localhost:4001/api/cms');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
                 const fetchedData = data.filter(item => item.page === 'annual-report');
                 setData(fetchedData);
@@ -81,7 +81,7 @@ export default function About({ initialData }) {
     )
 }
 export async function getServerSideProps({ locale }) {
-    const response = await fetch('http://localhost:4001/api/cms');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const data = await response.json();
     const fetchedData = data.filter(item => item.page === 'annual-report');
 

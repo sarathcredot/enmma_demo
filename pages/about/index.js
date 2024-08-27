@@ -17,7 +17,7 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
     useEffect(() => {
         async function loadData() {
             try {
-                const response = await fetch('http://localhost:4001/api/cms');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
                 const fetchedData = data.filter(item => item.page === 'about');
                 setData(fetchedData);
@@ -85,8 +85,8 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
       <div className="row align-items-center justify-content-center">
         <div className="col-lg-6 col-md-9 col-sm-10">
           <div className="about__img-wrap-four">
-            <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
-            <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
+            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
+            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
             <div className="about__award-box">
               <div className="icon">
                 <i className="flaticon-time" />
@@ -177,7 +177,7 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
                     </section>
                     <Brand2/>
                     {getDataBySection('about-contact').map((item) => (
-                    <section key={item._id} className="request-area request-bg" data-background={`http://localhost:4001/media/${item.bannerImage}`}>
+                    <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
                         <div className="container">
                             <div className="row justify-content-center">
                                 <div className="col-lg-8">
@@ -213,8 +213,8 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
 }
 
 export async function getServerSideProps({ locale }) {
-    const response = await fetch('http://localhost:4001/api/cms');
-    const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
+    const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {
         throw new Error('Failed to fetch data');

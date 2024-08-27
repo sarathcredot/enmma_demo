@@ -10,7 +10,7 @@ export default function Choose3({ data }) {
                         <div className="col-lg-6 col-md-9 order-0 order-lg-2">
                             <div className="choose__img-wrap-three">
                                 <div className="main-img">
-                                <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
+                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                                 {/* <Link href="#" className="play-btn"><i className="fas fa-play" /></Link> */}
                                 </div>
                                 <img src="/assets/img/images/h3_choose_img02.jpg" alt=""/>

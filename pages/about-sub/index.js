@@ -18,13 +18,13 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
         async function loadData() {
             try {
                 // Fetch CMS Data
-                const response = await fetch("http://localhost:4001/api/cms");
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
                 const fetchedData = data.filter((item) => item.page === "team");
                 setData(fetchedData);
 
                 // Fetch Team Members Data
-                const teamResponse = await fetch("http://localhost:4001/api/team/");
+                const teamResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/team/`);
                 const teamData = await teamResponse.json();
                 setTeamMembers(teamData);
             } catch (error) {
@@ -101,8 +101,8 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                 <div className="team-item-wrap">
                                     <div className="row justify-content-center">
                                         {item.choicesTeam.map((id) => {
-                                            const teamData = Array.isArray(teamMembers)
-                                                ? teamMembers.find((member) => member._id === id)
+                                            const teamData = Array.isArray(teamMembers.teamMembers)
+                                                ? teamMembers.teamMembers.find((member) => member._id === id)
                                                 : null;
 
                                             return teamData ? (
@@ -113,7 +113,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                                     <div className="team-item">
                                                         <div className="team-thumb">
                                                             <img
-                                                                src={`http://localhost:4001/media/${teamData.imageUrl}`}
+                                                                src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${teamData.imageUrl}`}
                                                                 alt={teamData.name}
                                                             />
                                                         </div>
@@ -157,8 +157,8 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                 <div className="team-item-wrap">
                                     <div className="row justify-content-center">
                                         {item.choicesTeam.map((id) => {
-                                            const teamData = Array.isArray(teamMembers)
-                                                ? teamMembers.find((member) => member._id === id)
+                                            const teamData = Array.isArray(teamMembers.teamMembers)
+                                                ? teamMembers.teamMembers.find((member) => member._id === id)
                                                 : null;
 
                                             return teamData ? (
@@ -169,7 +169,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                                     <div className="team-item">
                                                         <div className="team-thumb">
                                                             <img
-                                                                src={`http://localhost:4001/media/${teamData.imageUrl}`}
+                                                                src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${teamData.imageUrl}`}
                                                                 alt={teamData.name}
                                                             />
                                                         </div>
@@ -213,8 +213,8 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                 <div className="team-item-wrap">
                                     <div className="row justify-content-center">
                                         {item.choicesTeam.map((id) => {
-                                            const teamData = Array.isArray(teamMembers)
-                                                ? teamMembers.find((member) => member._id === id)
+                                            const teamData = Array.isArray(teamMembers.teamMembers)
+                                                ? teamMembers.teamMembers.find((member) => member._id === id)
                                                 : null;
 
                                             return teamData ? (
@@ -225,7 +225,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                                     <div className="team-item">
                                                         <div className="team-thumb">
                                                             <img
-                                                                src={`http://localhost:4001/media/${teamData.imageUrl}`}
+                                                                src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${teamData.imageUrl}`}
                                                                 alt={teamData.name}
                                                             />
                                                         </div>
@@ -257,19 +257,19 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
 export async function getServerSideProps({ locale }) {
     try {
         // Fetch CMS Data
-        const cmsResponse = await fetch("http://localhost:4001/api/cms");
+        const cmsResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
         if (!cmsResponse.ok) throw new Error('Failed to fetch CMS data');
         const cmsData = await cmsResponse.json();
         const fetchedData = cmsData.filter(item => item.page === "team");
 
         // Fetch Metadata
-        const metadataResponse = await fetch('http://localhost:4001/api/pageMetadata/');
+        const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
         if (!metadataResponse.ok) throw new Error('Failed to fetch page metadata');
         const metadata = await metadataResponse.json();
         const pageMetadata = metadata.find(page => page.page === 'about') || {};
 
         // Fetch Team Members Data
-        const teamResponse = await fetch("http://localhost:4001/api/team/");
+        const teamResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/team/`);
         if (!teamResponse.ok) throw new Error('Failed to fetch team data');
         const teamData = await teamResponse.json();
 

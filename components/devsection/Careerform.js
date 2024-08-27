@@ -35,7 +35,7 @@ export default function Careerform() {
       fileData.append('media', files[0]);
 
       try {
-        const response = await axios.post('http://localhost:4001/api/media', fileData, {
+        const response = await axios.post('${process.env.NEXT_PUBLIC_BASE_URL}/media', fileData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
 
@@ -72,7 +72,7 @@ export default function Careerform() {
     }
 
     try {
-      const response = await fetch('http://localhost:4001/api/careers/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_BASE_URL}/careers/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

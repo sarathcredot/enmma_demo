@@ -22,7 +22,7 @@ const DevsectionFoot = ({ data, bgColor, fontColor, fontColor2 }) => {
                             </div>
                             <div className="video-small-right">
                                 <div className="box-video image-fit">
-                                    <img src={`http://localhost:4001/media/${item.bannerImage}`} alt="" />
+                                    <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                                 </div>
                             </div>
                         </div>

@@ -22,7 +22,7 @@ export default function BlogPost({ style, showItem, showPagination }) {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:4001/api/disclosure/")
+            const response = await axios.get("${process.env.NEXT_PUBLIC_BASE_URL}/disclosure/")
             setData(response.data.disclosures)
             setPages(Math.ceil(response.data.disclosures.length / limit))
         } catch (error) {
