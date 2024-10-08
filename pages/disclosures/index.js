@@ -79,14 +79,14 @@ export default function Disclosure({ initialData, pageTitle, pageDescription, })
             <Banner1 data={getDataBySection('disclosure-banner')} />
             <div className="container project__area-three ">
 
-                    <div  className="row ">
-            {getDataBySection('annual-heading').map((item) => (
-                    <div key={item.id} className="col-xl-7 space-betweeni col-lg-8">
-                        <div  className="  mb-50 dev_gover " >
+                    <div  className="row container">
+            {getDataBySection('disclosure-heading').map((item) => (
+                    <div key={item.id} className="col-xl-7 space-betweeni col-lg-8 mb-5">
+                        <div  className="  dev_gover   " >
                             <span className="">{item.subtitle}</span>
-                            <h2 className=" mt-4" style={{ color: '#110B79' }}>{item.title}</h2>
+                            <h2 className=" mt-4 devtextwrapo  " style={{ color: '#110B79' }}>{item.title}</h2>
                         </div>
-                            <div className="dev_customsize mt-4" style={{ color: '#282739' }}>{item.description}</div>
+                            <div className="dev_customsize  mt-0 mt-md-4" style={{ color: '#282739' }}>{item.description}</div>
                     </div>
             ))}
 
@@ -94,7 +94,7 @@ export default function Disclosure({ initialData, pageTitle, pageDescription, })
             </div>
             </div>
 
-            <Bannerfooter data={getDataBySection('disclosure-banner')}/>
+            <Bannerfooter data={getDataBySection('disclosure-contact')}/>
             </Layout>
             
         </>
@@ -112,7 +112,7 @@ export async function getServerSideProps({ locale }) {
 
     const metadata = await metadataResponse.json();
 
-    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+    const pageMetadata = metadata.find(page => page.page === 'disclosures') || {};
 
     const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
     const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslation } from 'next-i18next';
 
 export default function Complaintsection() {
+  const { t, i18n } = useTranslation('common');
   const [formData, setFormData] = useState({
     description: '',
     contactNumber: '',
@@ -69,12 +71,12 @@ export default function Complaintsection() {
             <div className="row align-items-center mr-5">
               <div dir="ltr" className="col-lg-8">
                 <div className="contact__form-wrap">
-                  <h2 className="title">Give Us a Message</h2>
-                  <p>We value your feedback. You can submit a complaint or offer a suggestion to help us improve our service.</p>
+                  <h2 className="title">{t('Complaint-title')}</h2>
+                  <p>{t('Complaint-subtitle')}</p>
                   <form id="contact-form" onSubmit={handleSubmit}>
                     <div className="form-grp">
                       <select name="option" value={formData.option} onChange={handleChange}>
-                        <option value="">Please select</option>
+                        <option value="">{t('Please-select')}</option>
                         <option value="AAA">AAA</option>
                         <option value="BBBB">BBBB</option>
                         <option value="CCCC">CCCC</option>
@@ -86,7 +88,7 @@ export default function Complaintsection() {
                     <div className="form-grp">
                       <textarea
                         name="description"
-                        placeholder="Description of your complaints or suggestions"
+                        placeholder={t('Description-form')}
                         value={formData.description}
                         onChange={handleChange}
                       />
@@ -97,7 +99,7 @@ export default function Complaintsection() {
                           <input
                             type="text"
                             name="contactNumber"
-                            placeholder="Contact Number"
+                            placeholder={t('Contact-Number')}
                             value={formData.contactNumber}
                             onChange={handleChange}
                           />
@@ -108,7 +110,7 @@ export default function Complaintsection() {
                           <input
                             type="text"
                             name="civilId"
-                            placeholder="Civil ID"
+                            placeholder={t('Civil-ID')}
                             value={formData.civilId}
                             onChange={handleChange}
                           />
@@ -121,7 +123,7 @@ export default function Complaintsection() {
                           <input
                             type="text"
                             name="firstName"
-                            placeholder="First Name"
+                            placeholder={t('First-Name')}
                             value={formData.firstName}
                             onChange={handleChange}
                           />
@@ -132,7 +134,7 @@ export default function Complaintsection() {
                           <input
                             type="text"
                             name="lastName"
-                            placeholder="Last Name"
+                            placeholder={t('Last-Name')}
                             value={formData.lastName}
                             onChange={handleChange}
                           />
@@ -145,7 +147,7 @@ export default function Complaintsection() {
                           <input
                             type="text"
                             name="phoneNumber"
-                            placeholder="Phone Number"
+                            placeholder={t('Phone-Number')}
                             value={formData.phoneNumber}
                             onChange={handleChange}
                           />
@@ -156,14 +158,14 @@ export default function Complaintsection() {
                           <input
                             type="email"
                             name="emailAddress"
-                            placeholder="Email"
+                            placeholder={t('email')}
                             value={formData.emailAddress}
                             onChange={handleChange}
                           />
                         </div>
                       </div>
                     </div>
-                    <button type="submit" className="btn">Submit</button>
+                    <button type="submit" className="btn">{t('submit')}</button>
                   </form>
                   <p className="ajax-response mb-0" />
                 </div>
@@ -171,8 +173,8 @@ export default function Complaintsection() {
               <div className="col-lg-4">
                 <div className="contact__content">
                   <div className="section-title mb-35">
-                    <h2 className="title">How can we help you?</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur. Pellentesque ornare ipsum ultrices lacus. Quisque tortor accumsan ut pellentesque</p>
+                    <h2 className="title">{t('complaint-contact-tittle')}</h2>
+                    {/* <p>Lorem ipsum dolor sit amet consectetur. Pellentesque ornare ipsum ultrices lacus. Quisque tortor accumsan ut pellentesque</p> */}
                   </div>
                   <div className="contact__info">
                     <ul className="list-wrap">
@@ -181,8 +183,8 @@ export default function Complaintsection() {
                           <i className="flaticon-pin" />
                         </div>
                         <div className="content">
-                          <h4 className="title">Address</h4>
-                          <p>Abdullah Al-Mobarak Street, Al-Enmaa Tower, Kuwait City</p>
+                          <h4 className="title">{t('Address')}</h4>
+                          <p>{t('address')}</p>
                         </div>
                       </li>
                       <li>
@@ -190,7 +192,7 @@ export default function Complaintsection() {
                           <i className="flaticon-phone-call" />
                         </div>
                         <div className="content">
-                          <h4 className="title">Phone</h4>
+                          <h4 className="title">{t('phone')}</h4>
                           <Link dir="ltr" href="tel:0123456789">+48 1866667</Link>
                         </div>
                       </li>
@@ -199,7 +201,7 @@ export default function Complaintsection() {
                           <i className="flaticon-mail" />
                         </div>
                         <div className="content">
-                          <h4 className="title">E-mail</h4>
+                          <h4 className="title">{t('email')}  </h4>
                           <Link href="mailto:enmaa@enmaa.com">enmaa@enmaa.com</Link>
                         </div>
                       </li>

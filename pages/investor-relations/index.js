@@ -20,7 +20,7 @@ export default function About({ initialData,pageTitle,pageDescription, }) {
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
-                const fetchedData = data.filter(item => item.page === 'annual-report');
+                const fetchedData = data.filter(item => item.page === 'investor');
                 setData(fetchedData);
             } catch (error) {
                 console.error('Failed to load data:', error);
@@ -79,9 +79,9 @@ export default function About({ initialData,pageTitle,pageDescription, }) {
                 <meta name="description" content={pageDescription} />
             </Head>
             <Layout headerStyle={6} footerStyle={3}>
-            <Banner1 data={getDataBySection('annual-banner')} />
-            <Investorrelation data1={getDataBySection('annual-contact')} data={getDataBySection('annual-heading')}/>
-            <Bannerfooter data={getDataBySection('annual-contact')}  />
+            <Banner1 data={getDataBySection('investor-banner')} />
+            <Investorrelation data1={getDataBySection('investor-Trusted')} data={getDataBySection('investor-heading')}/>
+            <Bannerfooter data={getDataBySection('investor-contact')}  />
             </Layout>
         </>
     )
@@ -89,7 +89,7 @@ export default function About({ initialData,pageTitle,pageDescription, }) {
 export async function getServerSideProps({ locale }) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const data = await response.json();
-    const fetchedData = data.filter(item => item.page === 'annual-report');
+    const fetchedData = data.filter(item => item.page === 'investor');
     const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {
@@ -98,7 +98,7 @@ export async function getServerSideProps({ locale }) {
 
     const metadata = await metadataResponse.json();
 
-    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+    const pageMetadata = metadata.find(page => page.page === 'investor-relation') || {};
 
     const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
     const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';

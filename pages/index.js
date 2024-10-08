@@ -10,6 +10,7 @@ import BlogPost3 from "@/components/sections/BlogPost3";
 import Request3 from "@/components/sections/Request3";
 import Devindex1 from "@/components/devcreate/devindexherobottom";
 import Head from 'next/head';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -63,7 +64,7 @@ export default function Home({
                 sidebarSubtitle: item[`sidebarSubtitle_${i18n.language}`] || item.sidebarSubtitle_en,
                 sidebarNumber: item[`sidebarNumber_${i18n.language}`] || item.sidebarNumber_en,
                 buttonTitle: item[`buttonTitle_${i18n.language}`] || item.buttonTitle_en,
-                localizedIcondata,
+                localizedIcondata,  
                 points: i18n.language === 'ar' ? localizedPointsAr : localizedPointsEn,
                 buttonLink: item.buttonLink || "#"
             };
@@ -78,16 +79,17 @@ export default function Home({
             </Head>
             <Layout headerStyle={6} footerStyle={3}>
                 <Slider2 data={localizeData(heroSectionData)} id="herosection"/>
-                <Devindex1 data={localizeData(heroBottomData)} />
-                <div><Counter1 data={localizeData(counterData)} /></div>
-                <About3 data={localizeData(aboutSectionData)} />
-                <Services3 data={localizeData(serviceData)} />
-                <Choose3 data={localizeData(investorSectionData)} />
-                <Project3 data={localizeData(ownerSectionData)} />
-                <Request3 data={localizeData(parallaxBannerData)} />
-                <Marketingexpert1 data={localizeData(solutionSectionData)} datas={localizeData(trustedSectionData)} />
-                <BlogPost3 data={localizeData(blogData)} />
+                <Devindex1 data={localizeData(heroBottomData)}/>
+                <div><Counter1 data={localizeData(counterData)}/></div>
+                <About3 data={localizeData(aboutSectionData)}/>
+                <Services3/>
+                <Choose3 data={localizeData(investorSectionData)}/>
+                <Project3 data={localizeData(ownerSectionData)}/>
+                <Request3 data={localizeData(parallaxBannerData)}/>
+                <Marketingexpert1 data={localizeData(solutionSectionData)} datas={localizeData(trustedSectionData)}/>
+                <BlogPost3 />
             </Layout>
+
         </>
     );
 }
@@ -117,13 +119,11 @@ export async function getServerSideProps({ locale }) {
             heroBottomData: getDataBySection('hero-bottom'),
             counterData: getDataBySection('counter'),
             aboutSectionData: getDataBySection('about-section'),
-            serviceData: getDataBySection('Service'),
             investorSectionData: getDataBySection('investor-section'),
             ownerSectionData: getDataBySection('Owner-section'),
             parallaxBannerData: getDataBySection('parallax-banner'),
             solutionSectionData: getDataBySection('solution-section'),
             trustedSectionData: getDataBySection('Trusted-section'),
-            blogData: getDataBySection('blog'),
                 pageTitle,
                 pageDescription,
                 ...(await serverSideTranslations(locale, ['common'])),

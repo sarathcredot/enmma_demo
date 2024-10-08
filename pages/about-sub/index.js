@@ -24,7 +24,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                 setData(fetchedData);
 
                 // Fetch Team Members Data
-                const teamResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/team/`);
+                const teamResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/team`);
                 const teamData = await teamResponse.json();
                 setTeamMembers(teamData);
             } catch (error) {
@@ -34,6 +34,14 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
 
         loadData();
     }, [i18n.language]);
+
+    const localizedTeamMembers = teamMembers.teamMembers.map((member) => {
+        return {
+            ...member,
+            name: member[`name_${i18n.language}`] || member.title_en,
+            position: member[`position_${i18n.language}`] || member.subtitle_en,
+        };
+    });
 
     const localizedData = data.map((item) => {
         const localizedIcondata = {};
@@ -62,6 +70,8 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
             buttonTitle: item[`buttonTitle_${i18n.language}`] || item.buttonTitle_en,
             localizedIcondata,
             points: i18n.language === "ar" ? localizedPointsAr : localizedPointsEn,
+            name: i18n.language === "ar" ? item.name_ar : item.name_en,
+            position: i18n.language === "ar" ? item.position_ar : item.position_en,
             buttonLink: item.buttonLink || "#",
         };
     });
@@ -82,16 +92,17 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                     <section className="team-area pt-100 ">
                         {getDataBySection("team-directors").map((item) => (
                             <div key={item._id} className="container project__area-three">
-                                <div className="row ">
-                                    <div className="col-xl-7 space-betweeni col-lg-8">
+                                <div className="row container">
+                                    <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
                                         <div className="section-title  mb-50 tg-heading-subheading animation-style3">
                                             <span className="sub-title">{item.subtitle}</span>
-                                            <h2 className="title tg-element-title mt-4 w-200">
+
+                                            <h2 className="title tg-element-title  mt-4 text-wrap devtextwrapo w-200">
                                                 {item.title}
                                             </h2>
                                         </div>
                                         <div
-                                            className="dev_customsize mt-4"
+                                            className="dev_customsize  mt-0 mt-md-4"
                                             style={{ color: "#282739" }}
                                         >
                                             {item.description}
@@ -101,9 +112,11 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                 <div className="team-item-wrap">
                                     <div className="row justify-content-center">
                                         {item.choicesTeam.map((id) => {
-                                            const teamData = Array.isArray(teamMembers.teamMembers)
-                                                ? teamMembers.teamMembers.find((member) => member._id === id)
-                                                : null;
+                                            const teamData = Array.isArray(localizedTeamMembers)
+                                            ? localizedTeamMembers.find((member) => member._id === id)
+                                            : null;
+                                            
+
 
                                             return teamData ? (
                                                 <div
@@ -138,16 +151,16 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                     <section className="team-area pt-50 bg-dev-color" id="management">
                         {getDataBySection("team-Management").map((item) => (
                             <div key={item._id} className="container project__area-three">
-                                <div className="row ">
-                                    <div className="col-xl-7 space-betweeni col-lg-8">
+                                <div className="row container">
+                                    <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
                                         <div className="section-title  mb-50 tg-heading-subheading animation-style3">
                                             <span className="sub-title">{item.subtitle}</span>
-                                            <h2 className="title tg-element-title mt-4">
+                                            <h2 className="title tg-element-title  mt-4 text-wrap devtextwrapo">
                                                 {item.title}
                                             </h2>
                                         </div>
                                         <div
-                                            className="dev_customsize mt-4"
+                                            className="dev_customsize  mt-0 mt-md-4"
                                             style={{ color: "#282739" }}
                                         >
                                             {item.description}
@@ -157,13 +170,12 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                 <div className="team-item-wrap">
                                     <div className="row justify-content-center">
                                         {item.choicesTeam.map((id) => {
-                                            const teamData = Array.isArray(teamMembers.teamMembers)
-                                                ? teamMembers.teamMembers.find((member) => member._id === id)
-                                                : null;
-
-                                            return teamData ? (
+                                            const teamData = Array.isArray(localizedTeamMembers)
+                                            ? localizedTeamMembers.find((member) => member._id ===id)
+                                            : null;
+                                              return teamData ? (
                                                 <div
-                                                    key={id}
+                                                    key={teamData._id}
                                                     className="col-xl-3 col-lg-4 col-md-6 col-sm-8"
                                                 >
                                                     <div className="team-item">
@@ -194,16 +206,16 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                     <section id="executive" className="team-area pt-100 ">
                         {getDataBySection("team-Executive").map((item) => (
                             <div key={item._id} className="container project__area-three">
-                                <div className="row ">
-                                    <div className="col-xl-7 space-betweeni col-lg-8">
+                                <div className="row container">
+                                    <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
                                         <div className="section-title  mb-50 tg-heading-subheading animation-style3">
                                             <span className="sub-title">{item.subtitle}</span>
-                                            <h2 className="title tg-element-title mt-4">
+                                            <h2 className="title tg-element-title  mt-4 text-wrap devtextwrapo">
                                                 {item.title}
                                             </h2>
                                         </div>
                                         <div
-                                            className="dev_customsize mt-4"
+                                            className="dev_customsize  mt-0 mt-md-4"
                                             style={{ color: "#282739" }}
                                         >
                                             {item.description}
@@ -213,8 +225,8 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                 <div className="team-item-wrap">
                                     <div className="row justify-content-center">
                                         {item.choicesTeam.map((id) => {
-                                            const teamData = Array.isArray(teamMembers.teamMembers)
-                                                ? teamMembers.teamMembers.find((member) => member._id === id)
+                                            const teamData = Array.isArray(localizedTeamMembers)
+                                                ? localizedTeamMembers.find((member) => member._id === id)
                                                 : null;
 
                                             return teamData ? (
@@ -248,7 +260,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                     </section>
                 </div>
 
-                <Bannerfooter data={getDataBySection("footer-banner")} />
+                <Bannerfooter data={getDataBySection("team-contact")} />
             </Layout>
         </>
     );
@@ -266,7 +278,7 @@ export async function getServerSideProps({ locale }) {
         const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
         if (!metadataResponse.ok) throw new Error('Failed to fetch page metadata');
         const metadata = await metadataResponse.json();
-        const pageMetadata = metadata.find(page => page.page === 'about') || {};
+        const pageMetadata = metadata.find(page => page.page === 'team') || {};
 
         // Fetch Team Members Data
         const teamResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/team/`);

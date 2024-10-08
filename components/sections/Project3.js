@@ -17,7 +17,7 @@ export default function Project3({data}) {
                                 {/* <span className="sub-title justify-content-center"></span> */}
                                 <h2 className="title tg-element-title ">{item.title}</h2>
                             </div>
-                                {/* <div className="dev_customsize mt-4">Our power of choice is untrammelled and when nothing prevents being able to do what we like best every pleasure.</div> */}
+                                {/* <div className="dev_customsize  mt-0 mt-md-4">Our power of choice is untrammelled and when nothing prevents being able to do what we like best every pleasure.</div> */}
                         </div>
                     </div>
                     <div className="row">

@@ -80,30 +80,30 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
                 <div style={{ backgroundColor: '#110B79' }}>
                     <div className="container project__area-three ">
 
-                        <div className="row ">
+                        <div className="row container">
                             {getDataBySection('govern-heading').map((item) => (
-                                <div key={item._id} className="col-xl-7 space-betweeni col-lg-8">
+                                <div key={item._id} className="col-xl-7 space-betweeni col-lg-8 mb-5">
 
-                                    <div className="  mb-50 dev_gover ">
+                                    <div className="   dev_gover   ">
                                         <span className="">{item.subtitle}</span>
-                                        <h2 className=" mt-4">{item.title}</h2>
+                                        <h2 className=" mt-4 text-wrap devtextwrapo">{item.title}</h2>
                                     </div>
-                                    <div className="dev_customsize mt-4">{item.description}</div>
+                                    <div className="dev_customsize  mt-0 mt-md-4">{item.description}</div>
                                 </div>
                             ))}
                         </div>
 
-                        <section className="project__item-three shine-animate-item">
+                        <section className="project__item-three   mb-sm-5">
                             {getDataBySection('Government-1Project').map((item) => (
 
-                                <div key={item._id}>
+                                <div className="container" key={item._id}>
                                     <div className="project__content-two">
 
                                         <h2 className="title"><Link href="#/project-details">{item.title}</Link></h2>
                                         <p className="dev-gov-parag">{item.description}</p>
-                                        <Link href={item.buttonLink} className="btn ">{item.buttonTitle}</Link>
+                                        {/* <Link href={item.buttonLink} className="btn ">{item.buttonTitle}</Link> */}
                                     </div>
-                                    <div className="project__thumb-three shine-animate">
+                                    <div className="project__thumb-three ">
                                         <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                                     </div>
                                 </div>
@@ -111,17 +111,17 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
                         </section>
                         <br />
 
-                        <section className="project__item-three shine-animate-item">
+                        <section className="project__item-three ">
                             {getDataBySection('Government-2Project').map((item) => (
                                 
-                                <div key={item._id}>
-                            <div className="project__content-two-2">
+                                <div className="container" key={item._id}>
+                            <div className="project__content-two-2 ">
                                 {/* <span>Souq Al Wataniya</span> */}
                                 <h2 className="title"><Link href="#/project-details">{item.title}</Link></h2>
                                 <p className="dev-gov-parag">{item.description}</p>
-                                <Link href={item.buttonLink} className="btn ">{item.buttonTitle}</Link>
+                                {/* <Link href={item.buttonLink} className="btn ">{item.buttonTitle}</Link> */}
                             </div>
-                            <div className="project__thumb-three-2 shine-animate">
+                            <div className="project__thumb-three-2 ">
                                 <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                             </div>
 
@@ -142,7 +142,7 @@ export default function Government({ initialData, pageTitle,pageDescription, }) 
 export async function getServerSideProps({ locale }) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const data = await response.json();
-    const fetchedData = data.filter(item => item.page === 'Government');
+    const fetchedData = data.filter(item => item.page ==='Government');
     const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {
@@ -151,7 +151,7 @@ export async function getServerSideProps({ locale }) {
 
     const metadata = await metadataResponse.json();
 
-    const pageMetadata = metadata.find(page => page.page === 'about') || {};
+    const pageMetadata = metadata.find(page => page.page === 'government-bot') || {};
 
     const pageTitle = pageMetadata[`pageTitle_${locale}`] || pageMetadata.pageTitle_en || 'Default Title';
     const pageDescription = pageMetadata[`pageDescription_${locale}`] || pageMetadata.pageDescription_en || 'Default description';

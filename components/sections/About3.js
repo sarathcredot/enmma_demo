@@ -1,7 +1,10 @@
 "use client"
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function About3({ data }) {
+    const { t, i18n } = useTranslation('common');
+
     return (
         <>
             {data.map((item) => (
@@ -39,7 +42,7 @@ export default function About3({ data }) {
                                                 <img src="/assets/img/images/author_img.jpg" alt="" />
                                             </div>
                                             <div className="content">
-                                                <h4 className="title">Abdulaziz Muflaq Alosaimi<br /><span>Chief Executive Officer</span></h4>
+                                                <h4 className="title">{t('chief-executive-officer-name')}<br /><span>{t('chief-executive-officer')}</span></h4>
                                             </div>
                                         </div>
                                     </div>
