@@ -30,14 +30,14 @@ export default function Slider2({ data }) {
     return (
         <>
             <section className="slider__area">
-                <div className="swiper-container slider_baner__active slider_baner_home6">
+                <div className="swiper-container slider_baner__active slider_baner_home6  ">
                     {/* <Swiper {...swiperOptions} className="swiper-wrapper"> */}
                         {data.map((item) => (
                             <div key={item._id} className="swiper-slide">
                                 <img className="slider__bg" src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} />
                                 <div className="container">
                                     <div className="row">
-                                        <div className=" col-lg-8 mt-30">
+                                        <div className=" col-lg-8 mt-30 ">
                                             <div className="banner__content-three ">
                                                 <div className="text-25-years">
                                                     <span className="text-stroke">{item.sidebarNumber}</span>
