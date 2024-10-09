@@ -97,7 +97,12 @@ export async function getServerSideProps({ locale }) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
+    console.log( "respo", response)
+    console.log("meta", metadataResponse)
+
     if (!response.ok || !metadataResponse.ok) {
+
+        console.log("err")
         throw new Error('Failed to fetch data');
     }
 
