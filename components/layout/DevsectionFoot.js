@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const DevsectionFoot = ({ data, bgColor, fontColor, fontColor2 }) => {
+    const { t, i18n } = useTranslation('common');
+
     return (
         <>
             {data && data.length > 0 ? (
@@ -11,12 +14,12 @@ const DevsectionFoot = ({ data, bgColor, fontColor, fontColor2 }) => {
                             <div className="video-small-left">
                                 <div className="video-small-left-inner">
                                     <div className="video-small-left-1">
-                                        <h3>50+</h3>
-                                        <p>Diverse Properties</p>
+                                        <h3 dir='ltr'>{item.sidebarNumber || "50"}+</h3>
+                                        <p>{item.sidebarSubtitle || t('Diverse-properties')}</p>
                                     </div>
                                     <div className="video-small-left-2">
-                                        <h2 style={{ color: fontColor }}>{item.title || 'Trusted Solutions'}</h2>
-                                        <p style={{ color: fontColor2 }}>{item.description || 'Your trusted source for premier real estate and security services, ensuring satisfaction and achieving the highest industry standards.'}</p>
+                                        <h2 style={{ color: fontColor }}>{item.title || t('Trusted-Solutions')}</h2>
+                                        <p style={{ color: fontColor2 }}>{item.description || t('Trusted-Solutions-Description')}</p>
                                     </div>
                                 </div>
                             </div>

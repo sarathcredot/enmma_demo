@@ -1,87 +1,100 @@
 'use client'
-import React, { useEffect, useState } from "react"
-import data from "../../util/blog.json"
-import Statementlist from "./Statementlist"
-import Pagination from "./Pagination"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Statementlist from "./Statementlist";
+import Pagination from "./Pagination";
+import Link from "next/link";
+import SVG from "@/components/elements/Allsvg";
 
 export default function Statement({ style, showItem, showPagination }) {
-    let [currentPage, setCurrentPage] = useState(1)
-    let showLimit = showItem,
-        paginationItem = 4
+    
+    const [currentPage, setCurrentPage] = useState(1);
+    const [groupedData, setGroupedData] = useState([]);
 
-    let [pagination, setPagination] = useState([])
-    let [limit, setLimit] = useState(showLimit)
-    let [pages, setPages] = useState(Math.ceil(data.length / limit))
+    const showLimit = showItem || 2; // Default to 10 items per page
+    const paginationItem = 4; // Number of pagination buttons to display
 
+    // Fetch data from the API
     useEffect(() => {
-        cratePagination()
-    }, [limit, pages, data.length])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/financial-statements`);
+                const groupedByYear = groupDataByYear(response.data.financialStatements);
+                setGroupedData(groupedByYear);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
 
-    const cratePagination = () => {
-        // set pagination
-        let arr = new Array(Math.ceil(data.length / limit))
-            .fill()
-            .map((_, idx) => idx + 1)
+        fetchData();
+    }, []);
 
-        setPagination(arr)
-        setPages(Math.ceil(data.length / limit))
-    }
+    // Function to group data by year
+    const groupDataByYear = (data) => {
+        return data.reduce((acc, statement) => {
+            const { year } = statement;
+            if (!acc[year]) {
+                acc[year] = [];
+            }
+            acc[year].push(statement);
+            return acc;
+        }, {});
+    };
 
-    const startIndex = currentPage * limit - limit
-    const endIndex = startIndex + limit
-    const getPaginatedProducts = data.slice(startIndex, endIndex)
+    const totalPages = Math.ceil(Object.keys(groupedData).length / showLimit);
 
+    const getPaginatedData = () => {
+        const startIndex = (currentPage - 1) * showLimit;
+        const endIndex = startIndex + showLimit;
+        const keys = Object.keys(groupedData).slice(startIndex, endIndex);
+        return keys.map(key => ({ year: key, statements: groupedData[key] }));
+    };
 
-    let start = Math.floor((currentPage - 1) / paginationItem) * paginationItem
-    let end = start + paginationItem
-    const getPaginationGroup = pagination.slice(start, end)
+    const getPaginationGroup = () => {
+        const start = Math.floor((currentPage - 1) / paginationItem) * paginationItem;
+        return new Array(paginationItem).fill().map((_, idx) => start + idx + 1).filter(page => page <= totalPages);
+    };
 
-    const next = () => {
-        setCurrentPage((page) => page + 1)
-    }
+    const next = () => setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    const prev = () => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    const handleActive = (page) => setCurrentPage(page);
 
-    const prev = () => {
-        setCurrentPage((page) => page - 1)
-    }
-
-    const handleActive = (item) => {
-        setCurrentPage(item)
-    }
     return (
         <>
-        
-        <div >
-            
+            <div>
+                {getPaginatedData().length === 0 ? (
+                    <h3>No Statements Found</h3>
+                ) : (
+                    getPaginatedData().map((group) => (
+                        <div key={group.year} className="statement-main m-0">
+                            <div className="dev-statmentlist container">
+                                <h1 className="fw-title">{group.year}</h1>
+                                {group.statements.map(item => (
+                                    <div className="state-list" key={item._id}>
+                                        <span>{new Date(item.data).toLocaleDateString()}</span>
+                                        <span className="text-nowrap">
+                                            <Link href={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.statements}`}>
+                                                <SVG caseValue='case14' />&nbsp; &nbsp;VIEW
+                                            </Link>
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
 
-            {getPaginatedProducts.length === 0 && (
-                <h3>No Products Found </h3>
-            )}
-                    
-                    
-
-          {getPaginatedProducts.map(item => (
-                <React.Fragment key={item.id}>
-                    <div className="statement-main" >
-                        
-                        {!style && <Statementlist item={item} />}
-                        {style === 1 && <Statementlist item={item} />}
-                    </div>
-                </React.Fragment>
-            ))}
-        
-        </div>
-            {showPagination &&
+            {showPagination && totalPages > 1 && (
                 <Pagination
-                    getPaginationGroup={
-                        getPaginationGroup
-                    }
+                    getPaginationGroup={getPaginationGroup()}
                     currentPage={currentPage}
-                    pages={pages}
+                    pages={totalPages}
                     next={next}
                     prev={prev}
                     handleActive={handleActive}
                 />
-            }
+            )}
         </>
-    )
+    );
 }

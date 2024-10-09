@@ -1393,7 +1393,7 @@ textarea {
 }
 .tgmenu__navbar-wrap > ul > li .sub-menu > li {
   margin-left: 0;
-  text-align: left;
+  text-align: initial;
   display: block;
 }
 .tgmenu__navbar-wrap > ul > li .sub-menu > li a {
@@ -1722,7 +1722,7 @@ textarea {
 .tgmobile__menu .nav-logo {
   position: relative;
   padding: 30px 25px;
-  text-align: left;
+  text-align: initial;
 }
 .tgmobile__menu .nav-logo img {
   max-height: 34px;
@@ -3582,7 +3582,7 @@ textarea {
   border: 0.8px solid #B4B4B4;
   padding: 17px 25px;
   border-radius: 12px;
-  text-align: left;
+  text-align: initial;
   transform: rotate(90deg);
   position: absolute;
   left: -3%;
@@ -3950,7 +3950,7 @@ textarea {
 }
 .experience__content p {
   margin-bottom: 0;
-  text-align: left;
+  text-align: initial;
   color: var(--tg-color-white-default);
 }
 .experience__shape {
@@ -5248,7 +5248,7 @@ textarea {
 }
 @media (max-width: 991.98px) {
   .section-more-btn {
-    text-align: left;
+    text-align: initial;
     margin-bottom: 50px;
   }
 }
@@ -7141,7 +7141,7 @@ textarea {
 }
 .request-content .content-bottom .content-right .content span {
   display: block;
-  text-align: left;
+  text-align: initial;
   font-size: 14px;
   line-height: 0;
   color: var(--tg-color-white-default);
@@ -7208,14 +7208,14 @@ textarea {
   font-size: 14px;
   font-family: var(--tg-heading-font-family);
   color: var(--tg-color-gray-2);
-  text-align: left;
+  text-align: initial;
 }
 .request__phone .content a {
   color: var(--tg-color-white-default);
   font-size: 24px;
   font-weight: 600;
   font-family: var(--tg-heading-font-family);
-  text-align: left;
+  text-align: initial;
 }
 @media (max-width: 767.98px) {
   .request__phone .content a {

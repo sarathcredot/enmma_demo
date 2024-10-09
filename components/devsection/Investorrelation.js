@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Sectionfoot from '@/components/layout/DevsectionFoot';
+import { useTranslation } from 'next-i18next';
 
 export default function Contact({ data1, data }) {
+  const { t, i18n } = useTranslation('common');
+
   const [formData, setFormData] = useState({
     option: '',
     name: '',
@@ -53,16 +56,16 @@ export default function Contact({ data1, data }) {
   return (
     <>
       <div className="container project__area-three">
-        <div className="row">
+        <div className="row container">
           {data.map((item) => (
-            <div key={item._id} className="col-xl-7 space-betweeni col-lg-8">
-              <div className="mb-50 dev_gover">
+            <div key={item._id} className="col-xl-7 space-betweeni col-lg-8 mb-5">
+              <div className="dev_gover">
                 <span>{item.subtitle}</span>
-                <h2 className="mt-4" style={{ color: '#110B79' }}>
+                <h2 className="mt-4 text-wrap devtextwrapo" style={{ color: '#110B79' }}>
                   {item.title}
                 </h2>
               </div>
-              <div className="dev_customsize mt-4" style={{ color: '#282739' }}>
+              <div className="dev_customsize  mt-0 mt-md-4" style={{ color: '#282739' }}>
                 {item.description}
               </div>
             </div>
@@ -74,15 +77,15 @@ export default function Contact({ data1, data }) {
             <div className="row align-items-center">
               <div dir="ltr" className="col-lg-8">
                 <div className="contact__form-wrap">
-                  <h2 className="title">Give Us a Message</h2>
+                  <h2 className="title">{t('form-title1')}</h2>
                   <p>
-                    Your email address will not be published. Required fields are marked *
+                   {t("form-subtitle")}
                   </p>
                   <form id="contact-form" onSubmit={handleSubmit}>
                     <div className="row">
                       <div className="form-grp">
                         <select name="option" value={formData.option} onChange={handleChange}>
-                          <option value="">Please select</option>
+                          <option value="">{t('Please-select')}</option>
                           <option value="Angel Investment">Angel Investment</option>
                           <option value="Venture Capital">Venture Capital</option>
                           <option value="Equity">Equity</option>
@@ -94,7 +97,7 @@ export default function Contact({ data1, data }) {
                           <input
                             type="text"
                             name="name"
-                            placeholder="Name"
+                            placeholder={t('Full-Name')}
                             value={formData.name}
                             onChange={handleChange}
                           />
@@ -105,7 +108,7 @@ export default function Contact({ data1, data }) {
                           <input
                             type="email"
                             name="email"
-                            placeholder="Email"
+                            placeholder={t('email')}
                             value={formData.email}
                             onChange={handleChange}
                           />
@@ -116,7 +119,7 @@ export default function Contact({ data1, data }) {
                           <input
                             type="text"
                             name="phoneNumber"
-                            placeholder="Phone"
+                            placeholder={t('Phone-Number')}
                             value={formData.phoneNumber}
                             onChange={handleChange}
                           />
@@ -126,14 +129,14 @@ export default function Contact({ data1, data }) {
                     <div className="form-grp">
                       <textarea
                         name="message"
-                        placeholder="Message"
+                        placeholder={t('Message')}
                         value={formData.message}
                         onChange={handleChange}
                       />
                     </div>
 
                     <button type="submit" className="btn">
-                      Submit
+                      {t('submit')}
                     </button>
                   </form>
                 </div>
@@ -141,7 +144,7 @@ export default function Contact({ data1, data }) {
               <div className="col-lg-4">
                 <div className="contact__content">
                   <div className="section-title mb-35">
-                    <h2 className="title sidebar__widget-title">Connect Us</h2>
+                    <h2 className="title sidebar__widget-title">{t('Contact-us')}</h2>
                   </div>
                   <div className="contact__info">
                     <ul className="list-wrap">
@@ -150,7 +153,7 @@ export default function Contact({ data1, data }) {
                           <i className="flaticon-phone-call" />
                         </div>
                         <div className="content">
-                          <h4 className="title">Phone</h4>
+                          <h4 className="title">{t('phone')}</h4>
                           <Link dir="ltr" href="tel:0123456789">+48 1866667</Link>
                         </div>
                       </li>
@@ -159,7 +162,7 @@ export default function Contact({ data1, data }) {
                           <i className="flaticon-mail" />
                         </div>
                         <div className="content">
-                          <h4 className="title">E-mail</h4>
+                          <h4 className="title">{t('email')}</h4>
                           <Link href="mailto:enmaa@enmaa.com">enmaa@enmaa.com</Link>
                         </div>
                       </li>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 const Banner1 = ({ data, bgColor, fontColor,fontColor2 }) => {
+    // debugger;
     return (
         <>
         {data.map((item) => (
@@ -11,7 +12,7 @@ const Banner1 = ({ data, bgColor, fontColor,fontColor2 }) => {
                         <div className="col-lg-8">
                             <div className="banner__content-two">
                                 <h2 className="title "style={{  color: fontColor }} data-aos="fade-up" data-aos-delay={100}>{item.title}</h2>
-                                <p data-aos="fade-up" style={{  color: fontColor2 }} data-aos-delay={300}>{item.description}</p>
+                                <p data-aos="fade-up" style={{  color: fontColor2 }} data-aos-delay={300}>{item.description   }</p>
                                 {/* <Link href="/contact" className="btn border-btn" data-aos="fade-up" data-aos-delay={600}>Get Started</Link> */}
                             </div>
                         </div>

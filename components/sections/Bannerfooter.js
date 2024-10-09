@@ -12,15 +12,16 @@ export default function Bannerfooter({data}) {
                                     <div className="request-content text-center">
                                         <h2 className="title">{item.title}</h2>
                                         <div className="content-bottom">
-                                            <Link href="tel:0123456789" className="btn">{item.subtitle}</Link>
+                                            <Link href={item.buttonLink} className="btn">{item.subtitle}</Link>
                                             <div className="content-right">
                                                 <div className="icon">
                                                     <i className="flaticon-phone-call" />
                                                 </div>
                                                 <div className="content">
                                                     {/* <span>Toll Free Call</span> */}
-                                                    <Link  dir="ltr" href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
-                                                </div>
+                                                    {item.buttonLink ? (
+                                                <Link href={item.buttonLink} className="">{item.buttonLink}</Link> ) : (<></>)} 
+                                                  </div>
                                             </div>
                                         </div>
                                     </div>
