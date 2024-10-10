@@ -1,16 +1,23 @@
+'use client'
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from 'next-i18next';
+import { toast } from "react-toastify";
+
+
+
+
 export default function ComplaintSection() {
+
+
   const { t, i18n } = useTranslation('common');
-  
-  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: ""
   });
+  const [valiDateCheck, setvaliDateCheck] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -29,11 +36,15 @@ export default function ComplaintSection() {
     const isValid = requiredFields.every(field => formData[field]);
 
     if (!isValid) {
-      alert("Please fill in all required fields");
+      // alert("Please fill in all required fields");
+      setvaliDateCheck(true)
       return;
     }
 
+    setvaliDateCheck(false)
+
     try {
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/contact`, {
         method: 'POST',
         headers: {
@@ -42,33 +53,64 @@ export default function ComplaintSection() {
         body: JSON.stringify(formData),
       });
 
+      // form submiting ok time show popup
       if (response.ok) {
-        alert("Form submitted successfully");
+
+        toast.success("Submit", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+
+
         setFormData({
           name: "",
           email: "",
           phone: "",
           message: ""
         });
+
       } else {
+
+        // form submiting time error show popup
         const errorData = await response.text();
         console.error("Failed to submit form", response.statusText, errorData);
-        alert("Failed to submit form");
+
+        toast.error("Failed to submit form", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+
+
       }
     } catch (error) {
+
+      // network error time show popup
       console.error("An error occurred:", error);
-      alert("An error occurred while submitting the form");
+      toast.error("An error occurred while submitting the form", {
+        position: "top-center",
+        hideProgressBar: true
+
+      });
+
+
+
+
     }
+
+
+
   };
 
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
   return (
     <section className="">
       <div className="container">
@@ -120,6 +162,7 @@ export default function ComplaintSection() {
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-grp">
+
                       <input
                         type="text"
                         name="name"
@@ -127,8 +170,8 @@ export default function ComplaintSection() {
                         value={formData.name}
                         onChange={handleChange}
                       />
-     
-                     
+
+
 
                     </div>
                   </div>
@@ -137,7 +180,7 @@ export default function ComplaintSection() {
                       <input
                         type="email"
                         name="email"
-                        placeholder={t('Full-Name')}
+                        placeholder={t('Email')}
                         value={formData.email}
                         onChange={handleChange}
                       />
@@ -168,8 +211,15 @@ export default function ComplaintSection() {
                   <label htmlFor="checkbox">
                     Save my name, email, and website in this browser for the next time I comment.
                   </label>
-                </div> */}
-                <button type="submit" className="btn">{t('submit')}</button>
+                </div>
+                 */}
+
+                {
+                  valiDateCheck && <> <span style={{ color: "red", marginLeft: "5px" }} > *please enter required filed  </span><br /> </>
+                }
+
+                <button style={{ marginTop: "5px" }} type="submit" className="btn">{t('submit')}</button>
+
               </form>
               <p className="ajax-response mb-0" />
             </div>

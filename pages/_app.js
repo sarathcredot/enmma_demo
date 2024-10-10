@@ -11,6 +11,8 @@ import '/public/assets/css/aos.css';
 import '/public/assets/css/default.css';
 import '/public/assets/css/main.css';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({
   weight: ['300', '400', '500', '600', '700'],
@@ -38,7 +40,15 @@ function MyApp({ Component, pageProps }) {
     }
   }, [i18n.language]);
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <ToastContainer />
+      <Component {...pageProps} />;
+
+    </>
+
+  )
+
 }
 
 export default appWithTranslation(MyApp);
