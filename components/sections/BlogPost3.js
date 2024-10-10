@@ -34,8 +34,8 @@ export default function BlogPost3() {
                     <div className="row justify-content-center">
                         <div className="col-xl-6">
                             <div className="section-title text-center mb-50 tg-heading-subheading animation-style3">
-                                <span className="sub-title">{t('blog_subtitle')}</span>
-                                <h2 className="title tg-element-title">{t('blog_title')}</h2>
+                                <span style={{fontSize:"15px",marginBottom:"15px"}} className="sub-title">{t('blog_subtitle')}</span>
+                                <h2 style={{fontSize:"30px"}} className="title tg-element-title">{t('blog_title')}</h2>
                             </div>
                         </div>
                     </div>
