@@ -57,6 +57,7 @@ export default function Home({
                 });
             }
             return {
+
                 ...item,
                 title: item[`title_${i18n.language}`] || item.title_en,
                 subtitle: item[`subtitle_${i18n.language}`] || item.subtitle_en,
@@ -93,6 +94,11 @@ export default function Home({
         </>
     );
 }
+
+
+
+
+
 
 export async function getServerSideProps({ locale }) {
     

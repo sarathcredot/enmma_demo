@@ -33,7 +33,7 @@ export default function Services3() {
 
     return (
         <>
-            <section className="services__area-three services__bg-three" data-background="/assets/img/bg/h3_services_bg.jpg">
+            <section  className="services__area-three services__bg-three" data-background="/assets/img/bg/h3_services_bg.jpg">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-8">

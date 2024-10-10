@@ -27,6 +27,9 @@ import Link from "next/link"
 // }
 
 export default function Slider2({ data }) {
+
+     console.log("propsdata",data)
+
     return (
         <>
             <section className="slider__area">
