@@ -16051,3 +16051,16 @@ th, td {
   height: auto;
   margin: auto 0;
 }
+
+
+
+
+/* my css */
+
+@media (max-width: 768px) {
+  .classMedia{
+    display: none;
+  }
+}
+
+
