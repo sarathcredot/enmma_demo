@@ -44,7 +44,7 @@ export default function ComplaintSection() {
     setvaliDateCheck(false)
 
     try {
-      
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/contact`, {
         method: 'POST',
         headers: {
@@ -206,13 +206,13 @@ export default function ComplaintSection() {
                     onChange={handleChange}
                   />
                 </div>
-                {/* <div className="form-grp checkbox-grp">
+                <div className="form-grp checkbox-grp">
                   <input type="checkbox" name="checkbox" id="checkbox" />
                   <label htmlFor="checkbox">
                     Save my name, email, and website in this browser for the next time I comment.
                   </label>
                 </div>
-                 */}
+                
 
                 {
                   valiDateCheck && <> <span style={{ color: "red", marginLeft: "5px" }} > *please enter required filed  </span><br /> </>
