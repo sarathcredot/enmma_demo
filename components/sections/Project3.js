@@ -1,9 +1,23 @@
 'use client'
 import Link from "next/link"
+import { useEffect } from "react"
+import Swiper from "swiper"
 
 
 
 export default function Project3({ data }) {
+
+   
+
+
+    
+useEffect(()=>{
+
+     console.log("project3",data)
+      
+},[])
+
+
     return (
         <>
             {data.map((item) => (
@@ -17,7 +31,7 @@ export default function Project3({ data }) {
 
                                 <div style={{ width: "500px" }} className="section-title  mb-40 tg-heading-subheading animation-style3">
 
-                                    <span className="sub-title justify-content-center">  commitment to excellence and a </span>
+                                    <span className="sub-title justify-content-center">  { item.subtitle } </span>
 
                                     <h5 style={{ fontSize: "30px" }}>{item.title} </h5>
 
@@ -38,8 +52,8 @@ export default function Project3({ data }) {
                         <div className="row">
                             <div className="col-12">
                                 <div className="swiper-container project-active">
-                                    {/* <Swiper {...swiperOptions} className="swiper-wrapper"> */}
-                                    {/* <SwiperSlide> */}
+                                    {/* <Swiper {...swiperOptions} className="swiper-wrapper"/> */}
+                                    {/* <SwiperSlide/> */}
                                     <div className="project__item-three shine-animate-item">
                                         <div className="project__content-three">
                                             <span>{item.subtitle}</span>
