@@ -5,12 +5,12 @@ const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
         <>
         {data.map((item) => (
             
-            <section  key={item._id} className="banner__area-one banner__bg-four"style={{ backgroundColor: bgColor}} >
+            <section   key={item._id} className="banner__area-one banner__bg-four" style={{ backgroundColor:bgColor}} >
                 <div className="container" style={{  color: fontColor }} >
                     <div className="row">
                         <div className="col-lg-9">
                             <div className="banner__content-two">
-                                <h2 className="title "style={{  color: fontColor }} data-aos="fade-up" data-aos-delay={100}>{item.title}</h2>
+                                <h2   className="title "style={{  color: fontColor , fontSize:"50px" }} data-aos="fade-up" data-aos-delay={100}>{item.title}</h2>
                                 <p data-aos="fade-up" style={{  color: fontColor2 }} data-aos-delay={300}>{item.description}</p>
                                 {/* <Link href="/contact" className="btn border-btn" data-aos="fade-up" data-aos-delay={600}>Get Started</Link> */}
                             </div>
@@ -31,6 +31,7 @@ const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
                
                     <img src="/assets/img/banner/h3_banner_shape01.png" alt="" className="heartbeat" />
                 </div>
+
                 <div className="breadcrumb__shape">
                     <img src="/assets/img/images/breadcrumb_shape01.png" alt="" />
                     <img src="/assets/img/images/breadcrumb_shape02.png" alt="" className="rightToLeft" />
@@ -38,6 +39,7 @@ const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
                     {/* <img src="/assets/img/images/breadcrumb_shape04.png" alt="" /> */}
                         {/* <img src="/assets/img/images/breadcrumb_shape05.png" alt="" className="alltuchtopdown" /> */}
                 </div>
+            
             </section>
     ))}
         </>

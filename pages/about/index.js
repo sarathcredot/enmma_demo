@@ -105,16 +105,19 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                         <div className="about__content-four">
                                             <div className="section-title mb-30">
                                                 <span className="sub-title">{item.subtitle}</span>
-                                                <h2 className="title">{item.title}</h2>
+                                                <h2 style={{ fontSize: "40px" }} className="title">{item.title}</h2>
                                             </div>
                                             <p style={{ color: '#282739' }}>{item.description}</p>
-                                            {item.buttonTitle ? (
+
+                                               {item.buttonTitle ? (
                                                 <Link href={item.buttonLink} className="btn">{item.buttonTitle}</Link>
 
                                             ) : (
                                                 <></>
-                                            )} 
-                                             </div>
+                                            )}
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +135,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                     </div>
                     {/* brand-area */}
                     {/* choose-area */}
+                   
                     <section className="choose__area-four">
                         <div className="container">
                             <div className="row align-items-center">
@@ -180,9 +184,14 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                             <img src="/assets/img/images/inner_choose_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
                         </div>
                     </section>
+                    
+                    
                     <section className="container text-center my-5">
+                       
                         <h1 className=" text-wrap">{t('banner-title')}</h1>
+                    
                     </section>
+                    
                     {getDataBySection('about-contact').map((item) => (
                         <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
                             <div className="container">
@@ -212,6 +221,8 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                             </div>
                         </section>
                     ))}
+                
+                
                 </div>
 
             </Layout>

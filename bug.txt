@@ -1,0 +1,5 @@
+
+
+1) about page "Property Management & Investment" under button backend data missing 
+2) about page brand logo missing 
+3) about page contact section bg missing 

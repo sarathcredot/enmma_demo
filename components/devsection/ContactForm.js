@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useTranslation } from 'next-i18next';
 export default function ComplaintSection() {
   const { t, i18n } = useTranslation('common');
+  
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +18,8 @@ export default function ComplaintSection() {
       [e.target.name]: e.target.value
     });
   };
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,6 +61,14 @@ export default function ComplaintSection() {
     }
   };
 
+  
+  
+  
+  
+  
+  
+  
+  
   return (
     <section className="">
       <div className="container">
@@ -115,6 +127,9 @@ export default function ComplaintSection() {
                         value={formData.name}
                         onChange={handleChange}
                       />
+     
+                     
+
                     </div>
                   </div>
                   <div className="col-md-4">
