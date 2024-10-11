@@ -28,7 +28,7 @@ export default function Complaintsection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const requiredFields = ['description', 'contactNumber', 'civilId', 'firstName', 'lastName', 'phoneNumber', 'emailAddress','option'];
+    const requiredFields = ['description',  'civilId', 'firstName', 'lastName',  'emailAddress','option'];
     const isValid = requiredFields.every(field => formData[field]);
   
     if (!isValid) {
