@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from 'next-i18next';
+import { toast } from "react-toastify";
 
 export default function Complaintsection() {
   const { t, i18n } = useTranslation('common');
@@ -11,8 +12,11 @@ export default function Complaintsection() {
     firstName: '',
     lastName: '',
     phoneNumber: '',
-    emailAddress: ''
+    emailAddress: '',
+    option:''
   });
+  const [errMsg,seterrMsg]=useState("*please enter required filed")
+  const [valiDateCheck, setvaliDateCheck] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -24,16 +28,24 @@ export default function Complaintsection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const requiredFields = ['description', 'contactNumber', 'civilId', 'firstName', 'lastName', 'phoneNumber', 'emailAddress'];
+    const requiredFields = ['description', 'contactNumber', 'civilId', 'firstName', 'lastName', 'phoneNumber', 'emailAddress','option'];
     const isValid = requiredFields.every(field => formData[field]);
   
     if (!isValid) {
-      alert('Please fill in all required fields');
+     setvaliDateCheck(true)
       return;
+    }else if(formData.option.length!==10 && formData.contactNumber.length!==10){
+
+          seterrMsg("Enter valid phone number ");
+          setvaliDateCheck(true)
+          return;
     }
-  
+    
+    
     try {
-      const response = await fetch('${process.env.NEXT_PUBLIC_BASE_URL}/complaints-suggestions', {
+
+      setvaliDateCheck(false)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/complaints-suggestions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,8 +53,13 @@ export default function Complaintsection() {
         body: JSON.stringify(formData),
       });
   
-      if (response.ok) {
-        alert('Form submitted successfully');
+      if (response.ok){
+        
+        toast.success("Your complaint has been successfully registered.", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
         setFormData({
           description: '',
           contactNumber: '',
@@ -50,17 +67,57 @@ export default function Complaintsection() {
           firstName: '',
           lastName: '',
           phoneNumber: '',
-          emailAddress: ''
+          emailAddress: '',
+          option:""
         });
+      
       } else {
         const errorData = await response.text();
         console.error('Failed to submit form', response.statusText, errorData);
-        alert('Failed to submit form');
+
+        toast.error("Something went wrong. Please try again.", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+        setFormData({
+          description: '',
+          contactNumber: '',
+          civilId: '',
+          firstName: '',
+          lastName: '',
+          phoneNumber: '',
+          emailAddress: '',
+          option:""
+        });
+      
+        
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      alert('An error occurred while submitting the form');
+      
+      toast.error("Something went wrong. Please try again.", {
+        position: "top-center",
+        hideProgressBar: true
+
+      });
+      setFormData({
+        description: '',
+        contactNumber: '',
+        civilId: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        emailAddress: '',
+        option:""
+      });
+      
+   
     }
+ 
+ 
+ 
+ 
   };
   
   return (
@@ -97,7 +154,7 @@ export default function Complaintsection() {
                       <div className="col-md-6">
                         <div className="form-grp">
                           <input
-                            type="text"
+                            type="number"
                             name="contactNumber"
                             placeholder={t('Contact-Number')}
                             value={formData.contactNumber}
@@ -145,7 +202,7 @@ export default function Complaintsection() {
                       <div className="col-md-6">
                         <div className="form-grp">
                           <input
-                            type="text"
+                            type="number"
                             name="phoneNumber"
                             placeholder={t('Phone-Number')}
                             value={formData.phoneNumber}
@@ -165,7 +222,11 @@ export default function Complaintsection() {
                         </div>
                       </div>
                     </div>
-                    <button type="submit" className="btn">{t('submit')}</button>
+                    {
+                      valiDateCheck && <> <span style={{color:"red",marginLeft:"5px"}} > {errMsg}  </span><br/> </>
+                    }
+                    
+                    <button style={{marginTop:"10px"}} type="submit" className="btn">{t('submit')}</button>
                   </form>
                   <p className="ajax-response mb-0" />
                 </div>
