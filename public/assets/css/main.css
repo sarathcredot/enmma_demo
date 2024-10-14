@@ -2657,6 +2657,8 @@ html[lang="ar"] .tgmobile__menu .navigation li > a {
   line-height: 1;
   color: var(--tg-theme-primary);
   margin-bottom: 15px;
+ 
+  
 }
 .banner-content .title {
   font-size: 60px;
@@ -3473,7 +3475,7 @@ html[lang="ar"] .tgmobile__menu .navigation li > a {
 }
 @media (max-width: 991.98px) {
   .about__area-four {
-    padding: 100px 0;
+    padding: 80px 0;
   }
 }
 .about__area-five {
@@ -7577,7 +7579,7 @@ html[lang="ar"] .choose__shape-wrap-three img:nth-child(2){
 
 @media (max-width: 768.98px) {
   .project__area-three {
-    padding: 100px 0;
+    padding: 50px 0;
   }
   .project__area-three .space-betweeni{
     display: flex;
@@ -9774,6 +9776,12 @@ display: none;  }
   width: 100%;
   filter: grayscale(1);
 }
+
+.swiper-slide{
+
+    padding-top: 60px;
+}
+
 .testimonial-nav .swiper-wrapper .swiper-slide {
   width: auto !important;
 }
@@ -14403,7 +14411,7 @@ margin-bottom: 20px;
   margin-top: 0px;
   position: relative;
   z-index: 3;
-  bottom: -130px;
+  bottom: -80px;
 
 }
 

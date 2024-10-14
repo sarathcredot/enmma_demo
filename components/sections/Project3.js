@@ -37,8 +37,8 @@ export default function Project3({ data }) {
   return (
     <>
       {data.map((item) => (
-        <section key={item._id} className="project__area-three project__bg-three" data-background="/assets/img/bg/h3_project_bg.jpg">
-          <div className="container">
+        <section  key={item._id} className="project__area-three project__bg-three" data-background="/assets/img/bg/h3_project_bg.jpg">
+          <div  className="container">
             <div className="row justify-content-center">
               <div style={{ width: "100%", display: "flex", gap: "200px", paddingTop: "20px" }} className="col-xl-7 col-lg-8">
                 <div style={{ width: "500px" }} className="section-title mb-40 tg-heading-subheading animation-style3">

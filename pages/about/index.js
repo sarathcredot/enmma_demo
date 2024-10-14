@@ -82,15 +82,15 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
             <Layout headerStyle={6} footerStyle={3} >
                 <Banner2 data={getDataBySection('about-banner')} />
                 <div>
-                    <section className="about__area-four">
+                    <section  className="about__area-four">
                         {getDataBySection('about-info-section').map((item) => (
 
                             <>
 
                             {console.log(item)}
 
-                                <div key={item._id} className="container">
-                                    <div className="row align-items-center justify-content-center">
+                                <div  key={item._id} className="container">
+                                    <div  className="row align-items-center justify-content-center">
                                         <div className="col-lg-6 col-md-9 col-sm-10">
                                             <div className="about__img-wrap-four">
                                                 <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={500} height={500} alt="" />
@@ -109,7 +109,9 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-lg-6">
+                                        
+                                        <div   className="col-lg-6">
+                                           
                                             <div className="about__content-four">
                                                 <div className="section-title mb-30">
                                                     <span className="sub-title">{item.subtitle}</span>
@@ -127,6 +129,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
 
                                             </div>
                                         </div>
+                                    
                                     </div>
                                 </div>
 
