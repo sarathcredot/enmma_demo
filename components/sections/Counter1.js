@@ -2,6 +2,11 @@
 import CounterUp from "../elements/CounterUp";
 
 export default function Counter1({ data }) {
+
+    console.log("counter data",data)
+
+
+
     return (
         <>
             <section className="counter-area">
@@ -23,7 +28,12 @@ export default function Counter1({ data }) {
 
                                         </div>
                                         <div className="content">
-                                            <h2 className="count"><CounterUp count={item.localizedIcondata[iconKey].number_en} />+</h2>
+                                            
+                                            <h2 className="count"><CounterUp count={item.localizedIcondata[iconKey].number} />+</h2>
+
+                                        
+                                           
+                                           
                                             <p className=" ">{item.localizedIcondata[iconKey].title}</p>
                                         </div>
                                     </div>

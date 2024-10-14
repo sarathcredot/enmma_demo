@@ -223,7 +223,7 @@ export default function Complaintsection() {
                       </div>
                     </div>
                     {
-                      valiDateCheck && <> <span style={{color:"red",marginLeft:"5px"}} > {errMsg}  </span><br/> </>
+                      valiDateCheck && <> <span style={{color:"red",marginLeft:"5px"}} > {errMsg} </span><br/> </>
                     }
                     
                     <button style={{marginTop:"10px"}} type="submit" className="btn">{t('submit')}</button>

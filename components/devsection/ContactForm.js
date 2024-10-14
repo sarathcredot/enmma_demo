@@ -18,6 +18,8 @@ export default function ComplaintSection() {
     message: ""
   });
   const [valiDateCheck, setvaliDateCheck] = useState(false)
+  const [validationMsg, setvalidationMsg] = useState("*please enter required filed")
+  const [conformBox, setconformBox] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -38,6 +40,20 @@ export default function ComplaintSection() {
     if (!isValid) {
       // alert("Please fill in all required fields");
       setvaliDateCheck(true)
+      return;
+    }
+
+    if (formData.phone.length !== 10) {
+
+      setvaliDateCheck(true)
+      setvalidationMsg("Enter valid phone number")
+      return;
+    }
+
+    if (!conformBox) {
+
+      setvaliDateCheck(true)
+      setvalidationMsg("Please enable your confirmation.")
       return;
     }
 
@@ -162,6 +178,7 @@ export default function ComplaintSection() {
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-grp">
+                      <label style={{ color: "red" }} > * </label>
 
                       <input
                         type="text"
@@ -177,6 +194,7 @@ export default function ComplaintSection() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-grp">
+                      <label style={{ color: "red" }} > * </label>
                       <input
                         type="email"
                         name="email"
@@ -188,6 +206,7 @@ export default function ComplaintSection() {
                   </div>
                   <div className="col-md-4">
                     <div className="form-grp">
+                      <label style={{ color: "red" }} > * </label>
                       <input
                         type="number"
                         name="phone"
@@ -199,6 +218,7 @@ export default function ComplaintSection() {
                   </div>
                 </div>
                 <div className="form-grp">
+                  <label style={{ color: "red" }} > * </label>
                   <textarea
                     name="message"
                     placeholder={t('message')}
@@ -207,15 +227,16 @@ export default function ComplaintSection() {
                   />
                 </div>
                 <div className="form-grp checkbox-grp">
-                  <input type="checkbox" name="checkbox" id="checkbox" />
+                  <label style={{ color: "red" }} > * </label>
+                  <input onClick={() => { setconformBox(!conformBox) }} type="checkbox" name="checkbox" id="checkbox" />
                   <label htmlFor="checkbox">
                     Save my name, email, and website in this browser for the next time I comment.
                   </label>
                 </div>
-                
+
 
                 {
-                  valiDateCheck && <> <span style={{ color: "red", marginLeft: "5px" }} > *please enter required filed  </span><br /> </>
+                  valiDateCheck && <> <span style={{ color: "red", marginLeft: "5px" }} > {validationMsg} </span><br /> </>
                 }
 
                 <button style={{ marginTop: "5px" }} type="submit" className="btn">{t('submit')}</button>
@@ -226,13 +247,17 @@ export default function ComplaintSection() {
           </div>
         </div>
         <div className="col-lg-12 pt-5">
-          <div className="contact-map">
+          
+          <div style={{backgroundColor:"red"}}  className="contact-map">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.974574165315!2d47.97528657531801!3d29.371033675269594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf859c6fe72ded%3A0x6cab84399af0eabf!2sAl%20Enmaa%20Tower!5e0!3m2!1sen!2sin!4v1715233152422!5m2!1sen!2sin"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
+         
           </div>
+        
+        
         </div>
       </div>
     </section>

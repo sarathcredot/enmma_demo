@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Country } from 'country-state-city';
 import { useTranslation } from 'next-i18next';
+import { toast } from "react-toastify";
+
 
 export default function Careerform() {
   const { t } = useTranslation('common');
@@ -27,6 +29,11 @@ export default function Careerform() {
     resumeUrl: '',
   });
 
+  const [errMsg, seterrMsg] = useState("*please enter required filed")
+  const [valiDateCheck, setvaliDateCheck] = useState(false)
+  const [filecheck, setfilecheck] = useState(false)
+  const [fileUplodingMsg, setfileUplodingMsg] = useState("")
+
   // Handler to manage input changes
   const handleChange = (e) => {
     setFormData({
@@ -37,6 +44,12 @@ export default function Careerform() {
 
   // Handler to upload files
   const handleFileUpload = async (files) => {
+
+
+    setfileUplodingMsg("File Uploding...")
+    setfilecheck(true)
+
+
     if (files && files.length > 0) {
       const fileData = new FormData();
       fileData.append('media', files[0]);
@@ -46,16 +59,28 @@ export default function Careerform() {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
 
+        setfilecheck(false)
+
         const filePath = `/${response.data.filename}`;
+
+        console.log("file url", filePath)
         setFormData((prevState) => ({
           ...prevState,
           resumeUrl: filePath,
         }));
       } catch (error) {
+
+        setfileUplodingMsg("File uploding failed try again")
+        setfilecheck(true)
         console.error('Error in file upload:', error.response ? error.response.data : error.message);
+
       }
     }
+
+
   };
+
+
   const handleFileUpload2 = async (files) => {
     if (files && files.length > 0) {
       const fileData = new FormData();
@@ -76,15 +101,31 @@ export default function Careerform() {
       }
     }
   };
+
+
   // Validate form fields before submission
   const validateForm = () => {
     for (const [key, value] of Object.entries(formData)) {
       if (!value) {
-        return `Field ${key} is required`;
+        return `*field ${key} is required`;
+      } else if (key == "mobileNumber") {
+
+        if (value.length !== 10) {
+
+          return "Enter valid phone number"
+        }
       }
     }
+
+    //  if(formData.mobileNumber.length!==10){
+
+    //      return "Enter valid phone number"
+    //  }
+
     return null;
   };
+
+
 
   // Handler to manage form submission
   const handleSubmit = async (e) => {
@@ -93,11 +134,16 @@ export default function Careerform() {
     // Validate form data before sending
     const errorMessage = validateForm();
     if (errorMessage) {
-      alert(errorMessage);
+      seterrMsg(errorMessage)
+      setvaliDateCheck(true)
       return;
     }
 
+
+
+
     try {
+      setvaliDateCheck(false)
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/careers/`, {
         method: 'POST',
         headers: {
@@ -107,7 +153,14 @@ export default function Careerform() {
       });
 
       if (response.ok) {
-        alert('Form submitted successfully');
+
+
+        toast.success("Form submitted successfully.", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+
         setFormData({
           position: '',
           fullName: '',
@@ -123,49 +176,104 @@ export default function Careerform() {
           additionalInfo: '',
           resumeUrl: '',
         });
+
+
       } else {
         const errorData = await response.text();
         console.error('Failed to submit form', response.statusText, errorData);
-        alert('Failed to submit form: ' + errorData);
+
+        toast.error("Something went wrong. Please try again.", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+
+        setFormData({
+          position: '',
+          fullName: '',
+          dob: '',
+          gender: '',
+          mobileNumber: '',
+          passportNumber: '',
+          emailAddress: '',
+          nationality: '',
+          degreeLevel: '',
+          careerLevel: '',
+          jobDuties: '',
+          additionalInfo: '',
+          resumeUrl: '',
+        });
+
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      alert('An error occurred while submitting the form');
+      toast.error("Something went wrong. Please try again.", {
+        position: "top-center",
+        hideProgressBar: true
+
+      });
+
+      setFormData({
+        position: '',
+        fullName: '',
+        dob: '',
+        gender: '',
+        mobileNumber: '',
+        passportNumber: '',
+        emailAddress: '',
+        nationality: '',
+        degreeLevel: '',
+        careerLevel: '',
+        jobDuties: '',
+        additionalInfo: '',
+        resumeUrl: '',
+      });
+
     }
+
+
+
   };
+
+
+
   const handleFocus = (e) => {
     if (e.target.type === 'text') {
       e.target.type = 'date';
     }
   };
+
+
   return (
-    <div className="contact__form-wrap">
+    <div   className="contact__form-wrap">
       <form id="contact-form" dir='ltr' onSubmit={handleSubmit}>
         {/* Input fields with onChange handlers */}
         <div className="row">
           {/* Position */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <input
                 type="text"
                 name="position"
                 placeholder={t('Position-Applying-for')}
                 value={formData.position}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
           {/* Full Name */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <input
                 type="text"
                 name="fullName"
-                placeholder={t("Full-Name")}
+                placeholder={t("*Full-Name")}
                 value={formData.fullName}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
@@ -174,6 +282,7 @@ export default function Careerform() {
           {/* Date of Birth */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <input
                 type="text"
                 name="dob"
@@ -181,19 +290,20 @@ export default function Careerform() {
                 value={formData.dob}
                 onFocus={handleFocus}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
           {/* Gender */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <select
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
                 style={{ color: '#3E4073' }}
-                required
+
               >
                 <option value="">{t('Gender')}</option>
                 <option value="male">Male</option>
@@ -206,26 +316,28 @@ export default function Careerform() {
           {/* Mobile Number */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <input
-                type="text"
+                type="number"
                 name="mobileNumber"
                 placeholder={t("Phone-Number")}
                 value={formData.mobileNumber}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
           {/* Passport Number */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <input
                 type="text"
                 name="passportNumber"
                 placeholder={t("Passport-Number")}
                 value={formData.passportNumber}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
@@ -234,25 +346,27 @@ export default function Careerform() {
           {/* Email Address */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <input
                 type="email"
                 name="emailAddress"
                 placeholder={t('email')}
                 value={formData.emailAddress}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
           {/* Nationality */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <select
                 name="nationality"
                 value={formData.nationality}
                 onChange={handleChange}
                 style={{ color: '#3E4073' }}
-                required
+
               >
                 <option value="">{t('Select-Nationality')}</option>
                 {countryData.map((country) => (
@@ -268,12 +382,13 @@ export default function Careerform() {
           {/* Degree Level */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <select
                 name="degreeLevel"
                 value={formData.degreeLevel}
                 onChange={handleChange}
                 style={{ color: '#3E4073' }}
-                required
+
               >
                 <option value="">{t('Degree-Level')}</option>
                 <option value="High School of Equivalent ">High School of Equivalent </option>
@@ -288,12 +403,13 @@ export default function Careerform() {
           {/* Career Level */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <select
                 name="careerLevel"
                 value={formData.careerLevel}
                 onChange={handleChange}
                 style={{ color: '#3E4073' }}
-                required
+
               >
                 <option value="">{t('Career-Level')}</option>
                 <option value="Student">Student</option>
@@ -309,24 +425,26 @@ export default function Careerform() {
           {/* Job Duties */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <textarea
                 name="jobDuties"
                 placeholder={t('Briefly-describe-your-last-job-duties')}
                 value={formData.jobDuties}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
           {/* Additional Information */}
           <div className="col-md-6">
             <div className="form-grp">
+              <label style={{ color: "red" }} > * </label>
               <textarea
                 name="additionalInfo"
                 placeholder={t('If-Any-Additional-Information')}
                 value={formData.additionalInfo}
                 onChange={handleChange}
-                required
+
               />
             </div>
           </div>
@@ -336,19 +454,34 @@ export default function Careerform() {
           <div className="col-md-6">
             <div className="form-grp">
               <p>{t('Upload-Your-Resume')}</p>
+              <label style={{ color: "red" }} > * </label>
               <input
                 className='form-control form-control-lg'
                 type="file"
                 onChange={(e) => handleFileUpload(e.target.files)}
                 style={{ color: '#3E4073' }}
                 accept=".pdf,.doc,.docx"
-                required
+
               />
+
+              {filecheck && <span> {fileUplodingMsg}   </span>}
+
             </div>
           </div>
         </div>
         {/* Submit Button */}
-        <button type="submit" className="btn">{t('submit')}</button>
+
+        {
+          valiDateCheck && <> <span style={{ color: "red" }} > {errMsg}  </span><br /> </>
+        }
+
+
+        <button style={{ marginTop: "10px" }} type="submit" className="btn">{  t('submit') }</button>
+
+      
+
+
+
       </form>
       <p className="ajax-response mb-0" />
     </div>
