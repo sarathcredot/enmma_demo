@@ -10562,6 +10562,7 @@ display: none;  }
 @media (max-width: 767.98px) {
   .counter-item {
     gap: 12px;
+    margin-bottom: 50px;
   }
 }
 .counter-item .icon {
@@ -10646,7 +10647,7 @@ display: none;  }
 }
 @media (max-width: 767.98px) {
   .counterImage {
-    width: 80px;
+    width: 60px;
     height: auto;
     aspect-ratio: 4/4; 
    } }
@@ -15439,8 +15440,8 @@ text-align: initial;
 .dev_index_comp{
   display: flex;
   flex-direction: row;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 60px;
+  padding-bottom: 10px;
   flex-wrap: wrap;
   justify-content: center;
   height: 100%;

@@ -18,8 +18,8 @@ export default function Counter1({ data }) {
 
                             {Object.keys(item.localizedIcondata).map(iconKey => (
 
-                                <div className="col-xl-3 col-lg-4 col-sm-6">
-                                    <div className="counter-item">
+                                <div  className="col-xl-3 col-lg-4 col-sm-6">
+                                    <div  className="counter-item">
                                         <div className="icon">
 
                                             {/* bug  */}
