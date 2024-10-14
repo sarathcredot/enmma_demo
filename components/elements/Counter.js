@@ -52,8 +52,8 @@ export default function Counter({ end, duration }) {
 
     return (
         <span ref={countRef}>
-            <span>{Math.round(count)}</span>
-            {/* <span> {end} </span> */}
+            {/* <span>{Math.round(count)}</span> */}
+            <span> {end} </span>
         </span>
     )
 }

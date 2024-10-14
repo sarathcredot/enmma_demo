@@ -3689,10 +3689,12 @@ html[lang="ar"] .tgmobile__menu .navigation li > a {
 .about__img-wrap-four {
   position: relative;
   padding-bottom: 125px;
+  
 }
 @media (max-width: 991.98px) {
   .about__img-wrap-four {
-    margin-bottom: 50px;
+    /* margin-bottom: 20px; */
+    
   }
 }
 .about__img-wrap-four > img {
@@ -14360,7 +14362,23 @@ margin-bottom: 20px;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+
+  
+  
+  
 }
+
+@media (max-width: 992px) {
+  
+  .box-video{
+     
+    padding-top: 30px; 
+  }
+  }
+
+
+
+
 .box-video::before {
   content: "";
   height: 100%;
@@ -14386,6 +14404,7 @@ margin-bottom: 20px;
   position: relative;
   z-index: 3;
   bottom: -130px;
+
 }
 
 .item-video-small {
