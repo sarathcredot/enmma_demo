@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Sectionfoot from '@/components/layout/DevsectionFoot';
 import { useTranslation } from 'next-i18next';
+import { toast } from "react-toastify";
 
 export default function Contact({ data1, data }) {
   const { t, i18n } = useTranslation('common');
@@ -14,6 +15,9 @@ export default function Contact({ data1, data }) {
     message: ''
   });
 
+  const [errMsg, seterrMsg] = useState("*please enter required filed")
+  const [valiDateCheck, setvaliDateCheck] = useState(false)
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -24,33 +28,94 @@ export default function Contact({ data1, data }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
+    const requiredFields = ['option', 'name', 'email', , 'message'];
+    const isValid = requiredFields.every(field => formData[field]);
+
+    if (!isValid) {
+
+      setvaliDateCheck(true)
+      return;
+    } else if (formData.phoneNumber.length !== 10) {
+
+      seterrMsg("Enter valid phone number")
+      setvaliDateCheck(true)
+
+      return;
+    }
+
     try {
-      const response = await fetch('${process.env.NEXT_PUBLIC_BASE_URL}/investorform/', {
+      setvaliDateCheck(false)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/investorform/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+
       });
 
       if (response.ok) {
-        alert('Form submitted successfully'); 
-        setFormData({ 
+        setvaliDateCheck(false)
+        toast.success("Your form has been successfully submited.",{
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+        setFormData({
           option: '',
           name: '',
           email: '',
           phoneNumber: '',
           message: ''
         });
+
       } else {
         const errorData = await response.text();
         console.error('Failed to submit form', response.statusText, errorData);
-        alert('Failed to submit form'); 
+
+
+        toast.error("Something went wrong. Please try again.", {
+          position: "top-center",
+          hideProgressBar: true
+
+        });
+
+        setFormData({
+          option: '',
+          name: '',
+          email: '',
+          phoneNumber: '',
+          message: ''
+        });
+
+
+
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      alert('An error occurred while submitting the form'); 
+
+      toast.error("Something went wrong. Please try again.", {
+        position: "top-center",
+        hideProgressBar: true
+
+      });
+
+      setFormData({
+        option: '',
+        name: '',
+        email: '',
+        phoneNumber: '',
+        message: ''
+      });
+
+
+
+
+
     }
+
+
   };
 
   return (
@@ -79,7 +144,7 @@ export default function Contact({ data1, data }) {
                 <div className="contact__form-wrap">
                   <h2 className="title">{t('form-title1')}</h2>
                   <p>
-                   {t("form-subtitle")}
+                    {t("form-subtitle")}
                   </p>
                   <form id="contact-form" onSubmit={handleSubmit}>
                     <div className="row">
@@ -135,7 +200,12 @@ export default function Contact({ data1, data }) {
                       />
                     </div>
 
-                    <button type="submit" className="btn">
+                    {
+                      valiDateCheck && <> <span style={{ color: "red", marginLeft: "5px" }} > {errMsg}  </span><br /> </>
+                    }
+
+
+                    <button style={{ marginTop: "10px" }} type="submit" className="btn">
                       {t('submit')}
                     </button>
                   </form>

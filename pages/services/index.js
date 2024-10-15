@@ -60,6 +60,7 @@ export default function Services({ initialData }) {
               <div className="col-lg-5 col-md-8">
                 <div className="testimonial__img-wrap-two">
                   <img src="/assets/img/images/h3_testimonial_img.png" alt="" />
+                  
                   <div className="testimonial__img-shape-two">
                     <img
                       src="/assets/img/images/h3_testimonial_shape01.png"
@@ -76,8 +77,10 @@ export default function Services({ initialData }) {
                       alt=""
                     />
                   </div>
+               
                 </div>
               </div>
+             
               <div className="col-lg-7">
                 <div className="testimonial__item-wrap">
                   <div className="swiper-container testimonial-active-two">
@@ -85,6 +88,7 @@ export default function Services({ initialData }) {
                   </div>
                 </div>
               </div>
+            
             </div>
           </div>
         </section>

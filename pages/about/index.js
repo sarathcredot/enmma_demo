@@ -69,6 +69,9 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
 
     const getDataBySection = (section) => localizedData.filter(item => item.section === section && item.status);
 
+
+
+
     return (
 
         <>
@@ -79,46 +82,66 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
             <Layout headerStyle={6} footerStyle={3} >
                 <Banner2 data={getDataBySection('about-banner')} />
                 <div>
-                    <section className="about__area-four">
+                    <section  className="about__area-four">
                         {getDataBySection('about-info-section').map((item) => (
-                            <div key={item._id} className="container">
-                                <div className="row align-items-center justify-content-center">
-                                    <div className="col-lg-6 col-md-9 col-sm-10">
-                                        <div className="about__img-wrap-four">
-                                            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={500} height={500} alt="" />
-                                            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={300} height={100} alt="" />
-                                            <div className="about__award-box">
-                                                {/* <div className="icon">
+
+                            <>
+
+                            {console.log(item)}
+
+                                <div  key={item._id} className="container">
+                                    <div  className="row align-items-center justify-content-center">
+                                        <div className="col-lg-6 col-md-9 col-sm-10">
+                                            <div className="about__img-wrap-four">
+                                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={500} height={500} alt="" />
+                                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={300} height={100} alt="" />
+                                                <div className="about__award-box">
+                                                    {/* <div className="icon">
                 <i className="flaticon-time" />
               </div> */}
-                                                {/* <div className="content" style={{position: 'relative',zIndex: '4'}}>
+                                                    {/* <div className="content" style={{position: 'relative',zIndex: '4'}}>
                 <h2 className="title">30+</h2>
                 <p className="w-50">Years of Experiences Property management & Investment</p>
               </div> */}
-                                            </div>
-                                            <div className="shape">
-                                                <img src="/assets/img/images/inner_about_shape.jpg" alt="" className="alltuchtopdown" />
+                                                </div>
+                                                <div className="shape">
+                                                    <img src="/assets/img/images/inner_about_shape.jpg" alt="" className="alltuchtopdown" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="about__content-four">
-                                            <div className="section-title mb-30">
-                                                <span className="sub-title">{item.subtitle}</span>
-                                                <h2 className="title">{item.title}</h2>
-                                            </div>
-                                            <p style={{ color: '#282739' }}>{item.description}</p>
-                                            {item.buttonTitle ? (
-                                                <Link href={item.buttonLink} className="btn">{item.buttonTitle}</Link>
+                                        
+                                        <div   className="col-lg-6">
+                                           
+                                            <div className="about__content-four">
+                                                <div className="section-title mb-30">
+                                                    <span className="sub-title">{item.subtitle}</span>
+                                                    <h2 style={{ fontSize: "40px" }} className="title">{item.title}</h2>
+                                                </div>
+                                                <p style={{ color: '#282739' }}>{item.description}</p>
 
-                                            ) : (
-                                                <></>
-                                            )} 
-                                             </div>
+                                                {item.buttonTitle ? (
+                                                    <Link href={item.buttonLink} className="btn">{item.buttonTitle}</Link>
+
+                                                ) : (
+                                                    <></>
+                                                )}
+
+
+                                            </div>
+                                        </div>
+                                    
                                     </div>
                                 </div>
-                            </div>
+
+                            </>
+
+
+
+
                         ))}
+
+
+
                     </section>
 
                     <Counter2 data={getDataBySection('about-counter')} />
@@ -132,6 +155,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                     </div>
                     {/* brand-area */}
                     {/* choose-area */}
+
                     <section className="choose__area-four">
                         <div className="container">
                             <div className="row align-items-center">
@@ -149,9 +173,9 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                         <ul style={{ listStyle: "none" }}>
 
                                             <li>
-                                                <div className="choose__list-box-two">
-                                                    <div className="choose__list-icon-two">
-                                                        <SVG caseValue='case4' />
+                                                <div  className="choose__list-box-two">
+                                                    <div  className="choose__list-icon-two">
+                                                        <SVG  caseValue='case4' />
                                                     </div>
                                                     <div className="choose__list-content-two">
                                                         <h4 className="title">{t('mission')}</h4>
@@ -180,9 +204,14 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                             <img src="/assets/img/images/inner_choose_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
                         </div>
                     </section>
+
+
                     <section className="container text-center my-5">
+
                         <h1 className=" text-wrap">{t('banner-title')}</h1>
+
                     </section>
+
                     {getDataBySection('about-contact').map((item) => (
                         <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
                             <div className="container">
@@ -212,6 +241,8 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                             </div>
                         </section>
                     ))}
+
+
                 </div>
 
             </Layout>

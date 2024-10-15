@@ -32,7 +32,7 @@ const Banner1 = ({ data, bgColor, fontColor,fontColor2 }) => {
                
                     <img src="/assets/img/banner/h3_banner_shape01.png" alt="" className="heartbeat" />
                 </div>
-                <div className="breadcrumb__shape_dev2">
+                <div  className="breadcrumb__shape_dev2">
                     <img src="/assets/img/images/breadcrumb_shape01.png" alt="" />
                     <img src="/assets/img/images/breadcrumb_shape02.png" alt="" className="alltuchtopdown" />
                     <img src="/assets/img/images/h2_testimonial_shape.png"  width={500} height={100}  alt="" />

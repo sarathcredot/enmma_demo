@@ -86,10 +86,11 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                 <meta name="description" content={pageDescription} />
             </Head>
             <Layout headerStyle={6} footerStyle={3}>
-                <Banner2 data={getDataBySection("team-banner")} />
+                
+                <Banner2  data={getDataBySection("team-banner")} />
 
-                <div id="director">
-                    <section className="team-area pt-100 ">
+                <div   id="director">
+                    <section className="team-area pt-20 ">
                         {getDataBySection("team-directors").map((item) => (
                             <div key={item._id} className="container project__area-three">
                                 <div className="row container">
@@ -122,9 +123,10 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                                 <div
                                                     key={id}
                                                     className="col-xl-3 col-lg-4 col-md-6 col-sm-8"
+                                                    
                                                 >
-                                                    <div className="team-item">
-                                                        <div className="team-thumb">
+                                                    <div  className="team-item">
+                                                        <div   className="team-thumb">
                                                             <img
                                                                 src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${teamData.imageUrl}`}
                                                                 alt={teamData.name}
@@ -148,7 +150,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                         ))}
                     </section>
 
-                    <section className="team-area pt-50 bg-dev-color" id="management">
+                    <section className="team-area pt-10 bg-dev-color" id="management">
                         {getDataBySection("team-Management").map((item) => (
                             <div key={item._id} className="container project__area-three">
                                 <div className="row container">
