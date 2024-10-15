@@ -173,9 +173,9 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                         <ul style={{ listStyle: "none" }}>
 
                                             <li>
-                                                <div className="choose__list-box-two">
-                                                    <div className="choose__list-icon-two">
-                                                        <SVG caseValue='case4' />
+                                                <div  className="choose__list-box-two">
+                                                    <div  className="choose__list-icon-two">
+                                                        <SVG  caseValue='case4' />
                                                     </div>
                                                     <div className="choose__list-content-two">
                                                         <h4 className="title">{t('mission')}</h4>

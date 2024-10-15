@@ -10,7 +10,7 @@ const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
                     <div className="row">
                         <div className="col-lg-9">
                             <div className="banner__content-two">
-                                <h2   className="title "style={{  color: fontColor , fontSize:"50px" }} data-aos="fade-up" data-aos-delay={100}>{item.title}</h2>
+                                <h2   className="title "style={{  color: fontColor  }} data-aos="fade-up" data-aos-delay={100}>{item.title}</h2>
                                 <p data-aos="fade-up" style={{  color: fontColor2 }} data-aos-delay={300}>{item.description}</p>
                                 {/* <Link href="/contact" className="btn border-btn" data-aos="fade-up" data-aos-delay={600}>Get Started</Link> */}
                             </div>
