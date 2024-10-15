@@ -35,11 +35,11 @@ export default function Services3() {
         <>
             <section  className="services__area-three services__bg-three" data-background="/assets/img/bg/h3_services_bg.jpg">
                 <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-8">
-                            <div className="section-title white-title text-center mb-50 tg-heading-subheading animation-style3">
+                    <div className="row justify-content-start">
+                        <div  className="col-lg-8">
+                            <div className="section-title white-title  mb-50 tg-heading-subheading animation-style3">
                                 <span className="sub-title">{t('mainservice-subtitle')}</span>
-                                <h2 className="title tg-element-title">{t('mainservice-title')}</h2>
+                                <h2 className="title tg-element-title title-sa ">{t('mainservice-title')}</h2>
                             </div>
                         </div>
                     </div>

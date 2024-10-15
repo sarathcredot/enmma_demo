@@ -41,6 +41,7 @@ export default function Slider2({ data }) {
                                 <div className="container">
                                     <div className="row">
                                         <div className=" col-lg-8">
+                                           
                                             <div className="banner__content-three ">
                                                 <div className="text-25-years">
                                                     <span className="text-stroke">{item.sidebarNumber}</span>
@@ -55,6 +56,8 @@ export default function Slider2({ data }) {
                                                 
                                                 }
                                             </div>
+                                       
+                                       
                                         </div>
                                     </div>
                                 </div>
