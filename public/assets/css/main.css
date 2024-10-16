@@ -6730,6 +6730,23 @@ font-size: 20px;
     left: -50%;
   }
 }
+
+
+/* @media (max-width: 767.98px) {
+    
+  .choose__list-two{
+
+       background-color: yellow;
+       padding-left: 0px;
+  } 
+} */
+
+
+
+
+
+
+
 .choose__content-two > p {
   margin-bottom: 35px;
 }
@@ -6955,7 +6972,9 @@ text-align: start;
   flex-wrap: wrap;
   margin: 0 -10px;
   gap: 40px 0;
+  
 }
+
 .choose__list-two .list-wrap li {
   width: 50%;
   padding: 0 10px;
@@ -9073,7 +9092,7 @@ display: none;  }
 }
 @media (max-width: 767.98px) {
   .request-content .title {
-    font-size: 36px;
+    font-size: 28px;
   }
 }
 .request-content .btn {
@@ -9510,13 +9529,17 @@ display: none;  }
   position: absolute;
 }
 .testimonial__img-shape-two img:nth-child(1) {
-  left: 0;
+  left: -15%;
   top: 40%;
+  /* display: none; */
+  width: 70px;
+  height: 70px;
 }
 @media (max-width: 1199.98px) {
   .testimonial__img-shape-two img:nth-child(1) {
     left: -2%;
     width: 100px;
+    
   }
 }
 @media (max-width: 767.98px) {
@@ -9527,11 +9550,17 @@ display: none;  }
 .testimonial__img-shape-two img:nth-child(2) {
   left: 16%;
   bottom: 1%;
+  /* display: none; */
+  width: 50px;
+  height: 50px;
 }
 @media (max-width: 767.98px) {
   .testimonial__img-shape-two img:nth-child(2) {
     left: 9%;
     bottom: -3%;
+    /* display: none; */
+    width: 40px;
+    height: 40px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -9541,7 +9570,7 @@ display: none;  }
   }
 }
 .testimonial__img-shape-two img:nth-child(3) {
-  right: 13%;
+  right: -5%;
   top: 32%;
 }
 @media (max-width: 1199.98px) {
@@ -9552,7 +9581,10 @@ display: none;  }
 @media (max-width: 767.98px) {
   .testimonial__img-shape-two img:nth-child(3) {
     top: 28%;
-    right: 3%;
+    right: 10%;
+    /* display: none; */
+    width: 40px;
+    height: 40px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -9758,7 +9790,30 @@ display: none;  }
   .testimonial-content .icon {
     display: none;
   }
+  
 }
+
+.testimonial__item-three img{
+
+      margin-left: 400px;
+}
+
+@media(max-width:518px){
+
+  .testimonial__item-three img{
+
+    margin-left: 200px;
+    width: 60px;
+    height: 60px;
+}
+
+     
+}
+
+
+
+
+
 .testimonial-nav .swiper-wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -10716,7 +10771,7 @@ display: none;  }
 
 @media (max-width: 767.98px) {
   .team-item {
-height: 580px;
+height: 600px;
   }
 }
 
