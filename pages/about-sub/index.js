@@ -124,9 +124,10 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                                                     key={id}
                                                     className="col-xl-3 col-lg-4 col-md-6 col-sm-8"
                                                     
+                                                    
                                                 >
-                                                    <div  className="team-item">
-                                                        <div   className="team-thumb">
+                                                    <div    className="team-item">
+                                                        <div    className="team-thumb">
                                                             <img
                                                                 src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${teamData.imageUrl}`}
                                                                 alt={teamData.name}
@@ -155,7 +156,7 @@ export default function About3({ initialData, teamMembersData,pageDescription,pa
                             <div key={item._id} className="container project__area-three">
                                 <div className="row container">
                                     <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
-                                        <div className="section-title  mb-50 tg-heading-subheading animation-style3">
+                                        <div  className="section-title  mb-50 tg-heading-subheading animation-style3">
                                             <span className="sub-title">{item.subtitle}</span>
                                             <h2 className="title tg-element-title  mt-4 text-wrap devtextwrapo">
                                                 {item.title}

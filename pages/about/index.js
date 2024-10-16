@@ -169,18 +169,21 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
-                                    <div className="choose__list-two">
-                                        <ul style={{ listStyle: "none" }}>
+                                    <div  className="choose__list-two">
+                                        <ul  style={{ listStyle: "none" ,paddingLeft:"0px" }}>
 
                                             <li>
                                                 <div  className="choose__list-box-two">
+                                                  
                                                     <div  className="choose__list-icon-two">
                                                         <SVG  caseValue='case4' />
                                                     </div>
+                                                   
                                                     <div className="choose__list-content-two">
                                                         <h4 className="title">{t('mission')}</h4>
                                                         <p>{t('mission-text')}</p>
                                                     </div>
+                                                
                                                 </div>
                                             </li>
                                             <li>
