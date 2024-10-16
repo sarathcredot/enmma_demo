@@ -5,6 +5,8 @@ export default function Counter({ end, duration }) {
     const countRef = useRef(null)
     const increment = end / duration
 
+    console.log("count number0", end)
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -29,6 +31,7 @@ export default function Counter({ end, duration }) {
         const interval = setInterval(() => {
             setCount((prevCount) => {
                 const newCount = prevCount + increment
+                // console.log("count number0", newCount)
                 if (newCount >= end) {
                     clearInterval(interval)
                     return end
@@ -49,7 +52,8 @@ export default function Counter({ end, duration }) {
 
     return (
         <span ref={countRef}>
-            <span>{Math.round(count)}</span>
+            {/* <span>{Math.round(count)}</span> */}
+            <span> {end} </span>
         </span>
     )
 }

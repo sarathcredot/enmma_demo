@@ -17,7 +17,7 @@ export default function Breadcrumb({ breadcrumbTitle }) {
                                 </nav>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <div className="breadcrumb__shape">
                     <img src="/assets/img/images/breadcrumb_shape01.png" alt="" />

@@ -7,7 +7,7 @@ export default function Statementlist({ item }) {
             <div className=" " >
 
                     <div  className="dev-statmentlist container">
-                       <h1 className="fw-title">2023</h1>
+                       <h1 className="fw-title">{item.date}</h1>
                         <div className="state-list"><span>{item.date}</span>
                         <span className=""><Link href={`/blog/${item.id}`}><SVG caseValue='case14' />&nbsp; &nbsp;VIEW </Link></span>
                         </div>

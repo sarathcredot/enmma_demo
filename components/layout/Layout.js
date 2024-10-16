@@ -18,7 +18,10 @@ import Header5 from "./header/Header5"
 import Header6 from "./header/Header6"
 import Footer7 from "./footer/Footer7"
 import Footer6 from "./footer/Footer6"
+import NextTopLoader from 'nextjs-toploader';
+
 import { appWithTranslation, i18n } from 'next-i18next';
+import FloatingLanguageSwitcher from "./header/Floating-lang"
 
 // export const metadata = {
 //     title: 'Apexa - Business Consulting NextJS Template',
@@ -56,6 +59,7 @@ function Layout({ headerStyle, footerStyle, headTitle,   breadcrumbTitle, childr
     }, [])
     return (
         <>
+
             {/* <PageHead headTitle={headTitle} /> */}
             <DataBg />
 
@@ -71,6 +75,15 @@ function Layout({ headerStyle, footerStyle, headTitle,   breadcrumbTitle, childr
             <main className="fix">
                 {breadcrumbTitle && <Breadcrumb breadcrumbTitle={breadcrumbTitle} />}
 
+                <NextTopLoader
+                color="#fe7b12"
+                initialPosition={0.08}
+                crawlSpeed={200}
+                height={2}
+                crawl={true}
+                showSpinner={false}
+                easing="ease"
+                speed={200} />
                 {children}
             </main>
 
@@ -82,7 +95,7 @@ function Layout({ headerStyle, footerStyle, headTitle,   breadcrumbTitle, childr
             {footerStyle == 5 ? < Footer5 /> : null}
             {footerStyle == 6 ? < Footer6 /> : null}
             {footerStyle == 7 ? < Footer7 /> : null}
-
+            <FloatingLanguageSwitcher/>
             <BackToTop />
         </>
     )

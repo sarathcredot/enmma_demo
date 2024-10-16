@@ -40,7 +40,7 @@ export default function Services4() {
                                     </li>
                                     <li className="nav-item" onClick={() => handleOnClick(2)}>
                                         <button className={activeIndex == 2 ? "nav-link active" : "nav-link"} id="travel-tab" data-bs-toggle="tab" data-bs-target="#travel-tab-pane" type="button" role="tab" aria-controls="travel-tab-pane" aria-selected="false">
-                                            <i className="flaticon-travel-insurance" />
+                                            <i className=" flaticon-pin" />
                                             Travel Insurance
                                         </button>
                                     </li>

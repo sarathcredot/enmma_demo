@@ -887,7 +887,7 @@
             border: 0.8px solid #B4B4B4;
             padding: 17px 25px;
             @include border-radius(12px);
-            text-align: left;
+            text-align: initial;
             @include transform(rotate(90deg));
             position: absolute;
             left: -3%;
@@ -1278,7 +1278,7 @@
 
         & p {
             margin-bottom: 0;
-            text-align: left;
+            text-align: initial;
             color: var(--tg-color-white-default);
         }
     }

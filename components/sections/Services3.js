@@ -1,118 +1,76 @@
-import Link from 'next/link'
+'use client';
+import axios from 'axios';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
-export default function     Services3() {
+export default function Services3() {
+    const { t } = useTranslation('common');
+    const { i18n } = useTranslation();
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services/`);
+                setServices(response.data);
+            } catch (error) {
+                console.error("Error fetching services:", error);
+            }
+        };  
+        fetchServices();
+    }, []);
+
+    // Localize the data based on the current language
+    const localizedData = services.map(item => {
+        return {
+            ...item,
+            title: item[`title_${i18n.language}`] || item.title_en,
+            subtitle: item[`subtitle_${i18n.language}`] || item.subtitle_en,
+            description: item[`description_${i18n.language}`] || item.description_en
+        };
+    });
+
     return (
         <>
-            <section className="services__area-three services__bg-three" data-background="/assets/img/bg/h3_services_bg.jpg">
+            <section  className="services__area-three services__bg-three" data-background="/assets/img/bg/h3_services_bg.jpg">
                 <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-8">
-                            <div className="section-title white-title text-center mb-50 tg-heading-subheading animation-style3">
-                                <span className="sub-title">REALISNG EXCELLENCE IN REAL ESTATE</span>
-                                <h2 className="title tg-element-title">To Provide Outstanding Level of Services And Products To Our Clients </h2>
+                    <div className="row justify-content-start">
+                        <div  className="col-lg-8">
+                            <div className="section-title white-title  mb-50 tg-heading-subheading animation-style3">
+                                <span className="sub-title">{t('mainservice-subtitle')}</span>
+                                <h2 className="title tg-element-title title-sa ">{t('mainservice-title')}</h2>
                             </div>
                         </div>
                     </div>
-                    <div className="row justify-content-center gutter-24">
-                        <div className="col-lg-4 col-md-6">
-                            <div className="services__item-three">
-                                <div className="services__item-top">
-                                    <div className="services__icon-three">
-                                        <i className="flaticon-profit" />
-                                    </div>
-                                    <div className="services__item-top-title">
-                                        <h2 className="title"><Link href="">Trusted Real Estate Solutions</Link></h2>
-                                    </div>
-                                </div>
-                                <div className="services__content-three">
-                                    <p>Providing comprehensive real estate management, brokerage, and consultancy services with Sharia compliance</p>
-                                    {/* <Link href="" className="btn btn-two">Read More</Link> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="services__item-three">
-                                <div className="services__item-top">
-                                    <div className="services__icon-three">
-                                        <i className="flaticon-profit" />
-                                    </div>
-                                    <div className="services__top-title">
-                                        <h2 className="title"><Link href="">Innovative Property Management</Link></h2>
+                    <div className="row">
+                        {localizedData.length > 0 ? (
+                            localizedData.map((service) => (
+                                <div key={service._id} className="col-lg-4 col-md-6">
+                                    <div className="services__item-three">
+                                        <div className="services__item-top">
+                                            <div className="services__icon-three">
+                                                <i className="flaticon-profit" />
+                                            </div>
+                                            <div className="services__top-title">
+                                                <h2 className="title">
+                                                    <Link href="/services">{service.title}</Link>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div className="services__content-three">
+                                            <p>{service.description}</p>
+                                            {/* <Link href="" className="btn btn-two">Read More</Link> */}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="services__content-three">
-                                    <p>Developing sustainable solutions, setting new standards, and ensuring excellence in property management.</p>
-                                    {/* <Link href="" className="btn btn-two">Read More</Link> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="services__item-three">
-                                <div className="services__item-top">
-                                    <div className="services__icon-three">
-                                        <i className="flaticon-profit" />
-                                    </div>
-                                    <div className="services__top-title">
-                                        <h2 className="title"><Link href="">Cutting-edge Contracting Projects</Link></h2>
-                                    </div>
-                                </div>
-                                <div className="services__content-three">
-                                    <p>Implementing diverse construction projects, offering specialized contracting services, and integrating engineering solutions.</p>
-                                    {/* <Link href="" className="btn btn-two">Read More</Link> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="services__item-three">
-                                <div className="services__item-top">
-                                    <div className="services__icon-three">
-                                        <i className="flaticon-profit" />
-                                    </div>
-                                    <div className="services__top-title">
-                                        <h2 className="title"><Link href="">Premier Security Services</Link></h2>
-                                    </div>
-                                </div>
-                                <div className="services__content-three">
-                                    <p>Delivering security guarding services to ministries, institutions, and owned real estate, ensuring safety and protection.</p>
-                                    {/* <Link href="" className="btn btn-two">Read More</Link> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="services__item-three">
-                                <div className="services__item-top">
-                                    <div className="services__icon-three">
-                                        <i className="flaticon-profit" />
-                                    </div>
-                                    <div className="services__top-title">
-                                        <h2 className="title"><Link href="">BOT Project Management</Link></h2>
-                                    </div>
-                                </div>
-                                <div className="services__content-three">
-                                    <p>Successfully managing Souk Al Wataniya & Souk Al Dawliah, showcasing expertise in project development.</p>
-                                    {/* <Link href="" className="btn btn-two">Read More</Link> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="services__item-three">
-                                <div className="services__item-top">
-                                    <div className="services__icon-three">
-                                        <i className="flaticon-profit" />
-                                    </div>
-                                    <div className="services__top-title">
-                                        <h2 className="title"><Link href="">Client-Centric Approach</Link></h2>
-                                    </div>
-                                </div>
-                                <div className="services__content-three">
-                                    <p>Committing to exceptional service delivery, promoting economic Islamic work, and maximizing profits through innovation.</p>
-                                    {/* <Link href="" className="btn btn-two">Read More</Link> */}
-                                </div>
-                            </div>
-                        </div>
+                            ))
+                        ) : (
+                            <p>Loading services...</p>
+                        )}
                     </div>
                 </div>
             </section>
         </>
-    )
+    );
 }

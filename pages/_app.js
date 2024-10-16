@@ -1,4 +1,4 @@
-import { appWithTranslation } from 'next-i18next';
+import { appWithTranslation, useTranslation } from 'next-i18next';
 import { Inter, Outfit } from 'next/font/google';
 import '/public/assets/css/animate.min.css';
 import '/public/assets/css/bootstrap.min.css';
@@ -11,7 +11,8 @@ import '/public/assets/css/aos.css';
 import '/public/assets/css/default.css';
 import '/public/assets/css/main.css';
 import { useEffect } from 'react';
-import { useTranslation, i18n } from 'next-i18next';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({
   weight: ['300', '400', '500', '600', '700'],
@@ -19,6 +20,7 @@ const inter = Inter({
   variable: '--tg-body-font-family',
   display: 'swap',
 });
+
 const outfit = Outfit({
   weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
@@ -26,12 +28,8 @@ const outfit = Outfit({
   display: 'swap',
 });
 
-export const metadata = {
-  title: `ENMA'A`,
-};
-
 function MyApp({ Component, pageProps }) {
-    const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -41,8 +39,16 @@ function MyApp({ Component, pageProps }) {
       document.documentElement.setAttribute('dir', 'ltr');
     }
   }, [i18n.language]);
-  
-  return <Component {...pageProps} />;
+
+  return (
+    <>
+      <ToastContainer />
+      <Component {...pageProps} />;
+
+    </>
+
+  )
+
 }
 
 export default appWithTranslation(MyApp);
