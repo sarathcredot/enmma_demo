@@ -107,6 +107,8 @@ export async function getServerSideProps({ locale }) {
 
     if (!response.ok || !metadataResponse.ok) {
         throw new Error('Failed to fetch data');
+
+        
     }
 
     const allData = await response.json();
