@@ -31,7 +31,9 @@ export default function Slider2({ data }) {
     console.log("propsdata", data)
 
     return (
-        <>
+
+
+         <>
             <section className="slider__area">
                 <div className="swiper-container slider_baner__active slider_baner_home6  ">
                     {/* <Swiper {...swiperOptions} className="swiper-wrapper"> */}
@@ -65,9 +67,10 @@ export default function Slider2({ data }) {
                                     </div>
                                 </div>
                             </div>
+                            </div>
                         )) }
                             {/* </Swiper> */}
-                        </div>
+                       
                
                {/* <div className="box-button-slider-bottom">
                     <div className="container">
