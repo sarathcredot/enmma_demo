@@ -21,7 +21,7 @@ export default function Financialstatement({ initialData ,pageTitle,pageDescript
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
-                const fetchedData = data.filter(item => item.page === 'disclosure');
+                const fetchedData = data.filter(item => item.page === 'Financial');
                 setData(fetchedData);
             } catch (error) {
                 console.error('Failed to load data:', error);
@@ -79,23 +79,23 @@ export default function Financialstatement({ initialData ,pageTitle,pageDescript
                 <meta name="description" content={pageDescription} />
             </Head>
             <Layout headerStyle={6} footerStyle={3} >
-            <Banner1 data={getDataBySection('disclosure-banner')} />
+            <Banner1 data={getDataBySection('Financial-banner')} />
             
             <div className="container project__area-three ">
-                    <div className="row ">
-                        {getDataBySection('about-info-section').map((item) => (
-                    <div className="col-xl-7 space-betweeni col-lg-8">
-                            <div  className="  mb-50 dev_gover " >
+                    <div className="row container">
+                        {getDataBySection('Financial-heading').map((item) => (
+                    <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
+                            <div  className="  dev_gover   " >
                             <span className="">{item.subtitle}</span>
-                            <h2 className=" mt-4" style={{ color: '#110B79' }}>{item.title}</h2>
+                            <h2 className=" mt-4 text-wrap devtextwrapo" style={{ color: '#110B79' }}>{item.title}</h2>
                         </div>
-                            <div className="dev_customsize mt-4" style={{ color: '#282739' }}>{item.description}</div>
+                            <div className="dev_customsize  mt-0 mt-md-4" style={{ color: '#282739' }}>{item.description}</div>
                             </div>
                         ))}
 
-            < Statement showItem={6} style={1} showPagination/>
+            < Statement showItem={2} style={1} showPagination/>
             </div></div>
-            <Bannerfooter data={getDataBySection('financial-banner')}/> 
+            <Bannerfooter data={getDataBySection('Financial-contact')}/> 
             </Layout>
         </>
     )
@@ -103,7 +103,7 @@ export default function Financialstatement({ initialData ,pageTitle,pageDescript
 export async function getServerSideProps({ locale }) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
     const data = await response.json();
-    const fetchedData = data.filter(item => item.page === 'disclosure');
+    const fetchedData = data.filter(item => item.page === 'Financial');
     const metadataResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/pageMetadata/`);
 
     if (!response.ok || !metadataResponse.ok) {

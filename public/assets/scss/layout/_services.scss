@@ -1241,7 +1241,7 @@
 .section-more-btn {
     text-align: right;
     @media #{$md} {
-        text-align: left;
+        text-align: initial;
         margin-bottom: 50px;
     }
     & .border-btn {

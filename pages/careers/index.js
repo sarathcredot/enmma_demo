@@ -19,7 +19,7 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
-                const fetchedData = data.filter(item => item.page === 'annual-report');
+                const fetchedData = data.filter(item => item.page === 'career');
                 setData(fetchedData);
             } catch (error) {
                 console.error('Failed to load data:', error);
@@ -76,29 +76,29 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
     </Head>
 
             <Layout headerStyle={6} footerStyle={3}>
-            <Banner1 data={getDataBySection('annual-banner')} bgColor={"#110B79"} fontColor={"#FFFFFF"}fontColor2={'#FFFFFF'}/>
+            <Banner1 data={getDataBySection('career-banner')} bgColor={"#110B79"} fontColor={"#FFFFFF"}fontColor2={'#FFFFFF'}/>
             <div  className=" " style={{ backgroundColor: '#110B79' }}>
             <div className=" container project__area-three" >
-            {getDataBySection('annual-heading').map((item) => (
+            {getDataBySection('career-heading').map((item) => (
 
-                <div className="row ">
-                    <div key={item._id} className="col-xl-7 space-betweeni col-lg-8">
-                        <div className="  mb-50 dev_gover ">
+                <div className="row container">
+                    <div key={item._id} className="col-xl-7 space-betweeni col-lg-8 mb-5">
+                        <div className="  dev_gover">
                             <span className="">{item.subtitle}</span>
-                            <h2 className=" mt-4">{item.title}</h2>
+                            <h2 className=" mt-4 text-wrap devtextwrapo">{item.title}</h2>
                         </div>
-                        <div className="dev_customsize mt-4">{item.description}</div>
+                        <div className="dev_customsize  mt-0 mt-md-4">{item.description}</div>
                     </div>
                </div>
             ))}
             <Careerform  />
            
            </div>
-           <div className="dev-bottom container"><Sectionfoot data={getDataBySection('annual-contact')}/></div>  
+           <div className="dev-bottom container"><Sectionfoot /></div>  
 
             </div>
 
-            <Bannerfooter data={getDataBySection('annual-contact')}/>
+            <Bannerfooter data={getDataBySection('career-contact')}/>
             </Layout>
         </>
     )

@@ -159,7 +159,7 @@ i[class^=flaticon-]:before, i[class*=" flaticon-"]:before {
   content: "\f124";
 }
 
-.flaticon-travel-insurance:before {
+. flaticon-pin:before {
   content: "\f125";
 }
 

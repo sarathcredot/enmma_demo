@@ -1,16 +1,18 @@
 {
+  "home":"Home",
     "about": "About",
+    "our-story": "Our Story",
     "board_of_directors": "Board Of Directors",
     "management": "Management",
     "executive": "Executive",
-    "govt_bots": "Govt. Bots",
+    "govt_bots": "Government Bots",
     "services": "Services",
     "corporate_governance": "Corporate Governance",
     "investor_relations": "Investor Relations",
     "annual_report": "Annual report",
     "disclosures": "Disclosures",
     "financial_statement": "Financial Statement",
-    "info_center": "Info. Center",
+    "info_center": "Info Center",
     "latest_news": "Latest News",
     "careers": "Careers",
     "complaints": "Complaints",
@@ -26,10 +28,76 @@
     "location": "Location",
     "phone": "Phone",
     "email": "Email",
+    "Address": "Address",
     "address": "Abdullah Al-Mobarak Street, Al-Enmaa Tower, Kuwait City",
     "follow_us": "Follow Us on:",
     "copyright_text": "Copyright © 2024 Al Enmaa Real Estate Co. All rights reserved | Powered By Anathoth IT Solutions",
-    "company_description": "Al Enma’a Real Estate Company K.S.C.P was registered and incorporated in State of Kuwait in 1993."
-    
-  }
+    "company_description": "Al Enma’a Real Estate Company K.S.C.P was registered and incorporated in State of Kuwait in 1993.",
+    "read_more":"Read More",
+    "mainservice-subtitle":"REALISING EXCELLENCE IN REAL ESTATE",
+    "mainservice-title":"To Provide Outstanding Level of Services And Products To Our Clients",
+    "blog_subtitle":"OUR BLOG UPDATE",
+    "blog_title":"Featured News And Insights",
+    "Category": "Categories",
+    "latest_posts":"Latest Posts",
+    "tags":"Tags",
+    "banner-title":"Maximizing Value through Knowledge, Technology, and Innovation at Al Enma’a Real Estate Company",
+    "Complaint-title":"Give Us a Message",
+    "Complaint-subtitle":"We value your feedback. You can submit a complaint or offer a suggestion to help us improve our service.",
+    "Description-form":"Describe your complaint or suggestion",
+    "Contact-Number":"Contact Number",
+    "Civil-ID":"Civil ID",
+    "First-Name":"First Name", 
+    "Last-Name":"Last Name",
+    "Phone-Number":"Phone Number",
+    "submit":"Submit",
+    "Please-select":"Please select",
+    "complaint-contact-tittle":"How can we help you?",
+    "read-more":"Read More",
+  "more-services":"See More Services",
+
+
+   "Position-Applying-for":"Position Applying for",
+   "Full-Name":"Full Name",
+   "Gender":"Gender",
+   "Passport-Number":"Passport Number",
+   "Select-Nationality" :"Select Nationality",
+   "Degree-Level":"Degree Level",
+   "Career-Level":"Career Level",
+   "Briefly-describe-your-last-job-duties":"Briefly Describe your Last Job Duties",
+   "If-Any-Additional-Information":"If Any Additional Information",
+  "Upload-Your-Resume":"Upload Your Resume (pdf or docx only)",
+
+  "form-title1":"Give Us a Message",
+  "form-subtitle":"Your email address will not be published. Required fields are marked *",
+  "Contact-us":"Contact Us",
+  "message":"Message",
+  "contact-subtitle":"Reach out to us with any questions or requirements you have. We're committed to providing prompt and helpful service.",
+  "contact-title":"How can we help you?",
   
+
+
+
+
+  "mission-subtitle":"Pioneering Excellence in Real Estate Services",
+  "mission-title":"Our MIssion and Vision",
+  "mission-description":"We strive to be a trusted partner, providing sustainable solutions and setting new standards in real estate development and investment. Our goal is to deliver outstanding services and products, maximizing profits through the integration of knowledge, technology, and innovation. With a vision to become the premier choice in the real estate and security services sectors, we are dedicated to achieving the highest possible standards and exceeding our clients' expectations.",
+  "mission":"Mission",
+  "vison":"vison",
+  "mission-text": "To evolve as a trusted partner in property management and security services,To develop sustainable Property Management solutions, New standards in real estate development and investments,To provide outstanding level of services and products to our clients,Profit maximization through combining knowledge, technology, and innovation in all spectrum of real estate.",
+    "vision-text":"To become the first-choice partner of real estate and security services and to achieve highest possible standards in the real estate sector.",
+
+
+  "Diverse-Properties":"Diverse Properties",
+  "Trusted-Solutions":"Trusted Solutions",
+  "Trusted-Solutions-Description":"Your trusted source for premier real estate and security services, ensuring satisfaction and achieving the highest industry standards.",
+
+"Change-language":"تغيير اللغة إلى",
+
+"Blog":"Blog",
+"Blog-Description":"Your trusted source for premier real estate and security services, ensuring satisfaction and achieving the highest industry standards.",
+"chief-executive-officer":"Chief Executive Officer",
+"chief-executive-officer-name":"Abdulaziz Muflaq Alosaimi",
+"language":"Language"
+
+}

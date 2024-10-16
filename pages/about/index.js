@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from "next/head"
 
-export default function About({ initialData, pageTitle,pageDescription, }) {
- 
+export default function About({ initialData, pageTitle, pageDescription, }) {
+
     const { t, i18n } = useTranslation('common');
     const [data, setData] = useState(initialData);
 
@@ -25,9 +25,9 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
                 console.error('Failed to load data:', error);
             }
         }
-    
+
         loadData();
-    },  [i18n.language]);
+    }, [i18n.language]);
 
     const localizedData = data.map(item => {
         const localizedIcondata = {};
@@ -63,62 +63,90 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
             localizedIcondata,
             points: i18n.language === 'ar' ? localizedPointsAr : localizedPointsEn,
             buttonLink: item.buttonLink || "#",
-          
+
         };
     });
 
     const getDataBySection = (section) => localizedData.filter(item => item.section === section && item.status);
 
+
+
+
     return (
 
         <>
-           <Head>
+            <Head>
                 <title>{pageTitle}</title>
                 <meta name="description" content={pageDescription} />
             </Head>
             <Layout headerStyle={6} footerStyle={3} >
-                <Banner2 data={getDataBySection('about-banner')}  />
+                <Banner2 data={getDataBySection('about-banner')} />
                 <div>
-                <section className="about__area-four">
-  {getDataBySection('about-info-section').map((item) => (
-    <div key={item._id} className="container">
-      <div className="row align-items-center justify-content-center">
-        <div className="col-lg-6 col-md-9 col-sm-10">
-          <div className="about__img-wrap-four">
-            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
-            <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
-            <div className="about__award-box">
-              <div className="icon">
+                    <section  className="about__area-four">
+                        {getDataBySection('about-info-section').map((item) => (
+
+                            <>
+
+                            {console.log(item)}
+
+                                <div  key={item._id} className="container">
+                                    <div  className="row align-items-center justify-content-center">
+                                        <div className="col-lg-6 col-md-9 col-sm-10">
+                                            <div className="about__img-wrap-four">
+                                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={500} height={500} alt="" />
+                                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={300} height={100} alt="" />
+                                                <div className="about__award-box">
+                                                    {/* <div className="icon">
                 <i className="flaticon-time" />
-              </div>
-              <div className="content">
+              </div> */}
+                                                    {/* <div className="content" style={{position: 'relative',zIndex: '4'}}>
                 <h2 className="title">30+</h2>
-                <p>Years of Experiences <br />Property management  <br />& Investment</p>
-              </div>
-            </div>
-            <div className="shape">
-              <img src="/assets/img/images/inner_about_shape.jpg" alt="" className="alltuchtopdown" />
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-6">
-          <div className="about__content-four">
-            <div className="section-title mb-30">
-              <span className="sub-title">{item.subtitle}</span>
-              <h2 className="title">{item.title}</h2>
-            </div>
-            <p>{item.description}</p>
-            <Link href={item.buttonLink} className="btn">{item.buttonTitle}</Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  ))}
-</section>
+                <p className="w-50">Years of Experiences Property management & Investment</p>
+              </div> */}
+                                                </div>
+                                                <div className="shape">
+                                                    <img src="/assets/img/images/inner_about_shape.jpg" alt="" className="alltuchtopdown" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div   className="col-lg-6">
+                                           
+                                            <div className="about__content-four">
+                                                <div className="section-title mb-30">
+                                                    <span className="sub-title">{item.subtitle}</span>
+                                                    <h2 style={{ fontSize: "40px" }} className="title">{item.title}</h2>
+                                                </div>
+                                                <p style={{ color: '#282739' }}>{item.description}</p>
 
-                     <Counter2 data={getDataBySection('counter-about')} />
+                                                {item.buttonTitle ? (
+                                                    <Link href={item.buttonLink} className="btn">{item.buttonTitle}</Link>
 
-                   
+                                                ) : (
+                                                    <></>
+                                                )}
+
+
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+
+                            </>
+
+
+
+
+                        ))}
+
+
+
+                    </section>
+
+                    <Counter2 data={getDataBySection('about-counter')} />
+
+
                     <div className="brand__area">
                         <div className="container">
                             <div className="swiper-container brand-active">
@@ -127,41 +155,42 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
                     </div>
                     {/* brand-area */}
                     {/* choose-area */}
+
                     <section className="choose__area-four">
                         <div className="container">
                             <div className="row align-items-center">
                                 <div className="col-lg-5">
                                     <div className="choose__content-four">
                                         <div className="section-title white-title mb-20">
-                                            <span className="sub-title">Lorem ipsum dolor sit amet </span>
-                                            <h2 className="title">Our MIssion and Vision </h2>
+                                            <span className="sub-title">{t('mission-subtitle')} </span>
+                                            <h2 className="title text-sm-nowrap">{t('mission-title')}</h2>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet consectetur. Mus et rhoncus pretium euismod pellentesque. Consectetur lacus enim eleifend vitae nibh sem.lacus enim eleifend vitae nibh sem it amet consectetur.orem ipsum dolor sit amet consectetur. Mus et rhoncus pretium euismod pellentesque. Consectetur lacus enim eleifend vitae nibh sem.lacus enim eleifend vitae nibh sem it amet consectetur.</p>
+                                        <p>{t('mission-description')}</p>
                                     </div>
                                 </div>
                                 <div className="col-lg-7">
                                     <div className="choose__list-two">
-                                        <ul className="">
-                                           
+                                        <ul style={{ listStyle: "none" }}>
+
                                             <li>
-                                                <div className="choose__list-box-two">
-                                                    <div className="choose__list-icon-two">
-                                                    <SVG caseValue='case4'/>
+                                                <div  className="choose__list-box-two">
+                                                    <div  className="choose__list-icon-two">
+                                                        <SVG  caseValue='case4' />
                                                     </div>
                                                     <div className="choose__list-content-two">
-                                                        <h4 className="title">Mission</h4>
-                                                        <p>To evolve as a trusted partner in property management and security services.To develop sustainable Property Management solutions.</p>
+                                                        <h4 className="title">{t('mission')}</h4>
+                                                        <p>{t('mission-text')}</p>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="choose__list-box-two">
                                                     <div className="choose__list-icon-two">
-                                                    <SVG caseValue='case5'/>
+                                                        <SVG caseValue='case5' />
                                                     </div>
                                                     <div className="choose__list-content-two">
-                                                        <h4 className="title">Vision</h4>
-                                                        <p>To become the first-choice partner of real estate and security services and to achieve highest possible standards in the real estate sector</p>
+                                                        <h4 className="title">{t('vision')}</h4>
+                                                        <p>{t('vision-text')}</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -175,38 +204,47 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
                             <img src="/assets/img/images/inner_choose_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
                         </div>
                     </section>
-                    <Brand2/>
+
+
+                    <section className="container text-center my-5">
+
+                        <h1 className=" text-wrap">{t('banner-title')}</h1>
+
+                    </section>
+
                     {getDataBySection('about-contact').map((item) => (
-                    <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                <div className="col-lg-8">
-                                    <div className="request-content text-center">
-                                        <h2 className="title">{item.title}</h2>
-                                        <div className="content-bottom">
-                                            <Link  dir="ltr" href={`tel:${item.contact_number}`} className="btn">{item.contact_number}</Link>
-                                            <div className="content-right">
-                                                <div className="icon">
-                                                    <i className="flaticon-phone-call" />
-                                                </div>
-                                                <div className="content">
-                                                    {/* <span>Toll Free Call</span> */}
-                                                    <Link  dir="ltr" href={`tel:${item.contact_number}`}>{item.contact_number}</Link>
+                        <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
+                            <div className="container">
+                                <div className="row justify-content-center">
+                                    <div className="col-lg-8">
+                                        <div className="request-content text-center">
+                                            <h2 className="title">{item.title}</h2>
+                                            <div className="content-bottom">
+                                                <Link dir="ltr" href={`tel:${item.buttonLink}`} className="btn">{item.buttonTitle}</Link>
+                                                <div className="content-right">
+                                                    <div className="icon">
+                                                        <i className="flaticon-phone-call" />
+                                                    </div>
+                                                    <div className="content">
+                                                        {/* <span>Toll Free Call</span> */}
+                                                        <Link dir="ltr" href={`tel:${item.buttonLink}`}>{item.buttonLink}</Link>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="request-shape">
-                            <img src="/assets/img/images/request_shape01.png" alt="" data-aos="fade-right" data-aos-delay={400} />
-                            <img src="/assets/img/images/request_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
-                        </div>
-                    </section>
-                ))}
-                    </div>
-                    
+                            <div className="request-shape">
+                                <img src="/assets/img/images/request_shape01.png" alt="" data-aos="fade-right" data-aos-delay={400} />
+                                <img src="/assets/img/images/request_shape02.png" alt="" data-aos="fade-left" data-aos-delay={400} />
+                            </div>
+                        </section>
+                    ))}
+
+
+                </div>
+
             </Layout>
         </>
     )
@@ -236,6 +274,6 @@ export async function getServerSideProps({ locale }) {
             pageTitle,
             pageDescription,
             ...(await serverSideTranslations(locale, ['common'])),
-    },
-};
+        },
+    };
 }

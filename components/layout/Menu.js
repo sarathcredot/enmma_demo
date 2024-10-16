@@ -18,9 +18,11 @@ export default function Menu() {
                         <li><Link href="/index-8">08. IT Solutions</Link></li>
 
                     </ul>
-                </li> */}
+                    </li> */}
+                    <li> <Link href="/">{t("home")}</Link></li>
                 <li className="menu-item-has-children"><Link href="/about">{t('about')}</Link>
                     <ul className="sub-menu">
+                        <li><Link href="/about/"  >{t("our-story")}</Link></li>
                         <li><Link href="/about-sub/#director"  >{t("board_of_directors")}</Link></li>
                         <li><Link href="/about-sub/#management">{t("management")}</Link></li>
                         <li><Link href="/about-sub/#executive">{t("executive")}</Link></li>
@@ -28,12 +30,13 @@ export default function Menu() {
                         <li><Link href="/#about-4">Digital agency About</Link></li> */}
                     </ul>
                 </li>
+
                  <li> <Link href="/government">{t("govt_bots")}</Link></li>
                     <li> <Link href="/services">{t("services")}</Link></li>
-                    <li> <Link href="/corporate">{t("corporate_governance")}</Link></li>
 
                 <li className="menu-item-has-children"><Link href="#">{t("investor_relations")}</Link>
                     <ul className="sub-menu">
+                    <li> <Link href="/corporate">{t("corporate_governance")}</Link></li>
                         <li><Link href="/annual-report">{t("annual_report")}</Link></li>
                         <li><Link href="/disclosures">{t("disclosures")}</Link></li>
                         <li><Link href="/investor-relations">{t("investor_relations")}</Link></li>
