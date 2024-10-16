@@ -119,11 +119,18 @@ export async function getServerSideProps({ locale }) {
 
         console.log("err")
         throw new Error('Failed to fetch data');
+ 
+
     }
+
 
     // if (!response.ok || !metadataResponse.ok) {
     //     throw new Error('Failed to fetch data');
     // }
+
+
+    console.log("new branch")
+    
 
 
     const allData = await response.json();
