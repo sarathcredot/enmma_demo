@@ -55,9 +55,8 @@ export default function Project3({ data }) {
 
             <div className="row">
               <div className="col-12">
-                <Swiper {...swiperOptions} className="swiper-wrapper"> {/* Implement Swiper */}
-                  <SwiperSlide>
-                    <div className="project__item-three shine-animate-item">
+                
+              <div className="project__item-three shine-animate-item">
                       <div className="project__content-three">
                         <span>{item.subtitle}</span>
                         <h2 className="title">{item.sidebarSubtitle}</h2>
@@ -68,13 +67,6 @@ export default function Project3({ data }) {
                         <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                       </div>
                     </div>
-                  </SwiperSlide>
-                  {/* Add more SwiperSlides if necessary */}
-                </Swiper>
-
-                {/* Swiper Navigation Buttons */}
-                {/* <div className="swiper-button-next"> bt </div>
-                <div className="swiper-button-prev"> bt </div> */}
               
               </div>
             </div>
