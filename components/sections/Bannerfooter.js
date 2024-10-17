@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Bannerfooter({data}) {
     return (
         <>
-        {data.map((item) => (
+        {data?.map((item) => (
 
             <section key={item._id} className="request-area request-bg" data-background={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`}>
                         <div className="container">

@@ -17,7 +17,7 @@ export default function Servicesection({ services }) {
       </div>
       <div>
         <div className="dev-service-main">
-          {services.map((service) => {
+          {services?.map((service) => {
             return <ServiceItem service={service} />
           })}
         </div>

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import Banner1 from "@/components/sections/Banner1"
 import Bannerfooter from "@/components/sections/Bannerfooter"
 
-export default function BlogDetails() {
+export default function BlogDetails({data}) {
     let Router = useParams()
     const [blogPost, setBlogPost] = useState(null)
     const id = Router?.id || " "
