@@ -47,7 +47,7 @@ export default function Slider2({ data }) {
 
                                         <div className=" col-lg-8">
 
-                                            <div className="banner__content-three ">
+                                            <div  className="banner__content-three ">
                                                 <div className="text-25-years">
                                                     <span className="text-stroke">{item.sidebarNumber}</span>
                                                     <h4 className="text-experience">{item.sidebarSubtitle}</h4>
