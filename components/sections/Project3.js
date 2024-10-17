@@ -55,8 +55,8 @@ export default function Project3({ data }) {
 
             <div className="row">
               <div className="col-12">
-                <Swiper {...swiperOptions} className="swiper-wrapper"> {/* Implement Swiper */}
-                  <SwiperSlide>
+             <Swiper {...swiperOptions} className="swiper-wrapper"> 
+                  <SwiperSlide> 
                     <div className="project__item-three shine-animate-item">
                       <div className="project__content-three">
                         <span>{item.subtitle}</span>
@@ -69,7 +69,7 @@ export default function Project3({ data }) {
                       </div>
                     </div>
                   </SwiperSlide>
-                  {/* Add more SwiperSlides if necessary */}
+                  
                 </Swiper>
 
                 {/* Swiper Navigation Buttons */}
