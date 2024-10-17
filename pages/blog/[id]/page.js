@@ -11,10 +11,10 @@ import Bannerfooter from "@/components/sections/Bannerfooter"
 export default function BlogDetails() {
     let Router = useParams()
     const [blogPost, setBlogPost] = useState(null)
-    const id = Router.id || null
+    const id = Router?.id || " "
 
     useEffect(() => {
-        setBlogPost(data.find((data) => data.id == id))
+        setBlogPost(data?.find((data) => data.id == id))
     }, [id])
 
     return (

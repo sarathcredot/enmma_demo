@@ -31,7 +31,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
         loadData();
     }, [i18n.language]);
 
-    const localizedData = data.map(item => {
+    const localizedData = data?.map(item => {
         const localizedIcondata = {};
         Object.keys(item).forEach(key => {
             if (key.startsWith('icondata')) {
@@ -85,7 +85,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
 
                 <div className="container project__area-three ">
                     <div className="row container ">
-                        {getDataBySection('complaint-heading').map((item) => (
+                        {getDataBySection('complaint-heading')?.map((item) => (
                             <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
 
                                 <div className="  dev_gover   " >
