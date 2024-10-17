@@ -31,6 +31,7 @@ export default function Home({
     pageDescription,
 }) {
     const { t, i18n } = useTranslation('common');
+    console.log("hii")
 
     const localizeData = (data) => {
 
