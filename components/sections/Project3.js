@@ -5,34 +5,34 @@
 'use client';
 import Link from "next/link";
 import { useEffect } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-import SwiperCore, { Pagination, Autoplay, Navigation } from 'swiper'; // Import required modules
+// import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
+// import SwiperCore, { Pagination, Autoplay, Navigation } from 'swiper'; // Import required modules
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import 'swiper/css/navigation'; // Import Navigation styles
+// import 'swiper/css';
+// import 'swiper/css/pagination';
+// import 'swiper/css/autoplay';
+// import 'swiper/css/navigation'; // Import Navigation styles
 
 // Install Swiper modules
-SwiperCore.use([Pagination, Autoplay, Navigation]);
+// SwiperCore.use([Pagination, Autoplay, Navigation]);
 
 export default function Project3({ data }) {
   useEffect(() => {
     console.log("project3", data);
   }, []);
 
-  const swiperOptions = {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    pagination: { clickable: true },
-    autoplay: { delay: 3000 },
-    loop: true, // Enable loop if needed
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  };
+  // const swiperOptions = {
+  //   slidesPerView: 1,
+  //   spaceBetween: 20,
+  //   pagination: { clickable: true },
+  //   autoplay: { delay: 3000 },
+  //   loop: true, // Enable loop if needed
+  //   navigation: {
+  //     nextEl: '.swiper-button-next',
+  //     prevEl: '.swiper-button-prev',
+  //   },
+  // };
 
   return (
     <>
