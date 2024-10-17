@@ -324,7 +324,7 @@ enjoy the benefits of ownership without the hassle.
                                 </div>
                             </div>
                             <div className="mt-5">
-                                <Sectionfoot />{" "}
+                                {/* <Sectionfoot />{" "} */}
                             </div>
                         </div>
                     </div>
@@ -332,5 +332,7 @@ enjoy the benefits of ownership without the hassle.
                 </div>
             </Layout>
         </>
+
+
     );
 }
