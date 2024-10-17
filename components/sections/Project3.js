@@ -84,6 +84,7 @@ export default function Project3({ data }) {
               <img src="/assets/img/project/h3_project_shape01.png" alt="" data-aos="fade-left" data-aos-delay={400} />
               <img src="/assets/img/project/h3_project_shape02.png" alt="" className="alltuchtopdown" />
             </div>
+            </div>
         </section>
       ))}
     </>
