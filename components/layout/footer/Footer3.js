@@ -33,8 +33,8 @@ export default function Footer3() {
                                             <span className="title">{t("follow_us")}</span>
                                             <ul className="list-wrap">
                                                 {/* <li><Link href="##"><i className="fab fa-facebook-f" /></Link></li> */}
-                                                <li><Link href="##"> <SVG caseValue='case6'/></Link></li>
-                                                <li><Link href="##"><i className="fab fa-instagram" /></Link></li>
+                                                <li><Link href="/"> <SVG caseValue='case6'/></Link></li>
+                                                <li><Link href="/"><i className="fab fa-instagram" /></Link></li>
                                                 {/* <li><Link href="##"><i className="fab fa-pinterest-p" /></Link></li> */}
                                                 {/* <li><Link href="##"><i className="fab fa-youtube" /></Link></li> */}
                                             </ul>
@@ -46,10 +46,10 @@ export default function Footer3() {
                                         <h4 className="fw-title">{t("information_center")}</h4>
                                         <div className="footer-link-list">
                                             <ul className="list-wrap">
-                                                <li><Link href="#/about">{t("latest_news")}</Link></li>
-                                                <li><Link href="#/about">{t("careers")}</Link></li>
-                                                <li><Link href="#/team">{t("complaints_suggestions")}</Link></li>
-                                                <li><Link href="#/contact">{t("report_incident")}</Link></li>
+                                                <li><Link href="/blog">{t("latest_news")}</Link></li>
+                                                <li><Link href="/careers">{t("careers")}</Link></li>
+                                                <li><Link href="/complaints">{t("complaints_suggestions")}</Link></li>
+                                                <li><Link href="/contact">{t("report_incident")}</Link></li>
                                               
                                             </ul>
                                         </div>
@@ -60,10 +60,10 @@ export default function Footer3() {
                                         <h4 className="fw-title">{t("quick_links")}</h4>
                                         <div className="footer-link-list">
                                             <ul className="list-wrap">
-                                                <li><Link href="#/about">{t("search_properties")}</Link></li>
-                                                <li><Link href="#/contact">{t("pay_rent_online")}</Link></li>
-                                                <li><Link href="#/contact">{t("government_bots")}</Link></li>
-                                                <li><Link href="#/contact">{t("services")}</Link></li>
+                                                <li><Link href="/">{t("search_properties")}</Link></li>
+                                                <li><Link href="/">{t("pay_rent_online")}</Link></li>
+                                                <li><Link href="/government">{t("government_bots")}</Link></li>
+                                                <li><Link href="/services">{t("services")}</Link></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@ export default function Footer3() {
                                                         <i className="flaticon-envelope" />
                                                     </div>
                                                     <div className="content dir-ltr">
-                                                        <Link href="#mailto:enmaa@enmaa.com">enmaa@enmaa.com</Link>
+                                                        <Link href="mailto:enmaa@enmaa.com">enmaa@enmaa.com</Link>
                                                     </div>
                                                 </li>
                                                 <li>
