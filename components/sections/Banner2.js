@@ -33,6 +33,7 @@ const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
                 </div>
 
                 <div className="breadcrumb__shape">
+                   
                     <img src="/assets/img/images/breadcrumb_shape01.png" alt="" />
                     <img src="/assets/img/images/breadcrumb_shape02.png" alt="" className="rightToLeft" />
                     <img src="/assets/img/images/breadcrumb_shape03.png"  alt="" />

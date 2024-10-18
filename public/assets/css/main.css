@@ -1083,8 +1083,10 @@ textarea {
   z-index: -1;
 }
 .breadcrumb__shape img:nth-child(1) {
+  
   right: 20%;
   top: 14%;
+  
 }
 @media (max-width: 767.98px) {
   .breadcrumb__shape img:nth-child(1) {
@@ -4241,6 +4243,11 @@ text-align: initial;
       }
 
 
+}
+
+.new-title{
+
+    font-size: 40px;
 }
 
 
