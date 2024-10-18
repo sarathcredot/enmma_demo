@@ -12,6 +12,7 @@ export default function BlogPost3() {
         const fetchBlog = async () => {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/blog/`);
+               console.log("blog and news data",response.data.BlogPosts)
                 setBlog(response.data.blogPosts || []);  // Ensure you're accessing the blogPosts array correctly
             } catch (error) {
                 console.error("Error fetching Blog:", error);

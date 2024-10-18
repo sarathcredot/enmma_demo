@@ -211,7 +211,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
 
                     <section className="container text-center my-5">
 
-                        <h1 className=" text-wrap">{t('banner-title')}</h1>
+                        <h1 className=" new-title text-wrap">{t('banner-title')}</h1>
 
                     </section>
 

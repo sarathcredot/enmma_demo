@@ -4242,6 +4242,18 @@ text-align: initial;
 
 
 }
+
+
+@media(max-width:900px){
+
+     .new-title{
+
+         font-size: 28px;
+     }
+}
+
+
+
 .about__list-img {
   width: 184px;
   flex: 0 0 auto;

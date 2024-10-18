@@ -1,4 +1,5 @@
 import Sectionfoot from "@/components/layout/DevsectionFoot"
+import Link from "next/link"
 
 
 export default function Marketingexpert1({ data, datas }) {
@@ -19,7 +20,7 @@ export default function Marketingexpert1({ data, datas }) {
 
                                 </ul>
                             </div>
-                            <a href={item.buttonLink} className="btn btn-two">{item.buttonTitle}</a>
+                            <Link href="/about" className="btn btn-two">{item.buttonTitle}</Link>
                         </div>
                         <div   className="col-lg-7 mb-30 position-relative">
                             <img src="/assets/img/home6/icon-square.svg" className="shape-top-right" />

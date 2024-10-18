@@ -12,7 +12,8 @@ export default function Services3() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services/`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services`);
+                console.log( "service data", response.data)
                 setServices(response.data);
             } catch (error) {
                 console.error("Error fetching services:", error);

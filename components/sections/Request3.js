@@ -20,7 +20,7 @@ export default function Request3({data}) {
                                     </div>
                                     <div className="content">
                                         {/* <span>Contact US</span> */}
-                                        <Link href={item.email}>{item.email}</Link>
+                                        <Link href="mailto:enmaa@enmaa.com">{item.email}</Link>
                                     </div>
                                 </div>
                                 <div className="request__phone">

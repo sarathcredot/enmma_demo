@@ -47,8 +47,9 @@ export default function Project3({ data }) {
                 </div>
 
                 <div className="dev_customsize classMedia mt-0 mt-md-4">
-                  Our power of choice is untrammelled and when nothing <br />
-                  prevents being able to do what we like best every pleasure.
+                {item.description}
+                  {/* Our power of choice is untrammelled and when nothing <br />
+                  prevents being able to do what we like best every pleasure. */}
                 </div>
               </div>
             </div>
