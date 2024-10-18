@@ -14525,9 +14525,22 @@ margin-bottom: 20px;
   margin-top: 0px;
   position: relative;
   z-index: 3;
-  bottom: -80px;
+  bottom: -130px;
 
 }
+
+@media(max-width:400px){
+
+    .box-video-small{
+
+      bottom: -80px;
+    }
+}
+
+
+
+
+
 
 .item-video-small {
   display: flex;

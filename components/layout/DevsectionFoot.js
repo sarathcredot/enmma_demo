@@ -9,7 +9,7 @@ const DevsectionFoot = ({ data, bgColor, fontColor, fontColor2 }) => {
         <>
             {data && data.length > 0 ? (
                 data?.map((item) => (
-                    <div key={item._id} className="box-video-small">
+                    <div  key={item._id} className="box-video-small">
                         <div className="item-video-small" style={{ backgroundColor: bgColor }}>
                             <div className="video-small-left">
                                 <div className="video-small-left-inner">

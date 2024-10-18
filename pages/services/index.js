@@ -26,6 +26,8 @@ export default function Services({ initialData }) {
     setLocalizedData(localizedData);
   }
 
+  console.log(localizedData)
+
   const getBannerDataFromMetaData = (meta) => {
     return meta.map((item) => {
       return {

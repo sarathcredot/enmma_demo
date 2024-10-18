@@ -111,6 +111,7 @@ export function ServicePoints({ servicePoints }) {
                       className={
                         activeIndex == index ? "nav-link active" : "nav-link"
                       }
+                      style={{display:"flex",alignItems:"center"}}
                       id="health-tab"
                       data-bs-toggle="tab"
                       data-bs-target="#health-tab-pane"
