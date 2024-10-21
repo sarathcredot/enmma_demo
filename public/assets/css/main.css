@@ -12772,7 +12772,10 @@ margin-bottom: 20px;
 }
 
 
+.new{
 
+    font-size: 30px;
+}
 
 
 .contact__form-wrap .title {
@@ -14166,6 +14169,11 @@ margin-bottom: 20px;
 .slider_baner_home6 .banner__content-three p {
   margin-bottom: 30px;
 }
+
+
+
+
+
 .slider_baner_home6 .slider__single {
   max-height: 693px;
   }

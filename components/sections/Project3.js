@@ -42,7 +42,7 @@ export default function Project3({ data }) {
             <div className="row justify-content-center">
               <div style={{ width: "100%", display: "flex", gap: "200px", paddingTop: "20px" }} className="col-xl-7 col-lg-8">
                 <div style={{ width: "500px" }} className="section-title mb-40 tg-heading-subheading animation-style3">
-                  <span className="sub-title justify-content-center"> {item.subtitle} </span>
+                  <span style={{fontSize:"15px"}}   className="sub-title justify-content-center"> {item.subtitle} </span>
                   <h5 className="title">{item.title} </h5>
                 </div>
 

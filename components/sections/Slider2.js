@@ -47,7 +47,7 @@ export default function Slider2({ data }) {
                                                     <span className="text-stroke">{item.sidebarNumber}</span>
                                                     <h4 className="text-experience">{item.sidebarSubtitle}</h4>
                                                 </div>
-                                                <span  className=" sub-title aos-init aos-animate">{item.subtitle}</span>
+                                                <span style={{fontSize:"15px"}}  className="sub-title   aos-init aos-animate">{item.subtitle}</span>
                                                 <h2 className="title">{item.title}</h2>
                                                 <p>{item.description}</p>
                                                 {item.buttonTitle ? (
