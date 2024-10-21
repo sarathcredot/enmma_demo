@@ -14,7 +14,7 @@ const DevsectionFoot = ({ data, bgColor, fontColor, fontColor2 }) => {
                             <div className="video-small-left">
                                 <div className="video-small-left-inner">
                                     <div className="video-small-left-1">
-                                        <h3 dir='ltr'>{item.sidebarNumber || "50"}+</h3>
+                                        <h3 dir='ltr'>{item.sidebarNumber || "50"}</h3>
                                         <p>{item.sidebarSubtitle || t('Diverse-properties')}</p>
                                     </div>
                                     <div className="video-small-left-2">

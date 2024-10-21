@@ -149,6 +149,7 @@ export function CorporatePoints({ corporatePoints }) {
                       >
                         <i className=" flaticon-pin" />
                         {corporatePoint.title}
+                     
                       </button>
                     </Link>
                   </li>

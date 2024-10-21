@@ -224,7 +224,7 @@ export default function Contact({ data1, data }) {
                         </div>
                         <div className="content">
                           <h4 className="title">{t('phone')}</h4>
-                          <Link dir="ltr" href="tel:0123456789">+48 1866667</Link>
+                          <Link dir="ltr" href="tel:0123456789">+ 88(9600)6002</Link>
                         </div>
                       </li>
                       <li>
