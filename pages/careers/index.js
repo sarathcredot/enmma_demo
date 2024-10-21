@@ -19,6 +19,7 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
             try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
                 const data = await response.json();
+                console.log( "data",data)
                 const fetchedData = data.filter(item => item.page === 'career');
                 setData(fetchedData);
             } catch (error) {
@@ -94,7 +95,9 @@ export default function About({ initialData, pageTitle,pageDescription, }) {
             <Careerform  />
            
            </div>
-           <div className="dev-bottom container"><Sectionfoot /></div>  
+           <div className="dev-bottom container">
+            <Sectionfoot />
+            </div>  
 
             </div>
 

@@ -86,7 +86,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                 <div className="container project__area-three ">
                     <div className="row container ">
                         {getDataBySection('complaint-heading')?.map((item) => (
-                            <div className="col-xl-7 space-betweeni col-lg-8 mb-5">
+                            <div className="col-xl-7 space-betweeni col-lg-8 ">
 
                                 <div className="  dev_gover   " >
                                     <span className="">{item.subtitle}</span>
@@ -97,7 +97,8 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                         ))}
                         <Complaintsec />
 
-                    </div></div>
+                    </div>
+                    </div>
                 <Bannerfooter data={getDataBySection('complaint-contact')} />
             </Layout>
         </>
