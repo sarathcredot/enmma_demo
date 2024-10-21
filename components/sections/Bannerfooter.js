@@ -12,7 +12,7 @@ export default function Bannerfooter({data}) {
                                     <div className="request-content text-center">
                                         <h2 className="title">{item.title}</h2>
                                         <div className="content-bottom">
-                                            <Link href={item.buttonLink} className="btn">{item.subtitle}</Link>
+                                            <Link href="/contact" className="btn">{item.subtitle}</Link>
                                             <div className="content-right">
                                                 <div className="icon">
                                                     <i className="flaticon-phone-call" />

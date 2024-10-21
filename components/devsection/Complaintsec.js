@@ -125,7 +125,7 @@ export default function Complaintsection() {
       <section  className="contact__area">
         <div  className="container">
           <div className="row">
-            <div className="row align-items-center  ">
+            <div className="row align-items-center ">
               <div  dir="ltr" className="col-lg-8  ">
                 <div  className="contact__form-wrap">
                   <h2 className="title">{t('Complaint-title')}</h2>
