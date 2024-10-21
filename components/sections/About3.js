@@ -23,7 +23,7 @@ export default function About3({ data }) {
                             <div className="col-lg-6">
                                 <div className="about__content-three">
                                     <div className="section-title mb-25 tg-heading-subheading animation-style3">
-                                        <span style={{fontSize:"15px"}}  className="sub-title">{item.subtitle}</span>
+                                        <span style={{fontSize:"18px"}}  className="sub-title">{item.subtitle}</span>
                                         <h2 className="title tg-element-title">{item.title}</h2>
                                     </div>
                                     <p>{item.description}</p>
