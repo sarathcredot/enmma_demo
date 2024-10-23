@@ -1,4 +1,7 @@
 // Utility function to convert a object to its localization based on the language
+
+
+
 export function getLocalized(item, language) {
   var localizedObject = {};
   Object.keys(item).forEach((key) => {

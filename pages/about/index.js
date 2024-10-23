@@ -67,6 +67,8 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
         };
     });
 
+    
+
     const getDataBySection = (section) => localizedData.filter(item => item.section === section && item.status);
 
 

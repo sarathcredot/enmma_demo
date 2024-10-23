@@ -1,6 +1,12 @@
 import Link from 'next/link';
 
 const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
+
+
+ 
+
+
+
     return (
         <>
         {data.map((item) => (
@@ -11,12 +17,15 @@ const Banner2 = ({data,  bgColor, fontColor,fontColor2 }) => {
                         <div className="col-lg-9">
                             <div className="banner__content-two">
                                 <h2   className="title "style={{  color: fontColor  }} data-aos="fade-up" data-aos-delay={100}>{item.title}</h2>
-                                <p data-aos="fade-up" style={{  color: fontColor2 }} data-aos-delay={300}>{item.description}</p>
+                                <p data-aos="fade-up" style={{  color: fontColor2 }} data-aos-delay={300}>{item.description[0]}</p>
                                 {/* <Link href="/contact" className="btn border-btn" data-aos="fade-up" data-aos-delay={600}>Get Started</Link> */}
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
                 {/* <div className="banner-social banner-social-two">
                     <h5 className="title">Follow us</h5>
                     <ul className="list-wrap">

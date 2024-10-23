@@ -12,43 +12,141 @@ import { getLocalized } from "@/util/localization-helper"
 export default function Services({ initialData }) {
   const { t, i18n } = useTranslation("common");
   const [localizedData, setLocalizedData] = useState(initialData);
+  const [bannerdata, setbannerdata] = useState([])
 
-  useEffect(() => {
-    localize();
-  }, []);
 
-  useEffect(() => {
-    localize();
-  }, [i18n.language]);
 
-  const localize = () => {
-    const localizedData = getLocalized(initialData, i18n.language);
-    setLocalizedData(localizedData);
+  async function getbannerdata() {
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
+      const data = await response.json();
+      const fetchedData = data.filter(item => item.page === 'service');
+
+      setbannerdata(() => fetchedData)
+
+      console.log("banner data", fetchedData)
+
+    } catch (error) {
+      console.error('Failed to load data:', error);
+    }
   }
 
-  console.log(localizedData)
 
-  const getBannerDataFromMetaData = (meta) => {
-    return meta.map((item) => {
-      return {
-        title: item["pageTitle"],
-        description: item["pageDescription"]
-      };
+  useEffect(() => {
+    getbannerdata()
+    localize();
+
+  }, []);
+
+
+
+  useEffect(() => {
+    getbannerdata()
+    localize();
+
+  }, [i18n.language]);
+
+
+
+
+  const localize = () => {
+
+    const localizedData = getLocalized(initialData, i18n.language);
+
+    setLocalizedData(localizedData);
+
+  }
+
+
+  
+
+  useEffect(() => {
+    async function loadData() {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
+            const data = await response.json();
+            const fetchedData = data.filter(item => item.page === 'service');
+            setbannerdata(fetchedData);
+        } catch (error) {
+            console.error('Failed to load data:', error);
+        }
+    }
+
+    loadData();
+}, [i18n.language]);
+
+const localizedbannerData = bannerdata.map(item => {
+    const localizedIcondata = {};
+    Object.keys(item).forEach(key => {
+        if (key.startsWith('icondata')) {
+            localizedIcondata[key] = {
+                ...item[key],
+                title: item[key][`title_${i18n.language}`] || item[key].title_en,
+                number: item[key][`number_${i18n.language}`] || item[key].number_en,
+            };
+        }
     });
-  };
+    const localizedPointsEn = {};
+    const localizedPointsAr = {};
+    if (item.points_en) {
+        Object.keys(item.points_en).forEach(pointKey => {
+            localizedPointsEn[pointKey] = item.points_en[pointKey];
+        });
+    }
+    if (item.points_ar) {
+        Object.keys(item.points_ar).forEach(pointKey => {
+            localizedPointsAr[pointKey] = item.points_ar[pointKey];
+        });
+    }
+    return {
+        ...item,
+        title: item[`title_${i18n.language}`] || item.title_en,
+        subtitle: item[`subtitle_${i18n.language}`] || item.subtitle_en,
+        description: item[`description_${i18n.language}`] || item.description_en,
+        sidebarSubtitle: item[`sidebarSubtitle_${i18n.language}`] || item.sidebarSubtitle_en,
+        sidebarNumber: item[`sidebarNumber_${i18n.language}`] || item.sidebarNumber_en,
+        buttonTitle: item[`buttonTitle_${i18n.language}`] || item.buttonTitle_en,
+        localizedIcondata,
+        points: i18n.language === 'ar' ? localizedPointsAr : localizedPointsEn,
+        buttonLink: item.buttonLink || "#",
+
+    };
+});
+
+
+
+const getDataBySection = (section) => localizedbannerData.filter(item => item.section === section && item.status);
+
+
+
+ console.log("data",getDataBySection("service_banner"))
+
+
+  // const getBannerDataFromMetaData = (meta) => {
+  //   return meta.map((item) => {
+  //     return {
+  //       title: item["title_en"],
+  //       description: item["title_ar"]
+  //     };
+  //   });
+  // };
 
   return (
     <>
       <Layout headerStyle={6} footerStyle={3}>
+
         <Banner2
-          data={getBannerDataFromMetaData(localizedData.meta)}
+          data={getDataBySection("service_banner")}
           bgColor={"#110B79"}
           fontColor={"#FFFFFF"}
           fontColor2={"#FFFFFF"}
         />
+
+
         <div style={{ backgroundColor: "#110B79" }}>
           <div className="container">
-            <Servicesection services={localizedData.services}/>
+            <Servicesection services={localizedData.services} />
             <Sectionfoot data={[{}]} />
           </div>
         </div>
@@ -62,7 +160,7 @@ export default function Services({ initialData }) {
               <div className="col-lg-5 col-md-8">
                 <div className="testimonial__img-wrap-two">
                   <img src="/assets/img/images/h3_testimonial_img.png" alt="" />
-                  
+
                   <div className="testimonial__img-shape-two">
                     <img
                       src="/assets/img/images/h3_testimonial_shape01.png"
@@ -79,10 +177,10 @@ export default function Services({ initialData }) {
                       alt=""
                     />
                   </div>
-               
+
                 </div>
               </div>
-             
+
               <div className="col-lg-7">
                 <div className="testimonial__item-wrap">
                   <div className="swiper-container testimonial-active-two">
@@ -90,7 +188,7 @@ export default function Services({ initialData }) {
                   </div>
                 </div>
               </div>
-            
+
             </div>
           </div>
         </section>
