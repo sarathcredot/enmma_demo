@@ -96,7 +96,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                         <div className="col-lg-6 col-md-9 col-sm-10">
                                             <div className="about__img-wrap-four">
                                                 <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={500} height={500} alt="" />
-                                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} width={300} height={100} alt="" />
+                                                <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.secondImage}`} width={300} height={100} alt="" />
                                                 <div className="about__award-box">
                                                     {/* <div className="icon">
                 <i className="flaticon-time" />

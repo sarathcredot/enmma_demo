@@ -12,29 +12,25 @@ import { getLocalized } from "@/util/localization-helper"
 export default function Services({ initialData }) {
   const { t, i18n } = useTranslation("common");
   const [localizedData, setLocalizedData] = useState(initialData);
-  const [bannerdata, setbannerdata] = useState([])
+  const [bannerdata, setbannerdata] = useState([
+
+    
+        {
+          choicesBlog:[],
+          choicesService:[],
+          choicesTeam:[],
+          description_ar:['\nنحن نقدم مجموعة واسعة من الخدمات لتلبية احتياجاتك. استكشف عروضنا.\n']
+    
+        }
+
+  ])
 
 
 
-  async function getbannerdata() {
-
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
-      const data = await response.json();
-      const fetchedData = data.filter(item => item.page === 'service');
-
-      setbannerdata(() => fetchedData)
-
-      console.log("banner data", fetchedData)
-
-    } catch (error) {
-      console.error('Failed to load data:', error);
-    }
-  }
 
 
   useEffect(() => {
-    getbannerdata()
+    // getbannerdata()
     localize();
 
   }, []);
@@ -42,7 +38,7 @@ export default function Services({ initialData }) {
 
 
   useEffect(() => {
-    getbannerdata()
+    // getbannerdata()
     localize();
 
   }, [i18n.language]);
@@ -67,7 +63,14 @@ export default function Services({ initialData }) {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cms`);
             const data = await response.json();
             const fetchedData = data.filter(item => item.page === 'service');
-            setbannerdata(fetchedData);
+
+            console.log( "newdata", fetchedData)
+
+             if(fetchedData){
+                
+              setbannerdata(fetchedData);
+             }
+            
         } catch (error) {
             console.error('Failed to load data:', error);
         }
