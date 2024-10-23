@@ -4025,6 +4025,25 @@ text-align: initial;
 .about__content-four p {
   margin-bottom: 30px;
 }
+
+
+.about__content-four h2{
+
+    font-size: 40px;
+}
+
+
+
+@media(max-width:700px){
+
+  .about__content-four h2{
+
+    font-size: 28px;
+}
+
+}
+
+
 .about__content-five .section-title .title span {
   font-weight: 400;
 }
@@ -4247,7 +4266,7 @@ text-align: initial;
 
 .new-title{
 
-    font-size: 40px;
+    font-size: 36px;
 }
 
 
@@ -4255,7 +4274,7 @@ text-align: initial;
 
      .new-title{
 
-         font-size: 28px;
+         font-size: 24px;
      }
 }
 
@@ -8023,6 +8042,7 @@ display: none;  }
   color: var(--tg-theme-primary);
   display: block;
   margin-bottom: 5px;
+  font-size: 18px;
 }
 .project__content-three .title {
   font-size: 24px;
@@ -15688,6 +15708,17 @@ text-align: initial;
     color: #100B74;
     font-size: 26px;
   }
+
+ @media(max-width:700px){
+
+  .dev-service-content h1 {
+   
+    font-size: 28px;
+  
+  }
+
+    
+}
 
 
 

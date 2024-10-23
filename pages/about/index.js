@@ -117,7 +117,7 @@ export default function About({ initialData, pageTitle, pageDescription, }) {
                                             <div className="about__content-four">
                                                 <div className="section-title mb-30">
                                                     <span style={{fontSize:"18px"}}  className="sub-title">{item.subtitle}</span>
-                                                    <h2 style={{ fontSize: "40px" }} className="title">{item.title}</h2>
+                                                    <h2 className="title">{item.title}</h2>
                                                 </div>
                                                 <p style={{ color: '#282739' }}>{item.description}</p>
 
