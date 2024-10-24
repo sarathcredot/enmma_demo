@@ -7,63 +7,51 @@ import Link from "next/link";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import Slider from 'react-slick';
+import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
+import { useRef } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 export default function Project3({ data }) {
 
-  const [respo, setrespo] = useState([
+  const slider = useRef(null);
 
-    {
-      id: 1,
-      subtitle: "subtitle 1",
-      sidebarSubtitle: "sidebarSubtitle 1",
-      description: "description 1",
-
-
-
-
-    },
-    {
-      id: 23,
-      subtitle: "subtitle 2",
-      sidebarSubtitle: "sidebarSubtitle 2",
-      description: "description 2",
-
-
-
-
-    },
-    {
-      id: 2,
-      subtitle: "subtitle 3",
-      sidebarSubtitle: "sidebarSubtitle 3",
-      description: "description 3",
-
-
-
-
-    }
-  ])
+  const [respo, setrespo] = useState([])
 
 
   useEffect(async () => {
 
 
-    await axios(process.env.NEXT_PUBLIC_BASE_URL).then((respo) => {
+    await axios(`${process.env.NEXT_PUBLIC_BASE_URL}/${"services"}`).then((respo) => {
 
-      // console.log("service data", respo.data)
+      console.log("my data", respo.data)
+      setrespo(respo.data)
     })
 
 
   }, []);
 
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    // centerPadding: '50px',
+    // centerMode: true,
+    slidesToScroll: 1,
+    autoplay: true,
+    arrows: false,
 
-  
+  }
+
 
 
   return (
     <>
-      {data.map((item) => (
+
+
+      {data?.map((item) => (
         <section key={item._id} className="project__area-three project__bg-three" data-background="/assets/img/bg/h3_project_bg.jpg">
           <div className="container">
             <div className="row justify-content-center">
@@ -75,13 +63,66 @@ export default function Project3({ data }) {
 
                 <div className="dev_customsize classMedia mt-0 mt-md-4">
                   {item.description}
-                  {/* Our power of choice is untrammelled and when nothing <br />
-                  prevents being able to do what we like best every pleasure. */}
+
                 </div>
               </div>
             </div>
 
-            <div className="row">
+
+
+            <Slider ref={slider} {...settings}>
+
+
+              {respo.map((item, index) => (
+
+
+                <div className="row">
+                  <div className="col-12">
+
+
+                    <div className="project__item-three shine-animate-item">
+
+
+                      <div className="project__item-three shine-animate-item">
+
+                        <div className="project__content-three">
+                          <span>{item.subHeading1_en}</span>
+                          <h2 className="title">{item.title_en}</h2>
+                        
+                          <p>{item.description_en}</p>
+                         
+                         
+                          <Link href="" className="btn btn-two">Read More</Link>
+                        </div>
+
+
+
+                        <div className="project__thumb-three shine-animate">
+                          <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.imageUrl}`} alt="" />
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+              ))}
+
+
+
+
+
+
+
+
+            </Slider>
+
+
+            {/* <div className="row">
               <div className="col-12">
 
 
@@ -100,16 +141,24 @@ export default function Project3({ data }) {
 
 
                     <div className="project__thumb-three shine-animate">
-                      <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
+                      <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.imageUrl}`} alt="" />
                     </div>
                   </div>
 
-
-
+            
 
                 </div>
               </div>
-            </div>
+            </div> */}
+
+
+
+
+
+
+
+
+
 
             <div className="project__shape-wrap-three">
               <img src="/assets/img/project/h3_project_shape01.png" alt="" data-aos="fade-left" data-aos-delay={400} />
@@ -118,6 +167,8 @@ export default function Project3({ data }) {
           </div>
         </section>
       ))}
+
+      {/* </Slider> */}
     </>
   );
 }
