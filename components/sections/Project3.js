@@ -16,8 +16,54 @@ export default function Project3({ data }) {
   const slider = useRef(null);
   const [services, setServices] = useState([]);
 
+// <<<<<<< HEAD
   const { t } = useTranslation('common');
   const { i18n } = useTranslation();
+// =======
+//   const [respo, setrespo] = useState([
+
+//     {
+//       id: 1,
+//       subtitle: "subtitle 1",
+//       sidebarSubtitle: "sidebarSubtitle 1",
+//       description: "description 1",
+
+
+
+
+//     },
+//     {
+//       id: 23,
+//       subtitle: "subtitle 2",
+//       sidebarSubtitle: "sidebarSubtitle 2",
+//       description: "description 2",
+
+
+
+
+//     },
+//     {
+//       id: 2,
+//       subtitle: "subtitle 3",
+//       sidebarSubtitle: "sidebarSubtitle 3",
+//       description: "description 3",
+
+
+
+
+//     }
+//   ])
+
+
+//   useEffect(async () => {
+
+
+//     await axios(process.env.NEXT_PUBLIC_BASE_URL).then((respo) => {
+
+//       console.log("service data", respo.data)
+//     })
+
+// >>>>>>> main
 
   useEffect(() => {
     const fetchServices = async () => {
