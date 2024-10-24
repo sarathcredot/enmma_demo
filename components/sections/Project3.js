@@ -2,12 +2,12 @@
 
 
 
+
 'use client';
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Slider from 'react-slick';
-import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from 'next-i18next';
@@ -16,54 +16,8 @@ export default function Project3({ data }) {
   const slider = useRef(null);
   const [services, setServices] = useState([]);
 
-// <<<<<<< HEAD
   const { t } = useTranslation('common');
   const { i18n } = useTranslation();
-// =======
-//   const [respo, setrespo] = useState([
-
-//     {
-//       id: 1,
-//       subtitle: "subtitle 1",
-//       sidebarSubtitle: "sidebarSubtitle 1",
-//       description: "description 1",
-
-
-
-
-//     },
-//     {
-//       id: 23,
-//       subtitle: "subtitle 2",
-//       sidebarSubtitle: "sidebarSubtitle 2",
-//       description: "description 2",
-
-
-
-
-//     },
-//     {
-//       id: 2,
-//       subtitle: "subtitle 3",
-//       sidebarSubtitle: "sidebarSubtitle 3",
-//       description: "description 3",
-
-
-
-
-//     }
-//   ])
-
-
-//   useEffect(async () => {
-
-
-//     await axios(process.env.NEXT_PUBLIC_BASE_URL).then((respo) => {
-
-//       console.log("service data", respo.data)
-//     })
-
-// >>>>>>> main
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -101,7 +55,8 @@ export default function Project3({ data }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    arrows: false
+    arrows: false, // No arrows
+    dots: true // Enable dots for focusing
   };
 
   return (
@@ -146,13 +101,6 @@ export default function Project3({ data }) {
               ))}
             </Slider>
 
-            <div className="slider-main-div">
-              <div className="service-slider-main">
-                <MdArrowLeft onClick={() => slider?.current?.slickPrev()} style={{ fontSize: '40px' }} />
-                <MdArrowRight onClick={() => slider?.current?.slickNext()} style={{ fontSize: '40px' }} />
-              </div>
-            </div>
-
             <div className="project__shape-wrap-three">
               <img src="/assets/img/project/h3_project_shape01.png" alt="" data-aos="fade-left" data-aos-delay={400} />
               <img src="/assets/img/project/h3_project_shape02.png" alt="" className="alltuchtopdown" />
@@ -163,7 +111,4 @@ export default function Project3({ data }) {
     </>
   );
 }
-
-
-
 
