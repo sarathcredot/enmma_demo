@@ -12,6 +12,7 @@ import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import { useRef } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useTranslation } from 'next-i18next';
 
 
 export default function Project3({ data }) {
@@ -21,17 +22,17 @@ export default function Project3({ data }) {
   const [respo, setrespo] = useState([])
 
 
-  useEffect(async () => {
+  // useEffect(async () => {
 
 
-    await axios(`${process.env.NEXT_PUBLIC_BASE_URL}/${"services"}`).then((respo) => {
+  //   await axios(`${process.env.NEXT_PUBLIC_BASE_URL}/${"services"}`).then((respo) => {
 
-      console.log("my data", respo.data)
-      setrespo(respo.data)
-    })
+  //     console.log("my data", respo.data)
+  //     setrespo(respo.data)
+  //   })
 
 
-  }, []);
+  // }, []);
 
   const settings = {
     infinite: true,
@@ -44,6 +45,36 @@ export default function Project3({ data }) {
     arrows: false,
 
   }
+
+
+
+  const { t } = useTranslation('common');
+  const { i18n } = useTranslation();
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+      const fetchServices = async () => {
+          try {
+              const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services`);
+              console.log( "service data", response.data)
+              setServices(response.data);
+          } catch (error) {
+              console.error("Error fetching services:", error);
+          }
+      };  
+      fetchServices();
+  }, []);
+
+  // Localize the data based on the current language
+  const localizedData = services.map(item => {
+      return {
+          ...item,
+          title: item[`title_${i18n.language}`] || item.title_en,
+          subtitle: item[`subtitle_${i18n.language}`] || item.subHeading1_en,
+          description: item[`description_${i18n.language}`] || item.description_en
+          
+      };
+  });
 
 
 
@@ -73,7 +104,7 @@ export default function Project3({ data }) {
             <Slider ref={slider} {...settings}>
 
 
-              {respo.map((item, index) => (
+              {localizedData.map((item, index) => (
 
 
                 <div className="row">
@@ -86,10 +117,10 @@ export default function Project3({ data }) {
                       <div className="project__item-three shine-animate-item">
 
                         <div className="project__content-three">
-                          <span>{item.subHeading1_en}</span>
-                          <h2 className="title">{item.title_en}</h2>
+                          <span>{item.subtitle}</span>
+                          <h2 className="title">{item.title}</h2>
                         
-                          <p>{item.description_en}</p>
+                          <p>{item.description}</p>
                          
                          
                           <Link href="" className="btn btn-two">Read More</Link>

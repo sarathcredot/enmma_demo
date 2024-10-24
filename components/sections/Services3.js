@@ -32,6 +32,9 @@ export default function Services3() {
         };
     });
 
+
+    console.log("local data",localizedData)
+
     return (
         <>
             <section  className="services__area-three services__bg-three" data-background="/assets/img/bg/h3_services_bg.jpg">
