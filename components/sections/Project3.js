@@ -5,34 +5,61 @@
 'use client';
 import Link from "next/link";
 import { useEffect } from "react";
-// import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-// import SwiperCore, { Pagination, Autoplay, Navigation } from 'swiper'; // Import required modules
+import axios from "axios";
+import { useState } from "react";
 
-// Import Swiper styles
-// import 'swiper/css';
-// import 'swiper/css/pagination';
-// import 'swiper/css/autoplay';
-// import 'swiper/css/navigation'; // Import Navigation styles
-
-// Install Swiper modules
-// SwiperCore.use([Pagination, Autoplay, Navigation]);
 
 export default function Project3({ data }) {
-  useEffect(() => {
-    console.log("project3", data);
+
+  const [respo, setrespo] = useState([
+
+    {
+      id: 1,
+      subtitle: "subtitle 1",
+      sidebarSubtitle: "sidebarSubtitle 1",
+      description: "description 1",
+
+
+
+
+    },
+    {
+      id: 23,
+      subtitle: "subtitle 2",
+      sidebarSubtitle: "sidebarSubtitle 2",
+      description: "description 2",
+
+
+
+
+    },
+    {
+      id: 2,
+      subtitle: "subtitle 3",
+      sidebarSubtitle: "sidebarSubtitle 3",
+      description: "description 3",
+
+
+
+
+    }
+  ])
+
+
+  useEffect(async () => {
+
+
+    await axios(process.env.NEXT_PUBLIC_BASE_URL).then((respo) => {
+
+      // console.log("service data", respo.data)
+    })
+
+
   }, []);
 
-  // const swiperOptions = {
-  //   slidesPerView: 1,
-  //   spaceBetween: 20,
-  //   pagination: { clickable: true },
-  //   autoplay: { delay: 3000 },
-  //   loop: true, // Enable loop if needed
-  //   navigation: {
-  //     nextEl: '.swiper-button-next',
-  //     prevEl: '.swiper-button-prev',
-  //   },
-  // };
+
+  
+
 
   return (
     <>
@@ -42,12 +69,12 @@ export default function Project3({ data }) {
             <div className="row justify-content-center">
               <div style={{ width: "100%", display: "flex", gap: "200px", paddingTop: "20px" }} className="col-xl-7 col-lg-8">
                 <div style={{ width: "500px" }} className="section-title mb-40 tg-heading-subheading animation-style3">
-                  <span style={{fontSize:"18px"}}   className="sub-title justify-content-center"> {item.subtitle} </span>
+                  <span style={{ fontSize: "18px" }} className="sub-title justify-content-center"> {item.subtitle} </span>
                   <h5 className="title">{item.title} </h5>
                 </div>
 
                 <div className="dev_customsize classMedia mt-0 mt-md-4">
-                {item.description}
+                  {item.description}
                   {/* Our power of choice is untrammelled and when nothing <br />
                   prevents being able to do what we like best every pleasure. */}
                 </div>
@@ -69,6 +96,9 @@ export default function Project3({ data }) {
                       <p>{item.description}</p>
                       <Link href={item.buttonLink} className="btn btn-two">{item.buttonTitle}</Link>
                     </div>
+
+
+
                     <div className="project__thumb-three shine-animate">
                       <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.bannerImage}`} alt="" />
                     </div>
@@ -85,7 +115,7 @@ export default function Project3({ data }) {
               <img src="/assets/img/project/h3_project_shape01.png" alt="" data-aos="fade-left" data-aos-delay={400} />
               <img src="/assets/img/project/h3_project_shape02.png" alt="" className="alltuchtopdown" />
             </div>
-            </div>
+          </div>
         </section>
       ))}
     </>

@@ -20,7 +20,7 @@ export default function Bannerfooter({data}) {
                                                 <div className="content">
                                                     {/* <span>Toll Free Call</span> */}
                                                     {item.buttonLink ? (
-                                                <Link href={item.buttonLink} className="">+ 88(9600)6002</Link> ) : (<></>)} 
+                                                <Link href={`tel:+ 88(9600)6002`} className="">+ 88(9600)6002</Link> ) : (<></>)} 
                                                   </div>
                                             </div>
                                         </div>

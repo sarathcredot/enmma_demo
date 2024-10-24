@@ -134,8 +134,10 @@ export function CorporatePoints({ corporatePoints }) {
                     onClick={() => handleOnClick(index)}
                     key={corporatePoint._id}
                   >
-                    <Link href="#focus" smooth>
+                    {/* <Link href="#" smooth> */}
                       <button
+                      style={{display:"flex",alignItems:"center",justifyContent:"center"}}
+
                         className={
                           activeIndex == index ? "nav-link active" : "nav-link"
                         }
@@ -151,7 +153,7 @@ export function CorporatePoints({ corporatePoints }) {
                         {corporatePoint.title}
                      
                       </button>
-                    </Link>
+                    {/* </Link> */}
                   </li>
                 );
               })}

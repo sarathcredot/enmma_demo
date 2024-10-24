@@ -49,9 +49,11 @@ export default function Service({ initialData }) {
                     <h2 className=" mt-4 devtextwrapo">{localizedData?.subHeading2}</h2>
                   </div>
                   <div className="dev_customsize services__content-two mt-4">
+                    
                     <Link href="/services" className="btn">
                       {t("more-services")}
                     </Link>
+                  
                   </div>
                 </div>
               </div>
