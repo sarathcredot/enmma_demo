@@ -18,9 +18,9 @@ import { useTranslation } from 'next-i18next';
 export default function Project3({ data }) {
 
   const slider = useRef(null);
-
+ 
   const [respo, setrespo] = useState([])
-
+  // const { t, i18n } = useTranslation("common");
 
   // useEffect(async () => {
 
@@ -53,28 +53,28 @@ export default function Project3({ data }) {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-      const fetchServices = async () => {
-          try {
-              const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services`);
-              console.log( "service data", response.data)
-              setServices(response.data);
-          } catch (error) {
-              console.error("Error fetching services:", error);
-          }
-      };  
-      fetchServices();
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services`);
+        console.log("service data", response.data)
+        setServices(response.data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+    fetchServices();
   }, []);
 
   // Localize the data based on the current language
   const localizedData = services.map(item => {
-      return {
-          ...item,
-          title: item[`title_${i18n.language}`] || item.title_en,
-          subtitle: item[`subtitle_${i18n.language}`] || item.subHeading1_en,
-          description: item[`description_${i18n.language}`] || item.description_en
-          
-          
-      };
+    return {
+      ...item,
+      title: item[`title_${i18n.language}`] || item.title_en,
+      subtitle: item[`subtitle_${i18n.language}`] || item.subHeading1_en,
+      description: item[`description_${i18n.language}`] || item.description_en
+
+
+    };
   });
 
 
@@ -102,7 +102,10 @@ export default function Project3({ data }) {
 
 
 
+
             <Slider ref={slider} {...settings}>
+
+
 
 
               {localizedData.map((item, index) => (
@@ -120,18 +123,23 @@ export default function Project3({ data }) {
                         <div className="project__content-three">
                           <span>{item.subtitle}</span>
                           <h2 className="title">{item.title}</h2>
-                        
+
                           <p>{item.description}</p>
                          
-                         
-                          <Link href="" className="btn btn-two">Read More</Link>
+                          <Link href={`/services/${item.slug}`} className="btn btn-two">
+
+                          {t('read-more')}
+                             
+                          </Link>
+                       
                         </div>
 
 
 
-                        <div className="project__thumb-three shine-animate">
+                         <div className="project__thumb-three shine-animate">
                           <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${item.imageUrl}`} alt="" />
-                        </div>
+                        </div> 
+                     
                       </div>
 
 
@@ -150,8 +158,34 @@ export default function Project3({ data }) {
 
 
 
-
             </Slider>
+
+            <div className="slider-main-div" >
+
+
+              <div className="service-slider-main"  >
+
+                <div>
+
+                  <MdArrowLeft onClick={() => slider?.current?.slickPrev()} style={{ fontSize: '40px' }} />
+
+
+                </div>
+
+                <div>
+
+                  <MdArrowRight onClick={() => slider?.current?.slickNext()} style={{ fontSize: '40px' }} />
+
+                </div>
+
+
+              </div>
+
+
+
+            </div>
+
+
 
 
             {/* <div className="row">

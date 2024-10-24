@@ -601,6 +601,35 @@ textarea {
   border-radius: 50%;
   z-index: -1;
 }
+
+
+.service-slider-main{
+
+    /* width: 100%; */
+    width: 100px;
+    
+    display:  flex ;
+    justify-content:space-between ;
+    position: absolute;
+  
+ 
+    
+}
+
+
+.slider-main-div{
+
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   margin-top: -30px;
+    
+}
+
+
+
+
+
 .btn-devblue::after {
   content: "\f10a";
   font-family: flaticon;
@@ -6610,7 +6639,20 @@ font-size: 20px;
   overflow: hidden;
   position: relative;
   z-index: 1;
+ 
 }
+
+@media(max-width:730px){
+
+      .shine-animate{
+
+          display:none;
+      }
+}
+
+
+
+
 .shine-animate::before {
   position: absolute;
   top: 0;
@@ -7836,18 +7878,36 @@ html[lang="ar"] .choose__shape-wrap-three img:nth-child(2){
   -o-border-radius: 15px;
   -ms-border-radius: 15px;
   border-radius: 15px;
+ 
 }
+
+
+@media(max-width:730px){
+
+  .project__thumb-three img{
+
+       display:none;
+  }
+}
+
+
+
 @media (max-width: 1199.98px) {
   .project__thumb-three img {
     height: 430px;
   }
 }
+
+
+
 @media (max-width: 750.98px) {
   .project__thumb-three-2 img,
   .project__thumb-three img {
     display: none;
   }
 }
+
+
 /*devchange*/
 .project__thumb-three-2 {
   width: 782px;
