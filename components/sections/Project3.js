@@ -73,6 +73,7 @@ export default function Project3({ data }) {
           subtitle: item[`subtitle_${i18n.language}`] || item.subHeading1_en,
           description: item[`description_${i18n.language}`] || item.description_en
           
+          
       };
   });
 
