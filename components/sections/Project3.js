@@ -51,7 +51,7 @@ export default function Project3({ data }) {
 
     await axios(process.env.NEXT_PUBLIC_BASE_URL).then((respo) => {
 
-      // console.log("service data", respo.data)
+      console.log("service data", respo.data)
     })
 
 
