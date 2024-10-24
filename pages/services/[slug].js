@@ -108,7 +108,7 @@ export function ServicePoints({ servicePoints }) {
                   onClick={() => handleOnClick(index)}
                   key={servicePoint._id}
                 >
-                  <Link href="#focus" smooth>
+                  
                     <button
                       className={
                         activeIndex == index ? "nav-link active" : "nav-link"
@@ -125,7 +125,7 @@ export function ServicePoints({ servicePoints }) {
                       <i className=" flaticon-pin" />
                       {servicePoint.title}
                     </button>
-                  </Link>
+                
                 </li>
               );
             })}
