@@ -57,6 +57,7 @@ export default function Project3({ data }) {
     autoplay: true,
     arrows: false, // No arrows
     dots: true // Enable dots for focusing
+    
   };
 
   return (
@@ -86,12 +87,13 @@ export default function Project3({ data }) {
                       <div className="project__content-three">
                         <span>{service.subtitle}</span>
                         <h2 className="title">{service.title}</h2>
-                        {/* Truncated description */}
+                       
                         <p>{truncateText(service.description, 100)}</p>
                         <Link href={`/services/${service.slug}`} className="btn btn-two">
                           {t('read-more')}
                         </Link>
                       </div>
+
                       <div className="project__thumb-three shine-animate">
                         <img src={`${process.env.NEXT_PUBLIC_MEDIA_BASE_URL}${service.imageUrl}`} alt="" />
                       </div>

@@ -6673,6 +6673,12 @@ font-size: 20px;
   animation: hoverShine 1.2s;
 }
 
+
+
+
+
+
+
 .section-more-btn {
   text-align: right;
 }
@@ -8102,6 +8108,7 @@ display: none;  }
 @media (max-width: 767.98px) {
   .project__content-three {
     width: 100%;
+   
     position: unset;
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
