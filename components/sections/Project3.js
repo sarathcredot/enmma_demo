@@ -87,6 +87,8 @@ export default function Project3({ data }) {
                       <div className="project__content-three">
                         <span>{service.subtitle}</span>
                         <h2 className="title">{service.title}</h2>
+
+                        
                        
                         <p>{truncateText(service.description, 100)}</p>
                         <Link href={`/services/${service.slug}`} className="btn btn-two">
