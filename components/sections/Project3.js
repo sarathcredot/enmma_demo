@@ -23,6 +23,7 @@ export default function Project3({ data }) {
     const fetchServices = async () => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/services`);
+        console.log("fetch data",response.data)
         setServices(response.data);
       } catch (error) {
         console.error("Error fetching services:", error);
@@ -88,7 +89,7 @@ export default function Project3({ data }) {
                         <span>{service.subtitle}</span>
                         <h2 className="title">{service.title}</h2>
 
-                        
+
                        
                         <p>{truncateText(service.description, 100)}</p>
                         <Link href={`/services/${service.slug}`} className="btn btn-two">
