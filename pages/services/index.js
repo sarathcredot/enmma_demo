@@ -15,13 +15,13 @@ export default function Services({ initialData }) {
   const [bannerdata, setbannerdata] = useState([
 
     
-        {
-          choicesBlog:[],
-          choicesService:[],
-          choicesTeam:[],
-          description_ar:['\nنحن نقدم مجموعة واسعة من الخدمات لتلبية احتياجاتك. استكشف عروضنا.\n']
+        // {
+        //   choicesBlog:[],
+        //   choicesService:[],
+        //   choicesTeam:[],
+        //   description_ar:['\nنحن نقدم مجموعة واسعة من الخدمات لتلبية احتياجاتك. استكشف عروضنا.\n']
     
-        }
+        // }
 
   ])
 
@@ -64,10 +64,11 @@ export default function Services({ initialData }) {
             const data = await response.json();
             const fetchedData = data.filter(item => item.page === 'service');
 
-            console.log( "newdata", fetchedData)
+            
 
              if(fetchedData){
-                
+              console.log( "newdata 24", fetchedData)
+
               setbannerdata(fetchedData);
              }
             
@@ -123,7 +124,7 @@ const getDataBySection = (section) => localizedbannerData.filter(item => item.se
 
 
 
- console.log("data",getDataBySection("service_banner"))
+ console.log("data 24",getDataBySection("service_banner"))
 
 
   // const getBannerDataFromMetaData = (meta) => {
@@ -139,12 +140,12 @@ const getDataBySection = (section) => localizedbannerData.filter(item => item.se
     <>
       <Layout headerStyle={6} footerStyle={3}>
 
-        {/* <Banner2
+        <Banner2
           data={getDataBySection("service_banner")}
           bgColor={"#110B79"}
           fontColor={"#FFFFFF"}
           fontColor2={"#FFFFFF"}
-        /> */}
+        />
 
 
         <div style={{ backgroundColor: "#110B79" }}>
